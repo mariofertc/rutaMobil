@@ -1,0 +1,9 @@
+create database rutaMobil;
+create table lugar(
+id int auto_increment, 
+nombre varchar(256) not null,
+descripcion varchar(256) not null,
+imagen_path varchar(256) null,
+coordenadas varchar(256) not null,
+fecha_actualizacion datetime not null,
+constraint pk_lugar references id);
