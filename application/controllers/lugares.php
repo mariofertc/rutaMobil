@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Inicio extends CI_Controller {
+class Lugares extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -20,6 +20,12 @@ class Inicio extends CI_Controller {
 	public function index()
 	{
 		$this->load->view('inicio');
+	}
+	
+	public function ver()
+	{
+		$data['lugares'] = $this->Lugar->get_all();
+		$this->load->view('lugares/administrar', $data);
 	}
 }
 
