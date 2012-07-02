@@ -1,5 +1,7 @@
 create database rutaMobil;
 
+use rutaMobil;
+
 create table lugar(
 id int auto_increment, 
 nombre varchar(256) not null,
