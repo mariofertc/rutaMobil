@@ -28,6 +28,3 @@
 		<h4>Copy Rigth 2012</h4>
 	</div><!-- /footer -->
 </div><!-- /page -->
-
-</body>
-</html>

@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title></title>
-    </head>
-    <body>
 	<div data-role="page" id="menu" data-title="Rutas Móbiles - Menu Principal">
 
 	    <div data-role="header">
@@ -16,7 +9,7 @@
 
 		    <div class="ui-grid-b">
 			<div class="ui-block-a"><?php echo anchor('mobil/parques', 'Párques', 'data-role="button" data-theme="b"'); ?></div>
-			<div class="ui-block-b"><?php echo anchor('mobil/iglesias', 'Iglesias', 'data-role="button" data-theme="b"'); ?></div>
+			<div class="ui-block-b"><?php echo anchor('mobil/mapa', 'Iglesias', 'data-role="button" data-theme="b"'); ?></div>
 			<div class="ui-block-c"><?php echo anchor('mobil/hoteles', 'Hoteles', 'data-role="button" data-theme="b"'); ?></div>
 		    </div><!-- /grid-b -->
 		    <div class="ui-grid-b">

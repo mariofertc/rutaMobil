@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 class Lugar extends CI_Model {
 
     var $title   = '';
