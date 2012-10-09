@@ -5,6 +5,8 @@ class Mobil extends CI_Controller {
 	{
 		//$this->load->view('mobil/bienvenido');
 		//$this->load->view('mobil/menu');
+		$this->load->view('mobile/partial/head.php');
+		$this->load->view('mobile/home/content.php');
 		$this->load->view('mobile/inicio.php');
 	}
 	public function menu()
