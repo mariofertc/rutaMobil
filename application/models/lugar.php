@@ -16,6 +16,18 @@ class Lugar extends CI_Model {
         $query = $this->db->get('lugar', 10);
         return $query->result();
     }
+    
+    function get_by_categoria($categoria_id = null)
+    {
+        if($categoria_id == null)
+            return null;
+        $this->db->where('categoria_id', $categoria_id);
+        $this->db->from('lugar');
+        $this->db->limit(10);
+        $query = $this->db->get();
+        
+        return $query;
+    }
 
     function insert_entry()
     {
