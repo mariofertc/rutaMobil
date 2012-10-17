@@ -218,17 +218,6 @@
 	</div>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
 <div data-role="page" id="countries" data-theme="e">
 	<div data-role="header" data-theme="b">
 		<a href="#home" data-rel="back" data-icon="arrow-l">Back</a>
@@ -521,125 +510,7 @@
 
 
 
-<!-- DESCRIPCION SITIO#1 -->
-<div data-role="page" id="zoologico" data-title="Blog Post"  data-theme="a">
 
-    <!-- Header -->
-    <div data-role="header" class="yellow" >
-    <div class="bannerr"></div>
-       <!--<a href="index.html" rel="external" data-rel="back" data-icon="arrow-l" data-transition="flip">Back</a> <h4>DESCRIPCION</h4>-->
-
-    <!--inicio barra sociales y foto-->
-                                      <!-- class="ic"-->
-           <div data-role="navbar" data-theme="a" >
-             <ul>
-               <li><a href="#atractivos" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false"><img src="images/regresar.png" width="32" height="32" alt="Visit our Twitter Feed"><br />
-       REGRESAR</a>
-    </a></li>
-                 <li><a href="http://www.facebook.com/"data-show-count="false" data-show-screen-name="false"><img src="images/white_facebook.png" width="32" height="32" alt="Follow Us on Facebook"><br />MEGUSTA</a>
-    </a></li>
-                <li><a href="#twitter" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false"><img src="images/white_twitter_bird.png" width="32" height="32" alt="Visit our Twitter Feed"><br />TWITTEAR</a>
-    </a></li>
-
-     <li><a href="#iglesia1" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false"><img src="images/foto.png" width="32" height="32" alt="Visit our Twitter Feed"><br />
-       FOTOS</a>
-    </a></li>
-
-
-             </ul>
-          </div>
-          <!--fin barra sociales y foto-->
-
-    </div><!-- END OF: Header -->
-    <li class="title"> <div class="icontitle">C</div> <h1>ZOOLOGICO</h1>
-    <h4>Sector San Francisco</h4></li>
-    <div data-role="content" class="content" data-theme="d">
-
-
-
-        <!-- Content -->
-
-           <div class="imdes"><img src="images/img_480/iglesia_02.jpg" /> </div>
-           <div class="imdes8"><img src="images/img_1010/zoo_01.jpg" /> </div>
-          <div data-role="collapsible-set">
-
- <div data-role="content" class="laciudad">
-  <H1> DESCRIPCION DEL DESTINO</H1>
-  <p>Historia, antecedentes <p>
-  <p>Es un cantón perteneciente a la Provincia de Tungurahua, se encuentra ubicada en la base del volcán Tungurahua, en el flanco oriental de la Cordillera de los Andes, sobre una meseta montañosa drenada por los ríos Bascún, Ulba y Pastaza que inciden directamente en la geografía de Baños. Su significativa diferencia de altitud, que va desde los 5016 m.s.n.m en la cima del volcán Tungurahua, pasando por los 1820 m.s.n.m a los que se encuentra la ciudad de Baños, hasta los 1050 m.s.n.m en el límite provincial con Pastaza, generan especiales condiciones climáticas en su camino hacia el oriente, lo que hace del cantón Baños uno de los sitios más privilegiados para la existencia de flora, fauna y paisajes únicos en el mundo.
-</p>
-  </div>
-
-
-  <div data-role="collapsible" class="laciudad">
-   <H1>UBICACION DEL DESTINO</H1>
-   <p>Baños, una pequeña ciudad que se encuentra asentada en sobre una meseta basáltica, está rodeado de altas montañas en los andes ecuatorianos, tiene una extensión de 340 hectáreas; conocido en el mundo entero por sus bondades naturales, sus ríos, sus cascadas su flora y fauna, las aguas medicinales que brotan del fondo de la tierra, por el volcán Tungurahua.<br/><br/>
-
-Al NORTE: Con la parroquia Lligua <br/>
-Al SUR: Con la provincia de Chimborazo<br/>
-Al ESTE: Con las parroquias Ulba y Río Verde.<br/>
-Al Oeste: Con el Cantón Pelileo.<br/><br/>
-
-
-Clima.- posee un clima ecuatorial, mesotérmico que va desde el  semi húmedo a húmedo, su temperatura fluctúa entre los 18 y 22 grados centígrados.<br/><br/>
-
-Altitud.- Baños se encuentra ubicada a 1820 msnm.<br/><br/>
-
-Ríos.- Los más importantes son: El Pastaza, en el cual se realiza el rafting, Bascun y Ulba.
-</p>
-  </div>
-
-  <div data-role="collapsible" class="laciudad">
-   <H1>QUE DEBEMOS SABER</H1>
-   <p>Su cabecera es la ciudad de Baños; cuenta con una parroquia urbana que es Baños (La Matriz).<br/> Las parroquias rurales son:
-
-- Lligua
-- Ulba
-- Río Verde
-- Río Negro</p> <br/>
-
-<H1>LLIGUA</H1>
- <p>Parroquia ubicada a 3km de distancia,  vía asfaltada. Atractivos: una chorrera de más de 50m de longitud ubicada entre la Palma y Ozoguayco, un rio de aguas cristalinas que cruza por la parroquia, senderos, esplèndidos miradores naturales, una piscina  de agua fría cubierta.
-Sus habitantes viven de la agricultura y la ganadería, se produce tomate de árbol, granadilla, maíz, fréjol, durazno y zanahoria blanca. <br/><br/>
-
-Atractivos naturales:Posee senderos aptos para realizar paseos a caballo,  excelentes miradores de la actividaddel volcán Tungurahua, siendo un sitio ideal para realizar avistamientos de objetos voladores no identificados (OVNIS), según  testimonios de varios de los moradores del lugar que han sido testigos de su presencia.
-</p>
-
-<H1>ULBA</H1>
- <p>Parroquia ubicada a 5 minutos de la ciudad vía al Oriente, población  3.152 habitantes . Clima  templado, semi-húmedo, temperatura promedio  18ºC, ideal para la realización de actividades recreacionales al aire libre, así como actividades económicas de carácter agrícola y pecuario. <br/><br/>
-Productos: mandarinas, tomate de árbol, tomate de carne, aguacate,  granadilla, zanahoria blanca, camote, papa china, fréjol, maíz.
-Un alto porcentaje de la población también se dedica a la avicultura, porcicultura, actividades turísticas, gastronomía. Existen varios paraderos y establecimientos que ofrecen comidas típicas: fritada, caldo de gallina criolla, pollo asado, choclos con queso, parrilladas.<br/><br/>
-
-Atractivos naturales: Río Ulba, Río Chamana, Río Verde Chico,   Río Cristal,   Río Valencia,   Río Santa Rosa,   Río Guamag,    Río Blanco, Río León,  Cascada del Silencio, Cascada Ulba, Cascadas de Chamana.</p>
-
-
-
-
-</div>
-
-
-</div>
-
-
-
-           </div><!-- END OF: CONTENT -->
-
-
-    <!-- Footer -->
-	<div data-role="footer" data-theme="a" >
-		<div data-role="navbar" data-theme="e">
-            <ul>
-                <li><a href="#home" class="ui-btn-active" data-icon="home">Home</a></li>
-                <li><a href="#oferta" data-icon="grid">Oferta Turistica</a></li>
-                <li><a href="#aboutus" data-icon="info">About Us</a></li>
-                <li><a href="#geo" data-icon="star">Ubicacion</a></li>
-            </ul>
-        </div>
-        <p class="copyright">&copy; 2012 Rutas moviles.com &nbsp;&nbsp;</p>
-	</div>
-
-
-</div><!-- FIN DESCRIPCION SITIO#1  -->
 
 <!-- GALERIA POR SITIO -->
 <div data-role="page" id="iglesia1" data-title="Portfolio">

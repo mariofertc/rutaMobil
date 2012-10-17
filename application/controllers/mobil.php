@@ -15,8 +15,11 @@ class Mobil extends CI_Controller {
         $this->load->view('mobile/oferta/content.php', $data);
         
         
-        $data['lugar'] = get_lugar($categoria, array('busqueda' => true, 'shadow' => true), $this);
+        $data['lugar'] = get_lugares($categoria, array('busqueda' => true, 'shadow' => true), $this);
         $this->load->view('mobile/lugar/pagina', $data);
+        $data['lugar'] = get_lugar($categoria, array('busqueda' => false, 'shadow' => false), $this);
+        $this->load->view('mobile/lugar/pagina', $data);
+        
         $this->load->view('mobile/inicio.php');
     }
 

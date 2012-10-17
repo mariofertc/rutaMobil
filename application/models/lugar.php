@@ -28,6 +28,18 @@ class Lugar extends CI_Model {
         
         return $query;
     }
+    
+    function get_photos($lugar_id = null)
+    {
+        if($lugar_id == null)
+            return null;
+        $this->db->where('id_lugar', $lugar_id);
+        $this->db->from('fotos');
+        $this->db->limit(10);
+        $query = $this->db->get();
+        
+        return $query;
+    }
 
     function insert_entry()
     {
