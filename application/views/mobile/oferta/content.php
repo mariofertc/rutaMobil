@@ -9,5 +9,5 @@
 
 	
 	<!--Incluede Footer-->
-	<?php $this->load->view("mobile/partial/footer"); ?>
+	<?php $this->load->view("mobile/partial/footer_page"); ?>
 </div>

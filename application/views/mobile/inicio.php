@@ -1,8 +1,6 @@
 <div data-role="page" id="mas" data-theme="d">
-
 	<div data-role="header" data-theme="a" class="yellow" >
            <div class="bannerr"></div>
-
            <!--inicio barra sociales y foto-->
            <div data-role="navbar" data-theme="a" >
              <ul>
@@ -13,49 +11,27 @@
     </a></li>
                 <li><a href="#twitter" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false"><img src="images/white_twitter_bird.png" width="32" height="32" alt="Visit our Twitter Feed"><br />TWITTEAR</a>
     </a></li>
-
      <li><a href="#portfolio" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false"><img src="images/foto.png" width="32" height="32" alt="Visit our Twitter Feed"><br />
        FOTOS</a>
     </a></li>
-
              </ul>
           </div>
           <!--fin barra sociales y foto-->
-
-
 	     </div>
-
-
-
-
 	<div data-role="content" data-theme="d" class="conte" >
-
-
-
 		<ul data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Qué lugar buscas?" data-autodividers="true">
-
 			<li><a href="lugares.html" rel="external"><img src="images/imgoferta/iglesias/iglesia-parque2.jpg" width="300" height="260" alt="Tours Listing"><h1>Iglesia Central</h1>
             <p>Es un cantón perteneciente a la Provincia de Tungurahua, se encuentra ubicada en la base del volcán Tungurahua, en el flanco oriental de la Cordillera de los Andes, sobre una meseta montañosa drenada por los ríos Bascún, Ulba y Pastaza que inciden directamente en la geografía de Baños. Su significativa diferencia de altitud, que va desde los 5016 </p>
             <img src="images/vote.png"> <span class="ui-li-count">10 km</span></a></li>
-
-
-
             <li><a href="lugares.html" rel="external"><img src="images/imgoferta/iglesias/iglesia-la sagrada concepcion.jpg" width="300" height="260" alt="Tours Listing"><h1>Iglesia Catedral</h1>
             <p>Es un cantón perteneciente a la Provincia de Tungurahua, se encuentra ubicada en la base del volcán Tungurahua, en el flanco oriental de la Cordillera de los Andes, sobre una meseta montañosa drenada por los ríos Bascún, Ulba y Pastaza que inciden directamente en la geografía de Baños. Su significativa diferencia de altitud, que va desde los 5016 </p>
             <img src="images/vote.png"> <span class="ui-li-count">12 km</span></a></li>
-
-
-
-
 			<li><a href="lugares.html" rel="external"><img src="images/imgoferta/iglesias/concepcion.jpg" width="300" height="260" alt="Tours Listing"><h1>Iglesia Conceptas</h1>
             <p>Es un cantón perteneciente a la Provincia de Tungurahua, se encuentra ubicada en la base del volcán Tungurahua, en el flanco oriental de la Cordillera de los Andes, sobre una meseta montañosa drenada por los ríos Bascún, Ulba y Pastaza que inciden directamente en la geografía de Baños. Su significativa diferencia de altitud, que va desde los 5016 </p>
             <img src="images/vote.png"> <span class="ui-li-count">16 km</span></a></li>
-
 <li><a href="lugares.html" rel="external"><img src="images/imgoferta/iglesias/armenian_catholic_church.jpg" width="500" height="390" alt="Tours Listing"><h1>Iglesia Espiritu Santo</h1>
             <p>Es un cantón perteneciente a la Provincia de Tungurahua, se encuentra ubicada en la base del volcán Tungurahua, en el flanco oriental de la Cordillera de los Andes, sobre una meseta montañosa drenada por los ríos Bascún, Ulba y Pastaza que inciden directamente en la geografía de Baños. Su significativa diferencia de altitud, que va desde los 5016 </p>
             <img src="images/vote.png"> <span class="ui-li-count">20 km</span></a></li>
-
-
 		</ul>
 	</div>
 	<div data-role="footer" data-theme="a" >
@@ -71,15 +47,9 @@
 	</div>
 </div>
 
-
-
-
-
 <div data-role="page" id="hosterias" data-theme="d">
-
 	<div data-role="header" data-theme="a" class="yellow" >
            <div class="bannerr"></div>
-
            <div data-role="navbar" data-theme="a" >
              <ul>
              <li><a href="#oferta" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false"><img src="images/regresar.png" width="32" height="32" alt="Visit our Twitter Feed"><br />
@@ -89,47 +59,26 @@
     </a></li>
                 <li><a href="#twitter" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false"><img src="images/white_twitter_bird.png" width="32" height="32" alt="Visit our Twitter Feed"><br />TWITTEAR</a>
     </a></li>
-
      <li><a href="#portfolio" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false"><img src="images/foto.png" width="32" height="32" alt="Visit our Twitter Feed"><br />
        FOTOS</a>
     </a></li>
              </ul>
           </div>
-
-
 	       </div>
-
-
-
-
 	<div data-role="content" data-theme="d" class="conte" >
-
-
-
 		<ul data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Qué lugar buscas?" data-autodividers="true">
-
 			<li><a href="#tours"><img src="images/imgoferta/hosterias/uno.jpg" width="340" height="279" alt="Tours Listing"><h1>HOSTERIA 1</h1>
             <p>Es un cantón perteneciente a la Provincia de Tungurahua, se encuentra ubicada en la base del volcán Tungurahua, en el flanco oriental de la Cordillera de los Andes, sobre una meseta montañosa drenada por los ríos Bascún, Ulba y Pastaza que inciden directamente en la geografía de Baños. Su significativa diferencia de altitud, que va desde los 5016 </p>
             <img src="images/vote.png"> <span class="ui-li-count">10 km</span></a></li>
-
-
-
             <li><a href="#tours"><img src="images/imgoferta/hosterias/dos.jpg" width="340" height="279" alt="Tours Listing"><h1>HOSTERIA 2</h1>
             <p>Es un cantón perteneciente a la Provincia de Tungurahua, se encuentra ubicada en la base del volcán Tungurahua, en el flanco oriental de la Cordillera de los Andes, sobre una meseta montañosa drenada por los ríos Bascún, Ulba y Pastaza que inciden directamente en la geografía de Baños. Su significativa diferencia de altitud, que va desde los 5016 </p>
                       <img src="images/vote.png"> <span class="ui-li-count">12 km</span></a></li>
-
-
-
-
 			<li><a href="#tours"><img src="images/imgoferta/hosterias/tres.jpg" width="340" height="279" alt="Tours Listing">  <h1>HOSTERIA 3</h1>
             <p>Es un cantón perteneciente a la Provincia de Tungurahua, se encuentra ubicada en la base del volcán Tungurahua, en el flanco oriental de la Cordillera de los Andes, sobre una meseta montañosa drenada por los ríos Bascún, Ulba y Pastaza que inciden directamente en la geografía de Baños. Su significativa diferencia de altitud, que va desde los 5016 </p>
             <img src="images/vote.png"> <span class="ui-li-count">16 km</span></a></li>
-
 <li><a href="#tours"><img src="images/imgoferta/hosterias/cuatro.jpg" width="340" height="279" alt="Tours Listing"><h1>HOSTERIA 4</h1>
             <p>Es un cantón perteneciente a la Provincia de Tungurahua, se encuentra ubicada en la base del volcán Tungurahua, en el flanco oriental de la Cordillera de los Andes, sobre una meseta montañosa drenada por los ríos Bascún, Ulba y Pastaza que inciden directamente en la geografía de Baños. Su significativa diferencia de altitud, que va desde los 5016 </p>
             <img src="images/vote.png"> <span class="ui-li-count">20 km</span></a></li>
-
-
 		</ul>
 	</div>
 	<div data-role="footer" data-theme="a" >
@@ -144,16 +93,9 @@
         <p class="copyright">&copy; 2012 Rutas moviles.com &nbsp;&nbsp;</p>
 	</div>
 </div>
-
-
-
-
 <div data-role="page" id="deportes" data-theme="d">
-
 	<div data-role="header" data-theme="a" class="yellow" >
            <div class="bannerr"></div>
-
-
             <div data-role="navbar" data-theme="a" >
              <ul>
              <li><a href="#oferta" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false"><img src="images/regresar.png" width="32" height="32" alt="Visit our Twitter Feed"><br />
@@ -163,46 +105,26 @@
     </a></li>
                 <li><a href="#twitter" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false"><img src="images/white_twitter_bird.png" width="32" height="32" alt="Visit our Twitter Feed"><br />TWITTEAR</a>
     </a></li>
-
      <li><a href="#portfolio" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false"><img src="images/foto.png" width="32" height="32" alt="Visit our Twitter Feed"><br />
        FOTOS</a>
     </a></li>
              </ul>
           </div>
-
 	       </div>
-
-
-
-
 	<div data-role="content" data-theme="d" class="conte" >
-
-
-
 		<ul data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Qué lugar buscas?" data-autodividers="true">
-
 			<li><a href="#tours"><img src="images/imgoferta/deportes/uno.jpg" width="340" height="279" alt="Tours Listing"><h1>PUENTING</h1>
             <p>Es un cantón perteneciente a la Provincia de Tungurahua, se encuentra ubicada en la base del volcán Tungurahua, en el flanco oriental de la Cordillera de los Andes, sobre una meseta montañosa drenada por los ríos Bascún, Ulba y Pastaza que inciden directamente en la geografía de Baños. Su significativa diferencia de altitud, que va desde los 5016 </p>
             <img src="images/vote.png"> <span class="ui-li-count">10 km</span></a></li>
-
-
-
             <li><a href="#tours"><img src="images/imgoferta/deportes/dos.jpg" width="340" height="279" alt="Tours Listing"><h1>RAPTTING</h1>
             <p>Es un cantón perteneciente a la Provincia de Tungurahua, se encuentra ubicada en la base del volcán Tungurahua, en el flanco oriental de la Cordillera de los Andes, sobre una meseta montañosa drenada por los ríos Bascún, Ulba y Pastaza que inciden directamente en la geografía de Baños. Su significativa diferencia de altitud, que va desde los 5016 </p>
             <img src="images/vote.png"> <span class="ui-li-count">12 km</span></a></li>
-
-
-
-
 			<li><a href="#tours"><img src="images/imgoferta/deportes/tres.jpg" width="340" height="279" alt="Tours Listing"><h1>CICLISMO</h1>
             <p>Es un cantón perteneciente a la Provincia de Tungurahua, se encuentra ubicada en la base del volcán Tungurahua, en el flanco oriental de la Cordillera de los Andes, sobre una meseta montañosa drenada por los ríos Bascún, Ulba y Pastaza que inciden directamente en la geografía de Baños. Su significativa diferencia de altitud, que va desde los 5016 </p>
             <img src="images/vote.png"> <span class="ui-li-count">16 km</span></a></li>
-
 <li><a href="#tours"><img src="images/imgoferta/deportes/cuatro.jpg" width="340" height="279" alt="Tours Listing"><h1>MOTOCROSS </h1>
             <p>Es un cantón perteneciente a la Provincia de Tungurahua, se encuentra ubicada en la base del volcán Tungurahua, en el flanco oriental de la Cordillera de los Andes, sobre una meseta montañosa drenada por los ríos Bascún, Ulba y Pastaza que inciden directamente en la geografía de Baños. Su significativa diferencia de altitud, que va desde los 5016 </p>
             <img src="images/vote.png"> <span class="ui-li-count">20 km</span></a></li>
-
-
 		</ul>
 	</div>
 	<div data-role="footer" data-theme="a" >
@@ -217,16 +139,12 @@
         <p class="copyright">&copy; 2012 Rutas moviles.com &nbsp;&nbsp;</p>
 	</div>
 </div>
-
 <div data-role="page" id="countries" data-theme="e">
 	<div data-role="header" data-theme="b">
 		<a href="#home" data-rel="back" data-icon="arrow-l">Back</a>
         <h1>Countries</h1>
         <a href="photogallery.html" rel="external">Photo Gallery</a>
 	</div>
-
-
-
 	<div data-role="footer" data-theme="b">
 		<div data-role="navbar" data-theme="e">
             <ul>
@@ -239,7 +157,6 @@
         <p class="copyright">&copy; 2012 Rutas moviles.com &nbsp;&nbsp;</p>
 	</div>
 </div>
-
 <div data-role="page" id="calendar" data-theme="e">
 	<div data-role="header" data-theme="b">
 		<a href="#home" data-rel="back" data-icon="arrow-l">Back</a>
@@ -260,16 +177,12 @@
         <p class="copyright">&copy; 2012 Rutas moviles.com &nbsp;&nbsp;</p>
 	</div>
 </div>
-
-
 <!-- aboutus -->
-
 <div data-role="page" id="aboutus" data-theme="a" >
 	<div data-role="header" data-theme="a" class="yellow">
 		<!--<a href="#home" data-rel="back" data-icon="arrow-l">Back</a>
         <h1>About Us</h1>-->
     <div class="bannerr"></div>
-
 	</div>
     <div data-role="navbar" data-theme="a" >
          <ul>
@@ -280,12 +193,9 @@
 </a></li>
          </ul>
     </div>
-
-
 	<div data-role="content" data-theme="d" class="laciudad2" >
     <h1>WELCOME - BIEMVENIDOS</h1>
 	<p>Baños, una pequeña ciudad que se encuentra asentada en sobre una meseta basáltica, está rodeado de altas montañas en los andes ecuatorianos, tiene una extensión de 340 hectáreas; conocido en el mundo entero por sus bondades naturales, sus ríos, sus cascadas su flora y fauna, las aguas medicinales que brotan del fondo de la tierra, por el volcán Tungurahua. </p> <br/>
-
         <p>Mailing Address:
         	<!-- Address and Phone -->
         <ul data-role="listview" data-theme="a" data-inset="true" class="icab">
@@ -295,38 +205,23 @@
         <li><img src="images/email.png" alt="Phone" class="ui-li-icon">Email:
         info@turismo_banios.com</li>
         </ul>
-
         <div data-role="content" class="content" data-theme="d" style="margin-top:15px">
 			<form>
                 <label for="name">Name:</label>
                 <input type="text" name="name" id="name" value=""  />
-
                 <br />
-
                 <label for="email">Email:</label>
                 <input type="text" name="email" id="email" value=""  />
-
                 <br />
-
                 <label for="textarea">Mensaje:</label>
                 <textarea name="textarea" id="textarea"></textarea>
-
                 <br />
-
                 <a href="#thankyou" data-rel="dialog" data-transition="pop" data-role="button" data-inline="true" data-theme="a">Send</a>
                 <a href="#aboutus" data-role="button" data-inline="true" data-theme="a">Reset </a>
-
 			</form>
         </div>
-
-
         <!-- END OF: Address and Phone -->
-
-
 	</div>
-
-
-
 	<div data-role="footer" data-theme="a" >
 		<div data-role="navbar" data-theme="e">
             <ul>
@@ -340,28 +235,17 @@
 	</div>
 </div>
 <!--  fin aboutus -->
-
-
 <!-- Thank You Message -->
 <div data-role="page" id="thankyou" data-title="Thank You">
-
     <!-- Header -->
     <div data-role="header" class="header">
        <h4>GRACIAS POR VISITARNOS</h4>
     </div><!-- END OF: Header -->
-
     <!-- Content -->
     <div data-role="content" class="dialog">
        Gracias por escribiernos, le responderemos lo más pronto posible
     </div><!-- END OF: Content -->
-
-
 </div><!-- END OF: Thank You Message -->
-
-
-
-
-
 <div data-role="page" id="twitter" data-theme="a" >
 	<div data-role="header" data-theme="a" class="yellow">
     <div class="bannerr"></div>
@@ -376,7 +260,6 @@
          </ul>
     </div>
 	</div>
-
 	<div data-role="content" data-theme="a" class="tw">
 		<h4>Manténgase al día con nuestros últimos tweets</h4>
         <script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
@@ -420,21 +303,9 @@
         <p class="copyright">&copy; 2012 Rutas moviles.com &nbsp;&nbsp;</p>
 	</div>
 </div>
-
-
-
-
-
-
-
-
-
 <!-- Portfolio -->
 <div data-role="page" id="portfolio" data-title="Portfolio">
-
-
    <div data-role="header" class="yellow" >
-
        <!--iniciio sociales y foto-->
        <div data-role="navbar" data-theme="a" >
              <ul>
@@ -445,24 +316,10 @@
     </a></li>
                 <li><a href="#twitter" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false"><img src="images/white_twitter_bird.png" width="32" height="32" alt="Visit our Twitter Feed"><br />TWITTEAR</a>
     </a></li>
-
              </ul>
        </div>
        <!--fin barra sociales y foto-->
-
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
 	<!-- Portfolio -->
 	<ul id="gallery" class="gallery">
 		<li><a rel="external" href="images/full/001.jpg"><img src="images/thumb/001.jpg" alt="Image 001" /></a></li>
@@ -484,9 +341,6 @@
 		<li><a rel="external" href="images/full/017.jpg"><img src="images/thumb/017.jpg" alt="Image 017" /></a></li>
 		<li><a rel="external" href="images/full/018.jpg"><img src="images/thumb/018.jpg" alt="Image 018" /></a></li>
 	</ul><!-- END OF: Portfolio -->
-
-
-
    <!-- Footer -->
 	<div data-role="footer" data-theme="a" >
 		<div data-role="navbar" data-theme="e">
@@ -499,85 +353,9 @@
         </div>
         <p class="copyright">&copy; 2012 Rutas moviles.com &nbsp;&nbsp;</p>
 	</div><!-- END OF: Footer -->
-
 </div><!-- END OF: Portfolio -->
-
-
-
-
  <!------------------------SECCION DESCRIPCIONES------------------------------>
  <!------------------------SECCION DESCRIPCIONES------------------------------>
-
-
-
-
-
-<!-- GALERIA POR SITIO -->
-<div data-role="page" id="iglesia1" data-title="Portfolio">
-
-   <div data-role="header" class="yellow" >
-
-       <!--iniciio sociales y foto-->
-       <div data-role="navbar" data-theme="a" >
-             <ul>
-               <li><a href="#atractivos" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false"><img src="images/regresar.png" width="32" height="32" alt="Visit our Twitter Feed"><br />
-       REGRESAR</a>
-    </a></li>
-                 <li><a href="http://www.facebook.com/"data-show-count="false" data-show-screen-name="false"><img src="images/white_facebook.png" width="32" height="32" alt="Follow Us on Facebook"><br />MEGUSTA</a>
-    </a></li>
-                <li><a href="#twitter" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false"><img src="images/white_twitter_bird.png" width="32" height="32" alt="Visit our Twitter Feed"><br />TWITTEAR</a>
-    </a></li>
-
-             </ul>
-       </div>
-       <!--fin barra sociales y foto-->
-
-    </div>
-
-	<!-- Portfolio -->
-	<ul id="gallery" class="gallery">
-		<li><a rel="external" href="images/full/001.jpg"><img src="images/thumb/001.jpg" alt="Image 001" /></a></li>
-		<li><a rel="external" href="images/full/002.jpg"><img src="images/thumb/002.jpg" alt="Image 002" /></a></li>
-		<li><a rel="external" href="images/full/003.jpg"><img src="images/thumb/003.jpg" alt="Image 003" /></a></li>
-		<li><a rel="external" href="images/full/004.jpg"><img src="images/thumb/004.jpg" alt="Image 004" /></a></li>
-		<li><a rel="external" href="images/full/005.jpg"><img src="images/thumb/005.jpg" alt="Image 005" /></a></li>
-		<li><a rel="external" href="images/full/006.jpg"><img src="images/thumb/006.jpg" alt="Image 006" /></a></li>
-		<li><a rel="external" href="images/full/007.jpg"><img src="images/thumb/007.jpg" alt="Image 007" /></a></li>
-		<li><a rel="external" href="images/full/008.jpg"><img src="images/thumb/008.jpg" alt="Image 008" /></a></li>
-		<li><a rel="external" href="images/full/009.jpg"><img src="images/thumb/009.jpg" alt="Image 009" /></a></li>
-		<li><a rel="external" href="images/full/010.jpg"><img src="images/thumb/010.jpg" alt="Image 010" /></a></li>
-		<li><a rel="external" href="images/full/011.jpg"><img src="images/thumb/011.jpg" alt="Image 011" /></a></li>
-		<li><a rel="external" href="images/full/012.jpg"><img src="images/thumb/012.jpg" alt="Image 012" /></a></li>
-		<li><a rel="external" href="images/full/013.jpg"><img src="images/thumb/013.jpg" alt="Image 013" /></a></li>
-		<li><a rel="external" href="images/full/014.jpg"><img src="images/thumb/014.jpg" alt="Image 014" /></a></li>
-		<li><a rel="external" href="images/full/015.jpg"><img src="images/thumb/015.jpg" alt="Image 015" /></a></li>
-		<li><a rel="external" href="images/full/016.jpg"><img src="images/thumb/016.jpg" alt="Image 016" /></a></li>
-		<li><a rel="external" href="images/full/017.jpg"><img src="images/thumb/017.jpg" alt="Image 017" /></a></li>
-		<li><a rel="external" href="images/full/018.jpg"><img src="images/thumb/018.jpg" alt="Image 018" /></a></li>
-	</ul><!-- END OF: Portfolio -->
-
-
-
-        <!-- Footer -->
-	<div data-role="footer" data-theme="a" >
-		<div data-role="navbar" data-theme="e">
-            <ul>
-                <li><a href="#home" class="ui-btn-active" data-icon="home">Home</a></li>
-                <li><a href="#oferta" data-icon="grid">Oferta Turistica</a></li>
-                <li><a href="#aboutus" data-icon="info">About Us</a></li>
-                <li><a href="#geo" data-icon="star">Ubicacion</a></li>
-            </ul>
-        </div>
-        <p class="copyright">&copy; 2012 Rutas moviles.com &nbsp;&nbsp;</p>
-	</div><!-- END OF: Footer -->
-
-</div><!-- END OF: GALERIA POR SITIO -->
-
-
-
-
-
-
 <!-- DESCRIPCION SITIO#2 -->
 <div data-role="page" id="volcan" data-title="Blog Post"  data-theme="a">
 

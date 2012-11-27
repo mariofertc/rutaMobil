@@ -38,7 +38,8 @@
 |
 */
 
-$route['default_controller'] = "mobil";
+//$route['default_controller'] = "mobil";
+$route['default_controller'] = "inicio";
 $route['404_override'] = '';
 
 
