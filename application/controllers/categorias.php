@@ -2,15 +2,15 @@
 
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
-
+require_once ("persona_controller.php");
 //require_once ("secure_area.php");
 //require_once ("interfaces/idata_controller.php");
 //class Categoria extends Secure_area implements iData_controller
-class Categorias extends CI_Controller {
+class Categorias extends Secure_area {
 
     function __construct() {
 //		parent::__construct('incidencias');
-        parent::__construct();
+        parent::__construct('categorias');
     }
 
     public function index() {
@@ -18,7 +18,7 @@ class Categorias extends CI_Controller {
         $data['admin_table'] = get_categoria_admin_table();
         $data['form_width'] = $this->get_form_width();
         $data['form_height'] = $this->get_form_height();
-        ;
+        $this->output->enable_profiler(TRUE);
         $this->load->view('categorias/manage', $data);
     }
 

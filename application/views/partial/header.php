@@ -72,8 +72,8 @@
 		</div>
 
 		<div id="menubar_footer">
-		<?php // echo $this->lang->line('common_welcome')." $user_info->nombre $user_info->apellido! | "; ?>
-		<?php // echo anchor("home/logout",'Salir'); ?>
+		<?php echo $this->lang->line('common_welcome')." $user_info->nombre $user_info->apellido! | "; ?>
+		<?php echo anchor("home/logout",'Salir'); ?>
 		</div>
 
 		<div id="menubar_date">

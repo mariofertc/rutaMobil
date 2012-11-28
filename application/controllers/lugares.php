@@ -6,11 +6,14 @@ if (!defined('BASEPATH'))
 //require_once ("secure_area.php");
 //require_once ("interfaces/idata_controller.php");
 //class Categoria extends Secure_area implements iData_controller
-class Lugares extends CI_Controller {
+//require_once ("persona_controller.php");
+
+require_once ("secure_area.php");
+class Lugares extends Secure_area {
 
     function __construct() {
 //		parent::__construct('incidencias');
-        parent::__construct();
+        parent::__construct('lugares');
     }
 
     public function index($id = -1) {

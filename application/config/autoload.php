@@ -52,7 +52,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('database');
+$autoload['libraries'] = array('database', 'session', 'form_validation');
 
 
 /*
@@ -96,7 +96,7 @@ $autoload['config'] = array();
 |
 */
 
-$autoload['language'] = array('categoria', 'lugar', 'common');
+$autoload['language'] = array('categoria', 'lugar', 'common', 'form_validation');
 
 
 /*
@@ -109,7 +109,7 @@ $autoload['language'] = array('categoria', 'lugar', 'common');
 |
 */
 
-$autoload['model'] = array('Lugar', 'Provincia', 'Categoria');
+$autoload['model'] = array('Lugar', 'Provincia', 'Categoria', 'Persona', 'Empleado', 'Modulo');
 
 
 /* End of file autoload.php */
