@@ -146,6 +146,18 @@ function get_geo($oferta_items, $opciones, $ci) {
     return $data_div;
 }
 
+function get_aboutus($ci)
+{
+    $data_div = '<div data-role="page" id="aboutus" data-title="Mapa"  data-theme="a">';
+    //Encabezado            
+    $data_div .= $ci->load->view('mobile/partial/head_share', '', true);
+    //Contenido
+    $data_div .= $ci->load->view('mobile/about/content', '', true);
+    $data_div .= $ci->load->view('mobile/partial/footer_page', '', true);
+    return $data_div;
+}
+
+
 /* 
  * To change this template, choose Tools | Templates
  * and open the template in the editor.

@@ -37,7 +37,7 @@ abstract class Persona_controller extends Secure_area implements iPersona_contro
 	function get_row()
 	{
 		$person_id = $this->input->post('row_id');
-		$data_row=get_person_data_row($this->Person->get_info($person_id),$this);
+		$data_row=get_persona_data_row($this->Persona->get_info($person_id),$this);
 		echo $data_row;
 	}
 		

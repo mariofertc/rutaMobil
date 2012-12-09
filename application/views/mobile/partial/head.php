@@ -62,6 +62,8 @@
                         var latlng = new google.maps.LatLng(-1.398773, -78.414838);
                         //Ojos del Volcánn
                         var latlng3 = new google.maps.LatLng(-1.378136,-78.43699);
+                        
+                        
 
                         //$("#status").text("Te encontre en: " + lat + " , " + lon);
                         $("#status").text("");
@@ -99,7 +101,9 @@
                         chinche.setMap(mapa);
                         //google.maps.event.addListener(chinche, 'click', function() {            popup();       });
                         google.maps.event.addListener(chinche, "click", function() {
-                            infowindow.setContent("<div>Te encuentras aqui!</div><div>Distancia a Baños es: " +  (distance) + " km </div>"); //sets the content of your global infowindow to string "Tests: "
+                            infowindow.setContent("Te encuentras aqui!Distancia a Baños es: " +  (distance) + " km"); //sets the content of your global infowindow to string "Tests: "
+//                            infowindow.setContent("<div>Te encuentras aqui!</div><div>Distancia a Baños es: " +  (distance) + " km </div>"); //sets the content of your global infowindow to string "Tests: "
+//                            infowindow.setContent("<div>Te encuentras aqui!</div><div>Distancia a Baños es:  km </div>"); //sets the content of your global infowindow to string "Tests: "
                             infowindow.open(mapa,chinche); //then opens the infowindow at the marker
 
                         });
@@ -125,7 +129,7 @@
                             if(this != undefined && this.latitud != undefined)
                             {
                                 //                                                alert(this.latitud + " " + this.longitud);
-//                                var latlng = new google.maps.LatLng(-1.398773, -78.414838);
+                                //                                var latlng = new google.maps.LatLng(-1.398773, -78.414838);
                                 var latlng = new google.maps.LatLng(this.latitud , this.longitud);
                                 var opcionesOjos = {
                                     position: latlng,
@@ -138,8 +142,9 @@
                             }
                         });
 
-                        //                var latlng2 = new google.maps.LatLng(lat, lon);
-                        //                distance = (google.maps.geometry.spherical.computeDistanceBetween(latlng, latlng2)/1000).toFixed(2);
+                        //Aqui estas
+                        var latlng2 = new google.maps.LatLng(lat, lon);
+                        distance = (google.maps.geometry.spherical.computeDistanceBetween(latlng, latlng2)/1000).toFixed(2);
                         //		-1 22 44, -78 26 13
                         //$("#status").append("Distancia a Baños="+(distance)+" kms");
                     }

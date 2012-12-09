@@ -37,7 +37,7 @@ function get_categoria_data_row($data,$controller)
 	$table_data_row.='<td width="20%">'.character_limiter($data->nombre,13).'</td>';
 	$table_data_row.='<td width="40%">'.character_limiter($data->descripcion,30).'</td>';
 	$table_data_row.='<td width="20%">'.character_limiter($data->nombre_enlace,13).'</td>';
-	$table_data_row.='<td width="5%">'.anchor($controller_name."/view/$data->id?width=".$width."&height=".$height, $CI->lang->line('common_edit'),array('class'=>'thickbox','title'=>$CI->lang->line($controller_name.'_update')));		
+	$table_data_row.='<td width="5%">'.anchor($controller_name."/view/$data->id?width=".$width."&height=".$height, $CI->lang->line('comun_edit'),array('class'=>'thickbox','title'=>$CI->lang->line($controller_name.'_update')));		
 	$table_data_row.='&nbsp;'.anchor($controller_name."/lugares/$data->id?width=".$width."&height".$height, $CI->lang->line('lugar_lugar'),array('class'=>'','title'=>$CI->lang->line($controller_name.'_muestra'))).'</td>';		
 	$table_data_row.='</tr>';
 	
@@ -92,37 +92,27 @@ function get_lugar_data_row($data,$controller)
 	$table_data_row.='<td width="40%">'.character_limiter($data->interes,30).'</td>';
 	$table_data_row.='<td width="40%">'.character_limiter($data->sector,30).'</td>';
 	$table_data_row.='<td width="20%">'.character_limiter($data->nombre_enlace,13).'</td>';
-	$table_data_row.='<td width="5%">'.anchor($controller_name."/view/$data->id?width=".$width."&height=".$height, $CI->lang->line('common_edit'),array('class'=>'thickbox','title'=>$CI->lang->line($controller_name.'_update')));		
+	$table_data_row.='<td width="5%">'.anchor($controller_name."/view/$data->id?width=".$width."&height=".$height, $CI->lang->line('comun_edit'),array('class'=>'thickbox','title'=>$CI->lang->line($controller_name.'_update')));		
 	$table_data_row.='&nbsp;'.anchor($controller_name."/view/$data->id?width=".$width."&height".$height, $CI->lang->line('lugar_lugar'),array('title'=>$CI->lang->line($controller_name.'_muestra'))).'</td>';		
 	$table_data_row.='</tr>';
 	
 	return $table_data_row;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function get_empleado_admin_table()
+/*
+Gets the html table to manage categorys.
+*/
+function get_persona_admin_table()
 {
 	$table='<table cellpadding="0" cellspacing="0" border="0" class="display" id="sortable_table">
 		<thead>
 			<tr>
-				<th width="5%"><input type="checkbox" id="select_all" /></th>
-				<th width="30%">Nombre</th>
-				<th width="15%">Apellido</th>
-				<th width="15%">Email</th>
-				<th width="10%">Acciones</th>
+				<th width="3%"><input type="checkbox" id="select_all" /></th>
+				<th width="20%">Nombre</th>
+				<th width="30%">Apellido</th>
+				<th width="20%">Email</th>
+                                <th width="10%">Teléfono</th>
+                                <th width="10%">Acciones</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -134,67 +124,118 @@ function get_empleado_admin_table()
 	</table>';
 	return $table;
 }
-function get_persona_manage_table($persona,$controller)
-{
-	$CI =& get_instance();
-	$table='<table class="tablesorter" id="sortable_table">';
-	
-	$headers = array('<input type="checkbox" id="select_all" />', 
-	'Nombre',
-	'Apellido',
-	'Email',
-	//'Tel&eacute;fono',
-	'&nbsp');
-	
-	$table.='<thead><tr>';
-	foreach($headers as $header)
-	{
-		$table.="<th>$header</th>";
-	}
-	$table.='</tr></thead><tbody>';
-	$table.=get_persona_manage_table_data_rows($persona,$controller);
-	$table.='</tbody></table>';
-	return $table;
-}
 
-/*
-Gets the html data rows for the persona.
-*/
-function get_persona_manage_table_data_rows($persona,$controller)
-{
-	$CI =& get_instance();
-	$table_data_rows='';
-	
-	foreach($persona->result() as $person)
-	{
-		$table_data_rows.=get_persona_data_row($person,$controller);
-	}
-	
-	if($persona->num_rows()==0)
-	{
-		$table_data_rows.="<tr><td colspan='6'><div class='warning_message' style='padding:7px;'>".$CI->lang->line('common_no_persons_to_display')."</div></tr></tr>";
-	}
-	
-	return $table_data_rows;
-}
 
-function get_persona_data_row($persona,$controller)
-{
+function get_persona_data_row($data,$controller)
+{	
 	$CI =& get_instance();
 	$controller_name=$CI->uri->segment(1);
 	$width = $controller->get_form_width();
 	$height = $controller->get_form_height();
 
 	$table_data_row='<tr>';
-	$table_data_row.="<td width='5%'><input type='checkbox' id='persona_$persona->id' value='".$persona->id."'/></td>";
-	$table_data_row.='<td width="20%">'.character_limiter($persona->nombre,13).'</td>';
-	$table_data_row.='<td width="20%">'.character_limiter($persona->apellido,13).'</td>';
-	$table_data_row.='<td width="30%">'.mailto($persona->email,character_limiter($persona->email,22)).'</td>';
-	$table_data_row.='<td width="5%">'.anchor($controller_name."/view/$persona->id?width=$width&height=$height", $CI->lang->line('common_edit'),array('class'=>'thickbox','title'=>$CI->lang->line($controller_name.'_update'))).'</td>';		
+	$table_data_row.="<td width='5%'><input type='checkbox' id='data_$data->persona_id' value='".$data->persona_id."'/></td>";
+	$table_data_row.='<td width="20%">'.character_limiter($data->nombre,13).'</td>';
+	$table_data_row.='<td width="40%">'.character_limiter($data->apellido,30).'</td>';
+	$table_data_row.='<td width="40%">'.character_limiter($data->email,30).'</td>';
+	$table_data_row.='<td width="20%">'.character_limiter($data->telefono,13).'</td>';
+	$table_data_row.='<td width="5%">'.anchor($controller_name."/view/$data->persona_id?width=".$width."&height=".$height, $CI->lang->line('comun_edit'),array('class'=>'thickbox','title'=>$CI->lang->line($controller_name.'_update'))).'</td>';		
 	$table_data_row.='</tr>';
 	
 	return $table_data_row;
 }
+
+
+
+
+
+
+
+
+
+
+//function get_empleado_admin_table()
+//{
+//	$table='<table cellpadding="0" cellspacing="0" border="0" class="display" id="sortable_table">
+//		<thead>
+//			<tr>
+//				<th width="5%"><input type="checkbox" id="select_all" /></th>
+//				<th width="30%">Nombre</th>
+//				<th width="15%">Apellido</th>
+//				<th width="15%">Email</th>
+//				<th width="10%">Acciones</th>
+//			</tr>
+//		</thead>
+//		<tbody>
+//	<!--Esto se llena con  ajax cloro -->	
+//		</tbody>
+//		<tfoot>
+//			
+//		</tfoot>
+//	</table>';
+//	return $table;
+//}
+//function get_persona_manage_table($persona,$controller)
+//{
+//	$CI =& get_instance();
+//	$table='<table class="tablesorter" id="sortable_table">';
+//	
+//	$headers = array('<input type="checkbox" id="select_all" />', 
+//	'Nombre',
+//	'Apellido',
+//	'Email',
+//	//'Tel&eacute;fono',
+//	'&nbsp');
+//	
+//	$table.='<thead><tr>';
+//	foreach($headers as $header)
+//	{
+//		$table.="<th>$header</th>";
+//	}
+//	$table.='</tr></thead><tbody>';
+//	$table.=get_persona_manage_table_data_rows($persona,$controller);
+//	$table.='</tbody></table>';
+//	return $table;
+//}
+//
+///*
+//Gets the html data rows for the persona.
+//*/
+//function get_persona_manage_table_data_rows($persona,$controller)
+//{
+//	$CI =& get_instance();
+//	$table_data_rows='';
+//	
+//	foreach($persona->result() as $person)
+//	{
+//		$table_data_rows.=get_persona_data_row($person,$controller);
+//	}
+//	
+//	if($persona->num_rows()==0)
+//	{
+//		$table_data_rows.="<tr><td colspan='6'><div class='warning_message' style='padding:7px;'>".$CI->lang->line('comun_no_persons_to_display')."</div></tr></tr>";
+//	}
+//	
+//	return $table_data_rows;
+//}
+//
+//function get_persona_data_row($persona,$controller)
+//{
+//	$CI =& get_instance();
+//	$controller_name=$CI->uri->segment(1);
+//	$width = $controller->get_form_width();
+//	$height = $controller->get_form_height();
+//
+//	$table_data_row='<tr>';
+//	$table_data_row.="<td width='5%'><input type='checkbox' id='persona_$persona->id' value='".$persona->id."'/></td>";
+//	$table_data_row.='<td width="20%">'.character_limiter($persona->nombre,13).'</td>';
+//	$table_data_row.='<td width="20%">'.character_limiter($persona->apellido,13).'</td>';
+//	$table_data_row.='<td width="30%">'.mailto($persona->email,character_limiter($persona->email,22)).'</td>';
+//	$table_data_row.='<td width="5%">'.anchor($controller_name."/view/$persona->id?width=$width&height=$height", $CI->lang->line('comun_edit'),array('class'=>'thickbox','title'=>$CI->lang->line($controller_name.'_update'))).'</td>';		
+//	$table_data_row.='</tr>';
+//	
+//	return $table_data_row;
+//}
 
 
 /*
@@ -288,7 +329,7 @@ function get_incidencia_manage_table_data_rows($incidencias,$controller)
 	
 	if($incidencias->num_rows()==0)
 	{
-		$table_data_rows.="<tr><td colspan='6'><div class='warning_message' style='padding:7px;'>".$CI->lang->line('common_no_persons_to_display')."</div></tr></tr>";
+		$table_data_rows.="<tr><td colspan='6'><div class='warning_message' style='padding:7px;'>".$CI->lang->line('comun_no_persons_to_display')."</div></tr></tr>";
 	}
 	
 	return $table_data_rows;
@@ -393,7 +434,7 @@ function get_usuario_manage_table_data_rows($usuario,$controller)
 	
 	if($usuario->num_rows()==0)
 	{
-		$table_data_rows.="<tr><td colspan='6'><div class='warning_message' style='padding:7px;'>".$CI->lang->line('common_no_persons_to_display')."</div></tr></tr>";
+		$table_data_rows.="<tr><td colspan='6'><div class='warning_message' style='padding:7px;'>".$CI->lang->line('comun_no_persons_to_display')."</div></tr></tr>";
 	}
 	
 	return $table_data_rows;
@@ -423,9 +464,9 @@ function get_usuario_data_row($usuario,$controller)
 	$table_data_row.='<td width="20%">'.character_limiter($usuario->Estado,13).'</td>';		
 	$table_data_row.='<td width="20%">'.character_limiter($usuario->Activo,13).'</td>';		
 	$table_data_row.='<td width="20%">'.date('Y-m-d H:i', strtotime($usuario->FechaCreacion)).'</td>';		
-	// $table_data_row.='<td width="5%">'.anchor($controller_name."/view/$usuario->username?width:$width&height:600", $CI->lang->line('common_edit'),array('class'=>'thickbox','title'=>$CI->lang->line($controller_name.'_update'))).'</td>';		
+	// $table_data_row.='<td width="5%">'.anchor($controller_name."/view/$usuario->username?width:$width&height:600", $CI->lang->line('comun_edit'),array('class'=>'thickbox','title'=>$CI->lang->line($controller_name.'_update'))).'</td>';		
 	
-	$table_data_row.='<td width="5%">'.anchor($controller_name."/view/$id?width=$width&height=$height", $CI->lang->line('common_edit'),array('class'=>'thickbox','title'=>$CI->lang->line($controller_name.'_update'))).'</td>';		
+	$table_data_row.='<td width="5%">'.anchor($controller_name."/view/$id?width=$width&height=$height", $CI->lang->line('comun_edit'),array('class'=>'thickbox','title'=>$CI->lang->line($controller_name.'_update'))).'</td>';		
 	$table_data_row.='</tr>';
 	
 	return $table_data_row;
@@ -484,7 +525,7 @@ function get_comentario_manage_table_data_rows($comentarios,$controller)
 	}
 	if($comentarios->num_rows()==0)
 	{
-		$table_data_rows.="<tr><td colspan='7'><div class='warning_message' style='padding:7px;'>".$CI->lang->line('common_no_persons_to_display')."</div></tr></tr>";
+		$table_data_rows.="<tr><td colspan='7'><div class='warning_message' style='padding:7px;'>".$CI->lang->line('comun_no_persons_to_display')."</div></tr></tr>";
 	}
 	return $table_data_rows;
 }

@@ -18,17 +18,17 @@ var map = new google.maps.Map(mapDiv, {
 }
 
 
-google.maps.event.addDomListener(window, 'load', initialize);
+//google.maps.event.addDomListener(window, 'load', initialize);
 
 
 // Slider Call
-$(document).ready(function() {
-	$('.slider').cycle({
-		fx: 'scrollVert', // choose your transition type, ex: fade, scrollUp, shuffle, etc...
-		prev:   '#prev', 
-		next:   '#next', 
-	});
-});
+//$(document).ready(function() {
+//	$('.slider').cycle({
+//		fx: 'scrollVert', // choose your transition type, ex: fade, scrollUp, shuffle, etc...
+//		prev:   '#prev', 
+//		next:   '#next'
+//	});
+//});
 
 
 // Other Scripts

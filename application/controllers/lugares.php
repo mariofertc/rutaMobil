@@ -45,7 +45,7 @@ class Lugares extends Secure_area {
         $cllAccion = array(
             '1' => array(
                 'function' => "view",
-                'common_language' => "common_edit",
+                'comun_language' => "comun_edit",
                 'language' => "_update",
                 'width' => $this->get_form_width(),
                 'height' => $this->get_form_height(),

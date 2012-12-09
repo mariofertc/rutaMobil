@@ -36,13 +36,13 @@ class Categorias extends Secure_area {
         $cllAccion = array(
             '1' => array(
                 'function' => "view",
-                'common_language' => "common_edit",
+                'comun_language' => "comun_edit",
                 'language' => "_update",
                 'width' => $this->get_form_width(),
                 'height' => $this->get_form_height(),
         'class'  => 'thickbox'),
             '2' => array('function' => "lugares",
-                'common_language' => "lugar_lugar",
+                'comun_language' => "lugar_lugar",
                 'language' => "_muestra",
                 'height' => 200));
         echo getData('Categoria', $aColumns, $cllAccion);
@@ -68,6 +68,7 @@ class Categorias extends Secure_area {
     function save($id = -1) {
         $data = array(
             'nombre' => $this->input->post('categoria'),
+            'icon' => $this->input->post('icono'),
             'descripcion' => $this->input->post('descripcion'),
             'nombre_enlace' => $this->input->post('enlace'),
             'ciudad_id' => 1

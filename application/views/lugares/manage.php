@@ -8,7 +8,7 @@
 		enable_select_all();
 		enable_checkboxes();
 		enable_row_selection();
-		enable_search('<?php echo site_url("$controller_name/suggest") ?>','<?php echo $this->lang->line("common_confirm_search") ?>');	
+		enable_search('<?php echo site_url("$controller_name/suggest") ?>','<?php echo $this->lang->line("comun_confirm_search") ?>');	
 		enable_delete('<?php echo $this->lang->line($controller_name."_confirm_delete")?>','<?php echo $this->lang->line($controller_name."_none_selected")?>');		
 		//enable_bulk_edit("Favor seleccione un usuario para editar","?width=580&height=450");
 	
@@ -99,7 +99,7 @@
 </script>
 
 <div id="title_bar">
-	<div id="title" class="float_left"><?php echo $this->lang->line('common_list_of') . ' ' . $this->lang->line('module_' . $controller_name); ?></div>
+	<div id="title" class="float_left"><?php echo $this->lang->line('comun_list_of') . ' ' . $this->lang->line('module_' . $controller_name); ?></div>
 	<?php
 	if ($_SERVER['HTTP_HOST'] == 'localhost') {
 		?>
@@ -121,8 +121,8 @@
 </div>
 <div id="table_action_header">
 	<ul>
-		<li class="float_left"><span><?php echo anchor("$controller_name/delete", $this->lang->line("common_delete"), array('id' => 'delete')); ?></span></li>
-		<li class="float_left"><span><?php echo anchor("$controller_name/refresh", $this->lang->line("common_refresh"), array('id' => 'refresh')); ?></span></li>
+		<li class="float_left"><span><?php echo anchor("$controller_name/delete", $this->lang->line("comun_borrar"), array('id' => 'delete')); ?></span></li>
+		<li class="float_left"><span><?php echo anchor("$controller_name/refresh", $this->lang->line("comun_refresh"), array('id' => 'refresh')); ?></span></li>
 	</ul>
 </div>
 <div class="demo_jui">

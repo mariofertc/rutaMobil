@@ -23,6 +23,17 @@ echo form_open('categorias/save/'.$info->id,array('id'=>'form'));
 </div>
 
 <div class="field_row clearfix">
+<?php echo form_label('Icono:', 'icono',array('class'=>'ssmall_wide')); ?>
+	<div class='form_field'>
+	<?php echo form_input(array(
+		'name'=>'icono',
+		'id'=>'icono',
+		'value'=>$info->icon)
+	);?>
+	</div>
+</div>
+
+<div class="field_row clearfix">
 <?php echo form_label('Descripción:', 'descripcion',array('class'=>'ssmall_wide')); ?>
 	<div class='form_field'>
 	<?php echo form_textarea(array(

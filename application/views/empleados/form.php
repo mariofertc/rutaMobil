@@ -1,42 +1,42 @@
 <?php
-echo form_open('employees/save/'.$person_info->person_id,array('id'=>'employee_form'));
+echo form_open('empleados/save/'.$persona_info->persona_id,array('id'=>'empleado_form'));
 ?>
-<div id="required_fields_message"><?php echo $this->lang->line('common_fields_required_message'); ?></div>
+<div id="required_fields_message"><?php echo $this->lang->line('comun_campos_requeridos_mensaje'); ?></div>
 <ul id="error_message_box"></ul>
 <fieldset id="employee_basic_info">
-<legend><?php echo $this->lang->line("employees_basic_information"); ?></legend>
-<?php $this->load->view("people/form_basic_info"); ?>
+<legend><?php echo $this->lang->line("empleados_basic_information"); ?></legend>
+<?php $this->load->view("personas/form_basic_info"); ?>
 </fieldset>
 
 <fieldset id="employee_login_info">
-<legend><?php echo $this->lang->line("employees_login_info"); ?></legend>
+<legend><?php echo $this->lang->line("empleados_login_info"); ?></legend>
 <div class="field_row clearfix">	
-<?php echo form_label($this->lang->line('employees_username').':', 'username',array('class'=>'required')); ?>
+<?php echo form_label($this->lang->line('empleados_usuario').':', 'usuario',array('class'=>'required')); ?>
 	<div class='form_field'>
 	<?php echo form_input(array(
-		'name'=>'username',
-		'id'=>'username',
-		'value'=>$person_info->username));?>
+		'name'=>'usuario',
+		'id'=>'usuario',
+		'value'=>$persona_info->usuario));?>
 	</div>
 </div>
 
 <?php
-$password_label_attributes = $person_info->person_id == "" ? array('class'=>'required'):array();
+$password_label_attributes = $persona_info->persona_id == "" ? array('class'=>'required'):array();
 ?>
 
 <div class="field_row clearfix">	
-<?php echo form_label($this->lang->line('employees_password').':', 'password',$password_label_attributes); ?>
+<?php echo form_label($this->lang->line('empleados_clave').':', 'clave',$password_label_attributes); ?>
 	<div class='form_field'>
 	<?php echo form_password(array(
-		'name'=>'password',
-		'id'=>'password'
+		'name'=>'clave',
+		'id'=>'clave'
 	));?>
 	</div>
 </div>
 
 
 <div class="field_row clearfix">	
-<?php echo form_label($this->lang->line('employees_repeat_password').':', 'repeat_password',$password_label_attributes); ?>
+<?php echo form_label($this->lang->line('empleados_repeat_password').':', 'repeat_password',$password_label_attributes); ?>
 	<div class='form_field'>
 	<?php echo form_password(array(
 		'name'=>'repeat_password',
@@ -46,19 +46,19 @@ $password_label_attributes = $person_info->person_id == "" ? array('class'=>'req
 </div>
 </fieldset>
 
-<fieldset id="employee_permission_info">
-<legend><?php echo $this->lang->line("employees_permission_info"); ?></legend>
-<p><?php echo $this->lang->line("employees_permission_desc"); ?></p>
+<fieldset id="empleado_permiso_info">
+<legend><?php echo $this->lang->line("empleados_permiso_info"); ?></legend>
+<p><?php echo $this->lang->line("empleados_permiso_desc"); ?></p>
 
 <ul id="permission_list">
 <?php
-foreach($all_modules->result() as $module)
+foreach($all_modulos->result() as $modulo)
 {
 ?>
 <li>	
-<?php echo form_checkbox("permissions[]",$module->module_id,$this->Employee->has_permission($module->module_id,$person_info->person_id)); ?>
-<span class="medium"><?php echo $this->lang->line('module_'.$module->module_id);?>:</span>
-<span class="small"><?php echo $this->lang->line('module_'.$module->module_id.'_desc');?></span>
+<?php echo form_checkbox("permisos[]",$modulo->modulo_id,$this->Empleado->has_permission($modulo->modulo_id,$persona_info->persona_id)); ?>
+<span class="medium"><?php echo $this->lang->line('modulo_'.$modulo->modulo_id);?>:</span>
+<span class="small"><?php echo $this->lang->line('modulo_'.$modulo->modulo_id.'_desc');?></span>
 </li>
 <?php
 }
@@ -68,7 +68,7 @@ foreach($all_modules->result() as $module)
 echo form_submit(array(
 	'name'=>'submit',
 	'id'=>'submit',
-	'value'=>$this->lang->line('common_submit'),
+	'value'=>$this->lang->line('comun_submit'),
 	'class'=>'submit_button float_right')
 );
 
@@ -82,14 +82,14 @@ echo form_close();
 //validation and submit handling
 $(document).ready(function()
 {
-	$('#employee_form').validate({
+	$('#empleado_form').validate({
 		submitHandler:function(form)
 		{
 			$(form).ajaxSubmit({
 			success:function(response)
 			{
 				tb_remove();
-				post_person_form_submit(response);
+				post_persona_form_submit(response);
 			},
 			dataType:'json'
 		});
@@ -99,18 +99,18 @@ $(document).ready(function()
  		wrapper: "li",
 		rules: 
 		{
-			first_name: "required",
-			last_name: "required",
-			username:
+			nombre: "required",
+			apellido: "required",
+			usuario:
 			{
 				required:true,
 				minlength: 5
 			},
 			
-			password:
+			clave:
 			{
 				<?php
-				if($person_info->person_id == "")
+				if($persona_info->persona_id == "")
 				{
 				?>
 				required:true,
@@ -121,37 +121,37 @@ $(document).ready(function()
 			},	
 			repeat_password:
 			{
- 				equalTo: "#password"
+ 				equalTo: "#clave"
 			},
     		email: "email"
    		},
 		messages: 
 		{
-     		first_name: "<?php echo $this->lang->line('common_first_name_required'); ?>",
-     		last_name: "<?php echo $this->lang->line('common_last_name_required'); ?>",
-     		username:
+     		nombre: "<?php echo $this->lang->line('comun_nombre_requerido'); ?>",
+     		apellido: "<?php echo $this->lang->line('comun_apellido_requerido'); ?>",
+     		usuario:
      		{
-     			required: "<?php echo $this->lang->line('employees_username_required'); ?>",
-     			minlength: "<?php echo $this->lang->line('employees_username_minlength'); ?>"
+     			required: "<?php echo $this->lang->line('empleados_usuario_requerido'); ?>",
+     			minlength: "<?php echo $this->lang->line('empleados_usuario_mintamaño'); ?>"
      		},
      		
-			password:
+			clave:
 			{
 				<?php
-				if($person_info->person_id == "")
+				if($persona_info->persona_id == "")
 				{
 				?>
-				required:"<?php echo $this->lang->line('employees_password_required'); ?>",
+				required:"<?php echo $this->lang->line('empleados_clave_requerida'); ?>",
 				<?php
 				}
 				?>
-				minlength: "<?php echo $this->lang->line('employees_password_minlength'); ?>"
+				minlength: "<?php echo $this->lang->line('empleados_clave_mintamaño'); ?>"
 			},
 			repeat_password:
 			{
-				equalTo: "<?php echo $this->lang->line('employees_password_must_match'); ?>"
+				equalTo: "<?php echo $this->lang->line('empleados_clave_debe_coincidir'); ?>"
      		},
-     		email: "<?php echo $this->lang->line('common_email_invalid_format'); ?>"
+     		email: "<?php echo $this->lang->line('comun_email_formato_invalido'); ?>"
 		}
 	});
 });

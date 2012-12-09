@@ -33,8 +33,8 @@ class Modulo extends CI_Model
 	
 	function get_all_modules()
 	{
-		$this->db->from('modules');
-		$this->db->order_by("sort", "asc");
+		$this->db->from('modulo');
+		$this->db->order_by("orden", "asc");
 		return $this->db->get();		
 	}
 	

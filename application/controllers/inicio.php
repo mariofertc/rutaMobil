@@ -19,9 +19,9 @@ class Inicio extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('inicio');
-		//$this->load->view('mobile/inicio.php');
-		//redirect(site_url("mobil"));
+		//$this->load->view('inicio');
+		//$this->load->view('mobil/inicio.php');
+		redirect(site_url("mobil"));
 	}
 }
 

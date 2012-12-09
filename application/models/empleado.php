@@ -7,7 +7,7 @@ class Empleado extends Persona {
 
     function exists($persona_id) {
         $this->db->from('empleado');
-        $this->db->join('persona', 'persona.id = empleado.persona_id');
+        $this->db->join('persona', 'persona.persona_id = empleado.persona_id');
         $this->db->where('empleado.persona_id', $persona_id);
         $this->db->where('deleted', 0);
         $query = $this->db->get();
@@ -19,32 +19,40 @@ class Empleado extends Persona {
       Returns all the employees
      */
 
-    function get_all() {
+    function getall() {
         $this->db->from('empleado');
         $this->db->where('deleted', 0);
-        $this->db->join('persona', 'persona.id=empleado.persona_id');
+        $this->db->join('persona', 'persona.persona_id=empleado.persona_id');
         $this->db->order_by("apellido", "asc");
         return $this->db->get();
     }
 
-    function get_empleados($num = 0, $offset = 0, $where, $order = '') {
-        // $this->db->select('* FROM ( SELECT persona.*, empleado.id as empleado_id, ROW_NUMBER() OVER (ORDER BY persona.id) as row FROM Empleado, persona where persona.id = empleado.persona_id and empleado.deleted = 0 '.
-        // $where .
-        // ') a WHERE row > '. $offset .' and row <= '.($offset+$num) . ' '.
-        // $order);
-
-        $this->db->select('persona.*, empleado.id as empleado_id FROM Empleado, persona where persona.persona_id = empleado.persona_id and empleado.deleted = 0 ' .
-                $where . ' ' .
-                $order);
+    function get_all($num = 0, $offset = 0, $where, $order = '') {
+        $this->db->select('persona.*, persona.persona_id as empleado_id FROM empleado, persona where persona.persona_id = empleado.persona_id and empleado.deleted = 0 ' .
+                $where);
+        $this->db->order_by($order);
         $this->db->limit($offset + $num, $offset);
 
         return $this->db->get();
     }
+//    function get_all($num = 0, $offset = 0, $where, $order = null) {
+//        if ($order == null)
+//            $order = "id";
+//        //$this->db->select('id','nombre');
+//        $this->db->from('categoria');
+//        if ($where != "")
+//            $this->db->where($where);
+//        $this->db->where('deleted', 0);
+//        $this->db->order_by($order);
+//        $this->db->limit($offset + $num, $offset);
+//
+//        return $this->db->get();
+//    }
 
     function get_total() {
         $this->db->select("count(*) as total");
         $this->db->from("empleado");
-        $this->db->join('persona', 'persona.id=empleado.persona_id');
+        $this->db->join('persona', 'persona.persona_id=empleado.persona_id');
         $this->db->where('empleado.deleted', 0);
         //$q = $this->db->query($sql);
         // return $this->db->get();
@@ -147,16 +155,16 @@ class Empleado extends Persona {
         $success = false;
 
         //Don't let employee delete their self
-        if ($employee_id == $this->get_logged_in_empleado_info()->person_id)
+        if ($employee_id == $this->get_logged_in_empleado_info()->persona_id)
             return false;
 
         //Run these queries as a transaction, we want to make sure we do all or nothing
         $this->db->trans_start();
         try {
             //Delete permissions
-            if ($this->db->delete('permissions', array('person_id' => $employee_id))) {
-                $this->db->where('person_id', $employee_id);
-                $success = $this->db->update('employees', array('deleted' => 1));
+            if ($this->db->delete('permiso', array('persona_id' => $employee_id))) {
+                $this->db->where('persona_id', $employee_id);
+                $success = $this->db->update('empleado', array('deleted' => 1));
             }
             $this->db->trans_complete();
             if ($this->db->trans_status() === FALSE) {
@@ -292,8 +300,8 @@ class Empleado extends Persona {
      */
 
     function login($username, $password) {
-//        $query = $this->db->get_where('empleado', array('usuario' => $username, 'clave' => md5($password), 'deleted' => 0), 1);
-        $query = $this->db->get_where('empleado', array('usuario' => $username, 'clave' => $password, 'deleted' => 0), 1);
+//        $query = $this->db->get_where('empleado', array('usuario' => $username, 'clave' => $password, 'deleted' => 0), 1);
+        $query = $this->db->get_where('empleado', array('usuario' => $username, 'clave' => md5($password), 'deleted' => 0), 1);
         if ($query->num_rows() == 1) {
             $row = $query->row();
             $this->session->set_userdata('persona_id', $row->persona_id);

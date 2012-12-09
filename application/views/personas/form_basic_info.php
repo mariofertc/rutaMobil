@@ -1,111 +1,82 @@
 <div class="field_row clearfix">	
-<?php echo form_label($this->lang->line('common_zip').':', 'zip'); ?>
+<?php echo form_label($this->lang->line('comun_nombre').':', 'nombre',array('class'=>'required')); ?>
 	<div class='form_field'>
 	<?php echo form_input(array(
-		'name'=>'zip',
-		'id'=>'zip',
-		'value'=>$person_info->zip));?>
-	</div>
-</div>
-<div class="field_row clearfix">	
-<?php echo form_label($this->lang->line('common_first_name').':', 'first_name',array('class'=>'required')); ?>
-	<div class='form_field'>
-	<?php echo form_input(array(
-		'name'=>'first_name',
-		'id'=>'first_name',
-		'value'=>$person_info->first_name)
+		'name'=>'nombre',
+		'id'=>'nombre',
+		'value'=>$persona_info->nombre)
 	);?>
 	</div>
 </div>
 <div class="field_row clearfix">	
-<?php echo form_label($this->lang->line('common_last_name').':', 'last_name',array('class'=>'required')); ?>
+<?php echo form_label($this->lang->line('comun_apellido').':', 'apellido',array('class'=>'required')); ?>
 	<div class='form_field'>
 	<?php echo form_input(array(
-		'name'=>'last_name',
-		'id'=>'last_name',
-		'value'=>$person_info->last_name)
+		'name'=>'apellido',
+		'id'=>'apellido',
+		'value'=>$persona_info->apellido)
 	);?>
 	</div>
 </div>
 
 <div class="field_row clearfix">	
-<?php echo form_label($this->lang->line('common_email').':', 'email'); ?>
+<?php echo form_label($this->lang->line('comun_email').':', 'email'); ?>
 	<div class='form_field'>
 	<?php echo form_input(array(
 		'name'=>'email',
 		'id'=>'email',
-		'value'=>$person_info->email)
+		'value'=>$persona_info->email)
 	);?>
 	</div>
 </div>
 
 <div class="field_row clearfix">	
-<?php echo form_label($this->lang->line('common_phone_number').':', 'phone_number'); ?>
+<?php echo form_label($this->lang->line('comun_telefono').':', 'telefono'); ?>
 	<div class='form_field'>
 	<?php echo form_input(array(
-		'name'=>'phone_number',
-		'id'=>'phone_number',
-		'value'=>$person_info->phone_number));?>
+		'name'=>'telefono',
+		'id'=>'telefono',
+		'value'=>$persona_info->telefono));?>
 	</div>
 </div>
 
 <div class="field_row clearfix">	
-<?php echo form_label($this->lang->line('common_address_1').':', 'address_1'); ?>
+<?php echo form_label($this->lang->line('comun_direccion').':', 'direccion'); ?>
 	<div class='form_field'>
 	<?php echo form_input(array(
-		'name'=>'address_1',
-		'id'=>'address_1',
-		'value'=>$person_info->address_1));?>
+		'name'=>'direccion',
+		'id'=>'direccion',
+		'value'=>$persona_info->direccion));?>
 	</div>
 </div>
 
 <div class="field_row clearfix">	
-<?php echo form_label($this->lang->line('common_address_2').':', 'address_2'); ?>
+<?php echo form_label($this->lang->line('comun_ciudad').':', 'ciudad'); ?>
 	<div class='form_field'>
 	<?php echo form_input(array(
-		'name'=>'address_2',
-		'id'=>'address_2',
-		'value'=>$person_info->address_2));?>
+		'name'=>'ciudad',
+		'id'=>'ciudad',
+		'value'=>$persona_info->ciudad));?>
 	</div>
 </div>
 
 <div class="field_row clearfix">	
-<?php echo form_label($this->lang->line('common_city').':', 'city'); ?>
+<?php echo form_label($this->lang->line('comun_pais').':', 'pais'); ?>
 	<div class='form_field'>
 	<?php echo form_input(array(
-		'name'=>'city',
-		'id'=>'city',
-		'value'=>$person_info->city));?>
+		'name'=>'pais',
+		'id'=>'pais',
+		'value'=>$persona_info->pais));?>
 	</div>
 </div>
 
 <div class="field_row clearfix">	
-<?php echo form_label($this->lang->line('common_state').':', 'state'); ?>
-	<div class='form_field'>
-	<?php echo form_input(array(
-		'name'=>'state',
-		'id'=>'state',
-		'value'=>$person_info->state));?>
-	</div>
-</div>
-
-<div class="field_row clearfix">	
-<?php echo form_label($this->lang->line('common_country').':', 'country'); ?>
-	<div class='form_field'>
-	<?php echo form_input(array(
-		'name'=>'country',
-		'id'=>'country',
-		'value'=>$person_info->country));?>
-	</div>
-</div>
-
-<div class="field_row clearfix">	
-<?php echo form_label($this->lang->line('common_comments').':', 'comments'); ?>
+<?php echo form_label($this->lang->line('comun_comentarios').':', 'comentarios'); ?>
 	<div class='form_field'>
 	<?php echo form_textarea(array(
-		'name'=>'comments',
-		'id'=>'comments',
-		'value'=>$person_info->comments,
+		'name'=>'comentarios',
+		'id'=>'comentarios',
+		'value'=>$persona_info->comentarios,
 		'rows'=>'5',
 		'cols'=>'17')		
 	);?>

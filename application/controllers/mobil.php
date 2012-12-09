@@ -25,6 +25,9 @@ class Mobil extends CI_Controller {
 
         $data['geo'] = get_geo($categoria, array('busqueda' => false, 'shadow' => false), $this);
         $this->load->view('mobile/geo/pagina', $data);
+        
+        $data['aboutus'] = get_aboutus($this);
+        $this->load->view('mobile/about/pagina', $data);
 
 
 //        $this->load->view('mobile/inicio.php');
