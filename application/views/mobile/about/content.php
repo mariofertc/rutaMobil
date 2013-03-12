@@ -5,8 +5,11 @@
         <!-- Address and Phone -->
     <ul data-role="listview" data-theme="a" data-inset="true" class="icab">
         <li ><img src="<?php echo base_url()?>images/pin.png" alt="Location" class="ui-li-icon">Galaxy avenue, New York, U.S</li>
-        <li><img src="<?php echo base_url()?>images/fono.png" alt="Phone" class="ui-li-icon">Phone:
-            800-555-TOUR</li>
+        <li>
+            <a href="tel:0983819961"><img src="<?php echo base_url()?>images/fono.png" alt="Phone" class="ui-li-icon">Teléfono:
+            0983819961
+            </a>
+        </li>
         <li><img src="<?php echo base_url()?>images/email.png" alt="Phone" class="ui-li-icon">Email:
             info@turismo_banios.com</li>
     </ul>
@@ -27,7 +30,3 @@
     </div>
     <!-- END OF: Address and Phone -->
 </div>
-/*
-* To change this template, choose Tools | Templates
-* and open the template in the editor.
-*/

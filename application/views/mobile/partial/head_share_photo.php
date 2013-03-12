@@ -10,7 +10,7 @@
             <li><a href="#twitter" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false"><img src="<?php echo base_url();?>images/white_twitter_bird.png" width="32" height="32" alt="Visit our Twitter Feed"><br />TWITTEAR</a>
                 </a></li>
 
-            <li><a href="#iglesia1" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false"><img src="<?php echo base_url();?>images/foto.png" width="32" height="32" alt="Visit our Twitter Feed"><br />
+            <li><a href="#<?php echo $id?>" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false"><img src="<?php echo base_url();?>images/foto.png" width="32" height="32" alt="Visit our Twitter Feed"><br />
                     FOTOS</a>
                 </a></li>
         </ul>

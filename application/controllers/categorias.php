@@ -18,7 +18,7 @@ class Categorias extends Secure_area {
         $data['admin_table'] = get_categoria_admin_table();
         $data['form_width'] = $this->get_form_width();
         $data['form_height'] = $this->get_form_height();
-        $this->output->enable_profiler(TRUE);
+        //$this->output->enable_profiler(TRUE);
         $this->load->view('categorias/manage', $data);
     }
 
@@ -42,7 +42,7 @@ class Categorias extends Secure_area {
                 'height' => $this->get_form_height(),
         'class'  => 'thickbox'),
             '2' => array('function' => "lugares",
-                'comun_language' => "lugar_lugar",
+                'comun_language' => "lugares_lugar",
                 'language' => "_muestra",
                 'height' => 200));
         echo getData('Categoria', $aColumns, $cllAccion);

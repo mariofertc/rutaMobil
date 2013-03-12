@@ -9,6 +9,7 @@ if (!defined('BASEPATH'))
 //require_once ("persona_controller.php");
 
 require_once ("secure_area.php");
+
 class Lugares extends Secure_area {
 
     function __construct() {
@@ -40,7 +41,7 @@ class Lugares extends Secure_area {
 //            'categoria_id' => array('limit' => 30),
             'interes' => array('limit' => 30),
             'sector' => array('limit' => 30),
-            'nombre_enlace' => array('nombre'=> 'nombre_enlace'));
+            'nombre_enlace' => array('nombre' => 'nombre_enlace'));
         //Eventos Tabla
         $cllAccion = array(
             '1' => array(
@@ -49,34 +50,55 @@ class Lugares extends Secure_area {
                 'language' => "_update",
                 'width' => $this->get_form_width(),
                 'height' => $this->get_form_height(),
-                'class' => 'thickbox'));
-        $cllWhere = 'categoria_id = '.$id_categoria;
+                'class' => 'thickbox'),
+            '2' => array('function' => "fotos",
+                'comun_language' => "fotos_foto",
+                'language' => "_muestra",
+                'height' => 200));
+        $cllWhere = 'categoria_id = ' . $id_categoria;
         echo getData('Lugar', $aColumns, $cllAccion, $cllWhere);
     }
 
-    function view($id = -1) {
-        $data['info'] = $this->Lugar->get_info($id);
+    function view($id = -1, $categoria_id = -1) {
+        //echo $categoria_id . $id;
 
-//		$estado = array('pendiente'=>'pendiente','solucionado'=>'solucionado');
-        // $array=array("foo"=>1,"bar"=>2,"baz"=>3,4,5);		
-//		$data['estado']=$estado;	
+        $data['info'] = $this->Lugar->get_info($id);
+        $data['categoria_id'] = $categoria_id;
+        $coordenada = json_decode($data['info']->coordenadas);
+
+        $data['info']->latitud = isset($coordenada->latitud) ? $coordenada->latitud : 0;
+        $data['info']->longitud = isset($coordenada->longitud) ? $coordenada->longitud : 0;
+
         $this->load->view("lugares/form", $data);
     }
 
     function save($id = -1) {
+        $coordenadas = json_encode(array('latitud' => $this->input->post('latitud'), 'longitud' => $this->input->post('longitud')));
+
         $data = array(
             'nombre' => $this->input->post('lugar'),
             'direccion' => $this->input->post('direccion'),
-            'coordenadas' => $this->input->post('coordenadas'),
-//            'imagen_path' => $this->input->post('imagen_path'),
+            'coordenadas' => $coordenadas,
             'descripcion' => $this->input->post('descripcion'),
             'interes' => $this->input->post('interes'),
             'sector' => $this->input->post('sector'),
             'nombre_enlace' => $this->input->post('enlace'),
+            'fecha_actualizacion' => date('Y-m-d h:i:s')
         );
 
-       
+        //Subir Imagenes
+        $resp_upload = $this->do_upload($this->input->post('enlace'));
+        if (gettype($resp_upload) == "string") {
+            $resp = array('success' => 'fail_upload', 'message' => 'Error al cargar la foto ' .
+                $data['nombre'] . '. ' . $resp_upload, 'id' => -1);
+            echo json_encode($resp);
+            return;
+        } else {
+            $data['imagen_path'] = $resp_upload['file_name'];
+        }
 
+        if ($this->input->post('categoria_id') != -1)
+            $data['categoria_id'] = $this->input->post('categoria_id');
         $this->db->trans_start();
         try {
             if ($this->Lugar->save($data, $id)) {
@@ -134,11 +156,29 @@ class Lugares extends Secure_area {
     }
 
     function get_form_width() {
-        return 400;
+        return 600;
     }
 
     function get_form_height() {
         return 330;
+    }
+
+    function do_upload($path) {
+        $this->gallery_path = realpath(APPPATH . '../images/imglugar/'. $path);
+        if (!file_exists($this->gallery_path)) {
+            mkdir($this->gallery_path, 0777);
+        }
+
+        $config = array(
+            'allowed_types' => 'jpg|jpeg|gif|png',
+            'upload_path' => $this->gallery_path,
+            'max_size' => 2000
+        );
+
+        $this->upload->initialize($config);
+        if (!$this->upload->do_upload())
+            return $this->upload->display_errors();
+        return $this->upload->data();
     }
 
 }

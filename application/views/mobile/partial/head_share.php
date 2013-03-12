@@ -1,8 +1,5 @@
 <div data-role="header" data-theme="a" class="yellow">
     <div class="bannerr"></div>
-    <!--<a href="#home" data-rel="back" data-icon="arrow-l">Back</a>
-            <h1>OFERTA</h1>
-            <a href="photogallery.html" rel="external">Photo Gallery</a>-->
     <div data-role="navbar" data-theme="a" >
         <ul>
             <li><a href="http://www.facebook.com/"data-show-count="false" data-show-screen-name="false"><img src="<?php echo base_url();?>images/white_facebook.png" width="32" height="32" alt="Follow Us on Facebook"><br />MEGUSTA</a>

@@ -28,6 +28,7 @@ class Lugar extends CI_Model {
         if($lugar_id == null)
             return null;
         $this->db->where('id_lugar', $lugar_id);
+        $this->db->where('deleted', 0);
         $this->db->from('fotos');
         $this->db->limit(10);
         $query = $this->db->get();

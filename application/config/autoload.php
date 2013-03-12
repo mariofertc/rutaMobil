@@ -52,7 +52,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('database', 'session', 'form_validation');
+$autoload['libraries'] = array('database', 'session', 'form_validation', 'image_lib', 'upload');
 
 
 /*
@@ -64,7 +64,7 @@ $autoload['libraries'] = array('database', 'session', 'form_validation');
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url', 'form', 'divs', 'table', 'data', 'html', 'text');
+$autoload['helper'] = array('url', 'form', 'divs', 'table', 'data', 'html', 'text', 'file');
 
 
 /*
@@ -96,7 +96,7 @@ $autoload['config'] = array();
 |
 */
 
-$autoload['language'] = array('categoria', 'lugar', 'comun', 'form_validation', 'modulo', 'empleado', 'login');
+$autoload['language'] = array('categorias', 'lugares', 'comun', 'form_validation', 'modulo', 'empleado', 'login', 'fotos');
 
 
 /*
@@ -109,7 +109,7 @@ $autoload['language'] = array('categoria', 'lugar', 'comun', 'form_validation', 
 |
 */
 
-$autoload['model'] = array('Lugar', 'Provincia', 'Categoria', 'Persona', 'Empleado', 'Modulo');
+$autoload['model'] = array('Lugar', 'Provincia', 'Categoria', 'Persona', 'Empleado', 'Modulo', 'Foto');
 
 
 /* End of file autoload.php */

@@ -13,7 +13,7 @@ class Categoria extends CI_Model {
 
     function getall() {
         $this->db->where('deleted', 0);
-        $query = $this->db->get('categoria', 10);
+        $query = $this->db->get('categoria');
         return $query;
     }
 

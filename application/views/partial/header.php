@@ -57,6 +57,8 @@
                     <?php
                     if (isset($allowed_modules)) {
                         foreach ($allowed_modules->result() as $modulo) {
+                            if($modulo->modulo_id=='lugares')
+                                continue;
                             ?>
 
                             <div class="menu_item">

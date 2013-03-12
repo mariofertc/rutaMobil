@@ -1,20 +1,38 @@
 // Photoswipe Call
 $(document).ready(function(){
-
-	var myPhotoSwipe = $("#gallery a").photoSwipe({ enableMouseWheel: false , enableKeyboard: false });
+    var myPhotoSwipe = null;
+    for(var i=0; i < 30; i++)
+    {
+        if($("#gallery"+i).length>0)
+        {
+//            alert($("#gallery"+i).length);
+            try
+            {
+            myPhotoSwipe = $("#gallery" + i + " a").photoSwipe({
+                enableMouseWheel: false , 
+                enableKeyboard: false
+            });
+            }
+            catch(error){console.log(error)}
+        }
+    }
+//    var myPhotoSwipe = $("#gallery0 a").photoSwipe({
+//        enableMouseWheel: false , 
+//        enableKeyboard: false
+//    });
 
 });
 
 
 // Google Maps V3
 function initialize() {
-var mapDiv = document.getElementById('the_map');
-var map = new google.maps.Map(mapDiv, {
-  center: new google.maps.LatLng(37.4419, -122.1419),
-  zoom: 13,
-  mapTypeId: google.maps.MapTypeId.ROADMAP,
-  disableDefaultUI: true
-});
+    var mapDiv = document.getElementById('the_map');
+    var map = new google.maps.Map(mapDiv, {
+        center: new google.maps.LatLng(37.4419, -122.1419),
+        zoom: 13,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        disableDefaultUI: true
+    });
 }
 
 
@@ -33,6 +51,6 @@ var map = new google.maps.Map(mapDiv, {
 
 // Other Scripts
 $(document).bind("mobileinit", function(){
-  $.mobile.touchOverflowEnabled = true;
+    $.mobile.touchOverflowEnabled = true;
 });
  

@@ -61,6 +61,7 @@ class Mobil extends CI_Controller {
                 $coordenadas[] = array('latitud' => $lat, 'longitud' => $lon, 'titulo' => $titulo);
             }
         }
+        //var_dump($coordenadas);
         echo json_encode($coordenadas);
     }
 
