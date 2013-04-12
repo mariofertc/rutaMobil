@@ -3,9 +3,9 @@
 function get_oferta($oferta_items, $opciones) {
     $data_div = '<div data-role="content" data-theme="d">';
     if (isset($opciones['busqueda']) == true)
-        $data_div .= '<ul data-role="listview" data-dividertheme="e" class="titulo" data-inset="true" data-filter="true" data-filter-placeholder="Qué atractivo buscas?" data-autodividers="true">';
+        $data_div .= '<ul data-role="listview" data-dividertheme="e" class="titulo" data-inset="true" data-filter="true" data-filter-placeholder="Qué atractivo buscas?" data-autodividers="false">';
     else
-        $data_div .= '<ul data-role="listview" data-dividertheme="e" class="titulo" data-inset="true" data-autodividers="true">';
+        $data_div .= '<ul data-role="listview" data-dividertheme="e" class="titulo" data-inset="true" data-autodividers="false">';
 
 
     foreach ($oferta_items->result() as $oferta) {
@@ -26,7 +26,7 @@ function get_oferta($oferta_items, $opciones) {
 function get_lugares($oferta_items, $opciones, $ci) {
     $data_div = '';
     foreach ($oferta_items->result() as $oferta) {
-        $data_div .= '<div data-role="page" id="' . $oferta->nombre_enlace . '" data-theme="d">';
+        $data_div .= '<div data-role="page" id="' . $oferta->nombre_enlace . '" data-theme="a">';
         //Encabezado
         $data_div .= $ci->load->view('mobile/partial/head_share', '', true);
         //Titulo
@@ -35,14 +35,16 @@ function get_lugares($oferta_items, $opciones, $ci) {
                 '</h1><h4>' . $oferta->descripcion . '</h4></li>';
         $data_div .= '<div data-role="content" data-theme="d" class="conte" >';
         if (isset($opciones['busqueda']) == true)
-            $data_div .= '<ul data-role="listview" data-dividertheme="e" class="titulo" data-inset="true" data-filter="true" data-filter-placeholder="Qué ' . $oferta->nombre . ' buscas?" data-autodividers="true">';
+            $data_div .= '<ul data-role="listview" data-dividertheme="e" class="titulo" data-inset="true" data-filter="true" data-filter-placeholder="Qué ' . $oferta->nombre . ' buscas?" data-autodividers="false">';
         else
-            $data_div .= '<ul data-role="listview" data-dividertheme="e" class="titulo" data-inset="true" data-autodividers="true">';
+            $data_div .= '<ul data-role="listview" data-dividertheme="e" class="titulo" data-inset="true" data-autodividers="false">';
 //        $data_div .= '<li><a href="#' . $oferta->nombre_enlace .
 //                '"> <div class="icon">' . $oferta->icon .
 //                '</div> <h1>' . $oferta->nombre .
 //                '</h1><p>' . $oferta->descripcion .
 //                '</p><!--<img src="images/vote.png">--> <!--<span class="ui-li-count">10 km</span>--></a></li>';
+//        $lugares = $ci->Lugar->get_by_categoria($oferta->id);
+//        $cigniter =& get_instance();
         $lugares = $ci->Lugar->get_by_categoria($oferta->id);
 
         foreach ($lugares->result() as $lugar) {
@@ -50,7 +52,7 @@ function get_lugares($oferta_items, $opciones, $ci) {
                     '"> <img src="' . base_url() . 'images/imglugar/' . $lugar->nombre_enlace . '/' . $lugar->imagen_path .
                     '" width  = "340" height = "279"> <h1>' . $lugar->nombre .
                     '</h1><p>' . $lugar->descripcion .
-                    '</p><img src="' . base_url() . 'images/vote.png"> <span class="ui-li-count">10 km</span></a></li>';
+                    '</p><img src="'. base_url() .'images/vote.png"> <span id=distancia_' . $lugar->id . ' class="ui-li-count">12 km</span></a></li>';
         }
         $data_div .= "</ul>";
         //Shadow
@@ -87,12 +89,12 @@ function get_lugar($oferta_items, $opciones, $ci) {
             }
             $data_div .= "</ul>" . '<ol class = "flex-control-nav flex-control-paging"><ul class = "flex-direction-nav"></div>';
             $data_div .= '<div data-role="collapsible-set"><div data-role="content" class="laciudad">';
-            $data_div .= "<H1>DATOS IMPORTANTES</H1> <p>... </p>";
+            $data_div .= "<H1>DATOS IMPORTANTES</H1> <p>Distancia, tiempo estimado de llegada, etc.</p>";
             $data_div .= '<ul class = "items"><li class = "atrib" name = "opiniones"><div class = "icon3">S</div><h1>27 OPINIONES</h1>
-            <img src = "images/vote.png"></li><li class="atrib" name="distancia">
+            <img src = "'. base_url() .'images/vote.png"></li><li class="atrib" name="distancia">
 <div class="icon3">S</div>
 <h1>DISTANCIA</h1>
-<p>10 Km</p>
+<p id="distancia2_'.$lugar->id.'">10 Km</p>
 </li>
 <li class="atrib" name="tllegada">
 <div class="icon3">S</div>
@@ -120,8 +122,9 @@ function get_lugar($oferta_items, $opciones, $ci) {
             $data_div .= "<p>" . $lugar->interes . "</p></div></div>";
 
             //Shadow
-            if (isset($opciones['shadow']) == true)
-                $data_div .= '<div class="shadow2box"><img src="' . base_url() . 'images/shadow.png" class="shadow2" alt="shadow"></div>';
+            if (isset($opciones['shadow']))
+                if ($opciones['shadow'] == true)
+                    $data_div .= '<div class="shadow2box"><img src="' . base_url() . 'images/shadow.png" class="shadow2" alt="shadow"></div>';
             $data_div .= "</div>";
             $data_div .= $ci->load->view('mobile/partial/footer_page', '', true);
             $data_div .= "</div>";

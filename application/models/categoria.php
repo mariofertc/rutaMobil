@@ -13,6 +13,7 @@ class Categoria extends CI_Model {
 
     function getall() {
         $this->db->where('deleted', 0);
+        $this->db->order_by('order', 'asc');
         $query = $this->db->get('categoria');
         return $query;
     }

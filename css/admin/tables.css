@@ -199,3 +199,19 @@ table.tabledist thead tr .headerSortDown, table.tabledist thead tr .headerSortUp
 {
 	background-color: #8dbdd8;
 }
+
+/*Data Table*/
+
+table.dataTable{
+    float:left;
+}
+
+table.dataTable tr.odd{
+/*    background-color: red !important;*/
+
+}
+table.dataTable td
+{
+    padding: 10px  !important;
+
+}

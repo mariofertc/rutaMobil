@@ -56,6 +56,16 @@ echo form_open('categorias/save/'.$info->id,array('id'=>'form'));
 	);?>
 	</div>
 </div>
+<div class="field_row clearfix">
+<?php echo form_label('Orden:', 'orden',array('class'=>'ssmall_wide')); ?>
+	<div class='form_field'>
+	<?php echo form_input(array(
+		'name'=>'order',
+		'id'=>'order',
+		'value'=>$info->order)
+	);?>
+	</div>
+</div>
 
 </fieldset>
 

@@ -12,9 +12,10 @@
         <link href="<?php echo base_url(); ?>js/jquery-mobile/jquery.mobile.structure-1.2.0.css" rel="stylesheet" type="text/css"/>
 
 
-        <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery/jquery-1.8.2.min.js"></script>
+        <!--<script type="text/javascript" src="<?php // echo base_url();          ?>js/jquery/jquery-1.8.2.min.js"></script>-->
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery/jquery.mobile-1.2.0.js"></script>
-        
+
 
 
         <!--== GALERIA==-->
@@ -24,7 +25,8 @@
 
         <!--== GEOLOCALIZACION==-->
         <!--<script src="http://maps.google.com/maps/api/js?sensor=false"> </script>-->
-        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&v=3&libraries=geometry&key=AIzaSyASASA_pjRkAuGNn0_02vfc0eFGlLKH9hE"></script>
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyASASA_pjRkAuGNn0_02vfc0eFGlLKH9hE&sensor=false&v=3&libraries=geometry"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>js/mapa/geoPosition.js"></script>
 
 
         <link href="<?php echo base_url(); ?>css/descripcion.css" rel="stylesheet" type="text/css"/>
@@ -39,29 +41,40 @@
         <!--scripts flex slider-->
 
         <script src="<?php echo base_url(); ?>js/jquery/jquery.flexslider.js"></script>
-        
+
         <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery/infobox.js"></script>
-        
+
         <script type="text/javascript" charset="utf-8">
             $(window).load(function() {
                 $('.flexslider').flexslider();
             });
 
-            function change_page(page_name) {
-                $.mobile.changePage($('#' + page_name));
-            }
+            //            function change_page(page_name) {
+            //                $.mobile.changePage($('#' + page_name));
+            //            }
 
             $('#geo').live('pagecreate', function (event, ui) {
+                
+                //                google.maps.event.addListener(mapa, 'dblclick', function(event) {
+                //                                    mapa.setCenter(mapa.getCenter());
+                //                }); 
                 geolocalizar();
+                //                                google.maps.event.trigger(mapa, 'resize');
             });
-        
+            //            $('#home').live('pagecreate', function (event, ui) {
+            //                geolocalizar();
+            //            });
+            var mapa;
             function cargar(datos){
                 $.ajax({
                     url: '<?php echo site_url("mobil") ?>/coordenadas',
                     type: "GET",
                     success: function(coord){
+                        
+                        
                         var lat = datos.coords.latitude;
                         var lon = datos.coords.longitude;
+                        //alert(coordenadas_current);
                         //Cruz de Bellavista -- Referencia a Baños
                         var latlng_banos = new google.maps.LatLng(-1.398773, -78.414838);
                         var latlng_current = new google.maps.LatLng(lat,lon);
@@ -77,10 +90,15 @@
                         var opcionesMapa = {
                             center: latlng_current,
                             zoom: 10,
-                            mapTypeId: google.maps.MapTypeId.HYBRID
+                            mapTypeId: google.maps.MapTypeId.ROADMAP
                         };
-
-                        var mapa = new google.maps.Map($("#mapa")[0], opcionesMapa);
+                        //                        document.getElementById("mapa").html("<div></div>");
+                        mapa = new google.maps.Map(document.getElementById("mapa"), opcionesMapa);
+                        //                        mapa = new google.maps.Map($("#mapa")[0], opcionesMapa);
+                        
+                        //                        google.maps.event.addDomListener(window, 'resize', function() {
+                        //                            mapa.setCenter(latlng_current);
+                        //                        });
 
                         var goldStar = {
                             path: 'M 125,5 155,90 245,90 175,145 200,230 125,180 50,230 75,145 5,90 95,90 z',
@@ -120,17 +138,10 @@
                         infowindow = new google.maps.InfoWindow({   //infowindow options set
                             maxWidth: 355
                         });
+                        
+                        
+                        
 
-
-
-                        function popup() {
-                            setTimeout(function () {
-                                var newwindow = window.open('test.php','Test','width=800,height=500');
-                                newwindow.focus();
-                            }, 1);
-                            return false;
-
-                        }
 
 
                         //var latlng2 = new google.maps.LatLng(lat, lon);
@@ -148,52 +159,47 @@
                                     title: this.titulo
                                 };    
                                 var chinche2 = new google.maps.Marker(opcionesOjos);
+                                chinche2.setMap(mapa);
                                 
                                 //Aqui estas
                                 //                                var latln = new google.maps.LatLng(lat, lon);
                                 var distance_sitio = (google.maps.geometry.spherical.computeDistanceBetween(latlng_current, latlng_lugares)/1000).toFixed(2);
                                 var titulo = this.titulo;
                                 var coordenada = this.latitud + " - " + this.longitud;
+                                //Actualiza sitio contenido
+                                $('#distancia_'+this.id_lugar).html(distance_sitio + " Km");
+                                $('#distancia2_'+this.id_lugar).html(distance_sitio + " Km");
                                 google.maps.event.addListener(chinche2, "click", function() {
                                     infowindow.setContent("<div style='color:black'>"
                                         + titulo +
-                                        "!</div><div style='color:black'>Distancia al lugar es: " +  (distance_sitio) + " km </div>" +
+                                        "</div><div style='color:black'>Distancia al lugar es: " +  (distance_sitio) + " km </div>" +
                                         "<div style='color:black'>Coordenadas: " +  coordenada + " </div>"); 
                                     infowindow.open(mapa,chinche2); 
                                 });
-                                
-                                
-                                /*
-                                 */
-                                var boxText = document.createElement("div");
-//                                boxText.style.cssText = "border: 1px solid black; margin-top: 8px; background: yellow; padding: 5px; color:black";
-                                boxText.style.cssText = "margin-top: 5px; background: rgba(25,245,245,0.4); padding: 5px; color:black; font-size:0.8em; text-align:center";
-//                                boxText.innerHTML = "City Hall, Sechelt<br>British Columbia<br>Canada";
-                                boxText.innerHTML = titulo;
-                
-                                var myOptions = {
-                                    content: boxText
-                                    ,disableAutoPan: false
-                                    ,maxWidth: 0
-                                    ,pixelOffset: new google.maps.Size(-20, 30)
-                                    ,zIndex: null
-                                    ,boxStyle: { 
-                                        background: "url('tipbox.gif') no-repeat"
-                                        ,opacity: 0.8
-                                        ,width: "100px"
-                                    }
-                                    ,closeBoxMargin: "10px 2px 2px 2px"
-                                    ,closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif"
-                                    ,infoBoxClearance: new google.maps.Size(1, 1)
-                                    ,isHidden: false
-                                    ,pane: "floatPane"
-                                    ,enableEventPropagation: false
-                                };
-
-                                var ib = new InfoBox(myOptions);
-                                ib.open(mapa, chinche2);
-                                /**/
-
+                                //abrir toolbox
+                                //                                var boxText = document.createElement("div");
+                                //                                boxText.style.cssText = "margin-top: 5px; background: rgba(25,245,245,0.4); padding: 5px; color:black; font-size:0.8em; text-align:center";
+                                //                                boxText.innerHTML = titulo;
+                                //                                var myOptions = {
+                                //                                    content: boxText
+                                //                                    ,disableAutoPan: false
+                                //                                    ,maxWidth: 0
+                                //                                    ,pixelOffset: new google.maps.Size(-20, 30)
+                                //                                    ,zIndex: null
+                                //                                    ,boxStyle: { 
+                                ////                                        background: "url(<?php echo base_url() ?>tipbox.gif') no-repeat"
+                                //                                        opacity: 0.8
+                                //                                        ,width: "100px"
+                                //                                    }
+                                //                                    ,closeBoxMargin: "10px 2px 2px 2px"
+                                //                                    ,closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif"
+                                //                                    ,infoBoxClearance: new google.maps.Size(1, 1)
+                                //                                    ,isHidden: false
+                                //                                    ,pane: "floatPane"
+                                //                                    ,enableEventPropagation: false
+                                //                                };
+                                //                                var ib = new InfoBox(myOptions);
+                                //                                ib.open(mapa, chinche2);
                             }
                         });
 
@@ -206,10 +212,26 @@
                 });
 
             }
-            
+            if (geoPosition.init()) {
+                geolocalizar();
+            }
+                
+            var id_evento;
             function geolocalizar()
             {
-                navigator.geolocation.getCurrentPosition(cargar,errorMapa);
+                //                navigator.geolocation.watchPosition(cargar,errorMapa,
+                //{'enableHighAccuracy':false,'timeout':10000,'maximumAge':20000});
+                if(id_evento != null)
+                {
+                    navigator.geolocation.clearWatch(id_evento);
+                    id_evento  = null;
+                    //                    alert("yo");
+                }
+                //                id_evento = navigator.geolocation.watchPosition(cargar,errorMapa, {'enableHighAccuracy':true});
+                id_evento = navigator.geolocation.watchPosition(cargar,errorMapa,{maximumAge:Infinity, timeout:50000, enableHighAccuracy:false});
+
+                
+                //                navigator.geolocation.getCurrentPosition(cargar,errorMapa);
 
                 $("#status").text("En tu busqueda ....");
             }

@@ -116,7 +116,7 @@ label.important
 .big_button
 {
 	position:relative;
-	width:119px;
+	width:140px;
 	height:45px;
 	background-image: url(../../images/big_action_button.gif);
 	background-repeat:no-repeat;
@@ -127,7 +127,7 @@ label.important
 {
 	position:absolute;
 	width:100%;
-	top:35%;
+	top:25%;
 	color:#FFF;
 	font-size:13px;
 	font-weight:bold;

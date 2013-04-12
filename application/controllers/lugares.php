@@ -27,20 +27,16 @@ class Lugares extends Secure_area {
     }
 
     function mis_datos($id_categoria) {
-//		$data['controller_name'] = strtolower($this->uri->segment(1));
-//		$data['form_width'] = $this->get_form_width();
-//		$data['form_height'] = 150;
-//		$aColumns = array('id','nombre', 'descripcion', 'nombre_enlace');
         $aColumns = array(
             'id' => array('checked' => true, 'es_mas' => true),
             'nombre' => array('limit' => 13),
             'direccion' => array('limit' => 30),
             'coordenadas' => array('limit' => 30),
             'imagen_path' => array('limit' => 30),
-            'descripcion' => array('limit' => 30),
+//            'descripcion' => array('limit' => 30),
 //            'categoria_id' => array('limit' => 30),
-            'interes' => array('limit' => 30),
-            'sector' => array('limit' => 30),
+//            'interes' => array('limit' => 30),
+//            'sector' => array('limit' => 30),
             'nombre_enlace' => array('nombre' => 'nombre_enlace'));
         //Eventos Tabla
         $cllAccion = array(
@@ -85,16 +81,20 @@ class Lugares extends Secure_area {
             'nombre_enlace' => $this->input->post('enlace'),
             'fecha_actualizacion' => date('Y-m-d h:i:s')
         );
+//        echo json_encode(array('success' => false, 'message' => $_FILES['userfile']));
+//        return;
 
-        //Subir Imagenes
-        $resp_upload = $this->do_upload($this->input->post('enlace'));
-        if (gettype($resp_upload) == "string") {
-            $resp = array('success' => 'fail_upload', 'message' => 'Error al cargar la foto ' .
-                $data['nombre'] . '. ' . $resp_upload, 'id' => -1);
-            echo json_encode($resp);
-            return;
-        } else {
-            $data['imagen_path'] = $resp_upload['file_name'];
+        if (isset($_FILES['userfile'])) {
+            //Subir Imagenes
+            $resp_upload = $this->do_upload($this->input->post('enlace'));
+            if (gettype($resp_upload) == "string") {
+                $resp = array('success' => 'fail_upload', 'message' => 'Error al cargar la foto ' .
+                    $data['nombre'] . '. ' . $resp_upload, 'id' => -1);
+                echo json_encode($resp);
+                return;
+            } else {
+                $data['imagen_path'] = $resp_upload['file_name'];
+            }
         }
 
         if ($this->input->post('categoria_id') != -1)
@@ -114,7 +114,7 @@ class Lugares extends Secure_area {
                 $this->db->trans_complete();
                 if ($this->db->trans_status() === FALSE) {
                     $this->db->trans_rollback();
-                    echo json_encode(array('success' => false, 'Error al actualizar el Lugar ' .
+                    echo json_encode(array('success' => false, 'message' => 'Error al actualizar el Lugar ' .
                         $data['nombre'], 'id' => -1));
                 } else {
                     $this->db->trans_commit();
@@ -160,12 +160,16 @@ class Lugares extends Secure_area {
     }
 
     function get_form_height() {
-        return 330;
+        return 380;
     }
 
     function do_upload($path) {
-        $this->gallery_path = realpath(APPPATH . '../images/imglugar/'. $path);
+//        $this->gallery_path = realpath(APPPATH.'../images/imglugar/'. $path);
+        $this->gallery_path = realpath(APPPATH . '../images/imglugar/') . '/' . $path;
+//exit($this->gallery_path."yo");
         if (!file_exists($this->gallery_path)) {
+//exit($this->gallery_path."yo");
+            //return false;
             mkdir($this->gallery_path, 0777);
         }
 

@@ -31,7 +31,8 @@ class Categorias extends Secure_area {
             'id' => array('checked' => true, 'es_mas' => true),
             'nombre' => array('limit' => 13),
             'descripcion' => array('limit' => 30),
-            'nombre_enlace' => array('limit' => 15));
+            'nombre_enlace' => array('limit' => 15),
+            'order' => array('limit' => 3));
         //Eventos Tabla
         $cllAccion = array(
             '1' => array(
@@ -71,7 +72,8 @@ class Categorias extends Secure_area {
             'icon' => $this->input->post('icono'),
             'descripcion' => $this->input->post('descripcion'),
             'nombre_enlace' => $this->input->post('enlace'),
-            'ciudad_id' => 1
+            'ciudad_id' => 1,
+            'order' => $this->input->post('order')
         );
 
         // $this->db->set('order_date', 'NOW()', FALSE);
@@ -155,7 +157,7 @@ class Categorias extends Secure_area {
     }
 
     function get_form_height() {
-        return 330;
+        return 360;
     }
 
 }

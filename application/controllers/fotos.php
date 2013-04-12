@@ -29,6 +29,10 @@ class Fotos extends Secure_area {
 
         $this->load->view('fotos/manage', $data);
     }
+    public function regresar($id = -1) {
+        $lugar = $this->Lugar->get_info($id);
+        redirect("lugares/index/$lugar->categoria_id", 'refresh');
+    }
 
     function mis_datos($id_lugar) {
         $aColumns = array(
@@ -135,7 +139,7 @@ class Fotos extends Secure_area {
     }
 
     function do_upload($path) {
-        $this->gallery_path = realpath(APPPATH . '../images/imglugar/' . $path);
+        $this->gallery_path = realpath(APPPATH . '../images/imglugar/') . "/". $path;
         if (!file_exists($this->gallery_path)) {
             mkdir($this->gallery_path, 0777);
         }
@@ -148,6 +152,8 @@ class Fotos extends Secure_area {
 
         
         $this->upload->initialize($config);
+//        echo $this->gallery_path;
+//        $this->load->library('upload', $config);
         if (!$this->upload->do_upload())
             return $this->upload->display_errors();
         $image_data = $this->upload->data();

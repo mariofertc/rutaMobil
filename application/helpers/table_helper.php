@@ -11,6 +11,7 @@ function get_categoria_admin_table()
 				<th width="20%">Categoría</th>
 				<th width="30%">Descripción</th>
 				<th width="20%">Enlace</th>
+				<th width="20%">Orden</th>
                                 <th width="10%">Acciones</th>
 			</tr>
 		</thead>
@@ -37,6 +38,7 @@ function get_categoria_data_row($data,$controller)
 	$table_data_row.='<td width="20%">'.character_limiter($data->nombre,13).'</td>';
 	$table_data_row.='<td width="40%">'.character_limiter($data->descripcion,30).'</td>';
 	$table_data_row.='<td width="20%">'.character_limiter($data->nombre_enlace,13).'</td>';
+	$table_data_row.='<td width="20%">'.character_limiter($data->order,13).'</td>';
 	$table_data_row.='<td width="5%">'.anchor($controller_name."/view/$data->id?width=".$width."&height=".$height, $CI->lang->line('comun_edit'),array('class'=>'thickbox','title'=>$CI->lang->line($controller_name.'_update')));		
 	$table_data_row.='&nbsp;'.anchor($controller_name."/lugares/$data->id?width=".$width."&height".$height, $CI->lang->line('lugares_lugar'),array('class'=>'','title'=>$CI->lang->line($controller_name.'_muestra'))).'</td>';		
 	$table_data_row.='</tr>';
@@ -57,9 +59,9 @@ function get_lugar_admin_table()
 				<th width="30%">Dirección</th>
 				<th width="20%">Coordenadas</th>
 				<th width="20%">Imagen</th>
-				<th width="30%">Descripción</th>
+				<!--<th width="30%">Descripción</th>
 				<th width="30%">Interés</th>
-				<th width="20%">Sector</th>
+				<th width="20%">Sector</th>-->
 				<th width="20%">Enlace</th>
 				<th width="20%">Acciones</th>
 			</tr>
@@ -88,9 +90,9 @@ function get_lugar_data_row($data,$controller)
 	$table_data_row.='<td width="40%">'.character_limiter($data->direccion,30).'</td>';
 	$table_data_row.='<td width="40%">'.character_limiter($data->coordenadas,30).'</td>';
 	$table_data_row.='<td width="40%">'.character_limiter($data->imagen_path,30).'</td>';
-	$table_data_row.='<td width="40%">'.character_limiter($data->descripcion,30).'</td>';
-	$table_data_row.='<td width="40%">'.character_limiter($data->interes,30).'</td>';
-	$table_data_row.='<td width="40%">'.character_limiter($data->sector,30).'</td>';
+//	$table_data_row.='<td width="40%">'.character_limiter($data->descripcion,30).'</td>';
+//	$table_data_row.='<td width="40%">'.character_limiter($data->interes,30).'</td>';
+//	$table_data_row.='<td width="40%">'.character_limiter($data->sector,30).'</td>';
 	$table_data_row.='<td width="20%">'.character_limiter($data->nombre_enlace,13).'</td>';
 	$table_data_row.='<td width="5%">'.anchor($controller_name."/view/$data->id?width=".$width."&height=".$height, $CI->lang->line('comun_edit'),array('class'=>'thickbox','title'=>$CI->lang->line($controller_name.'_update'))).'  ';		
 	$table_data_row.=anchor($controller_name."/fotos/$data->id?width=".$width."&height".$height, $CI->lang->line('fotos_foto'),array('title'=>$CI->lang->line($controller_name.'_muestra'))).'</td>';		

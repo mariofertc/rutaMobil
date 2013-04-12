@@ -57,7 +57,7 @@
                     <?php
                     if (isset($allowed_modules)) {
                         foreach ($allowed_modules->result() as $modulo) {
-                            if($modulo->modulo_id=='lugares')
+                            if($modulo->modulo_id=='lugares' ||$modulo->modulo_id=='fotos')
                                 continue;
                             ?>
 

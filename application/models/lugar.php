@@ -17,6 +17,7 @@ class Lugar extends CI_Model {
             return null;
         $this->db->where('categoria_id', $categoria_id);
         $this->db->from('lugar');
+        $this->db->where('deleted', 0);
         $this->db->limit(10);
         $query = $this->db->get();
         
@@ -38,6 +39,7 @@ class Lugar extends CI_Model {
 
     function getall() {
         $query = $this->db->get('lugar', 10);
+        $this->db->where('deleted', 0);
         return $query;
     }
 
@@ -49,6 +51,7 @@ class Lugar extends CI_Model {
         if ($where != "")
             $this->db->where($where);
 //        $this->db->where('deleted', 0);
+        $this->db->where('deleted', 0);
         $this->db->order_by($order);
         $this->db->limit($offset + $num, $offset);
 

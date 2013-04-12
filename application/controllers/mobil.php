@@ -58,7 +58,7 @@ class Mobil extends CI_Controller {
                 $lat = $coor->latitud;
                 $lon = $coor->longitud;
                 $titulo = $lugar->nombre;
-                $coordenadas[] = array('latitud' => $lat, 'longitud' => $lon, 'titulo' => $titulo);
+                $coordenadas[] = array('latitud' => $lat, 'longitud' => $lon, 'titulo' => $titulo, 'id_lugar' => $lugar->id);
             }
         }
         //var_dump($coordenadas);
