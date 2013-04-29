@@ -18,7 +18,7 @@ class Foto extends CI_Model {
         $this->db->where('id_lugar', $lugar_id);
         $this->db->from('fotos');
         $this->db->where('deleted',0);
-        $this->db->limit(10);
+//        $this->db->limit(10);
         $query = $this->db->get();
         
         return $query;
@@ -37,8 +37,10 @@ class Foto extends CI_Model {
 //    }
 
     function getall() {
-        $query = $this->db->get('fotos', 10);
-        $this->db->where('deleted = 0');
+        $this->db->from('fotos');
+        $this->db->where('deleted', 0);
+        $query = $this->db->get();
+        
         return $query;
     }
 
@@ -58,10 +60,12 @@ class Foto extends CI_Model {
         return $this->db->get();
     }
 
-    function get_total() {
+    function get_total($where="") {
         $this->db->select("count(*) as total");
-        $this->db->from("fotos");
-//        $this->db->where("deleted", 0);
+        $this->db->from("fotos,lugar,categoria");
+        $this->db->where("fotos.deleted = 0 and fotos.id_lugar=lugar.id and categoria.id=lugar.categoria_id");
+        if($where!="")
+            $this->db->where($where);
         $query = $this->db->get();
         return $query->row();
     }

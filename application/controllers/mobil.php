@@ -25,9 +25,12 @@ class Mobil extends CI_Controller {
 
         $data['geo'] = get_geo($categoria, array('busqueda' => false, 'shadow' => false), $this);
         $this->load->view('mobile/geo/pagina', $data);
-        
+
         $data['aboutus'] = get_aboutus($this);
         $this->load->view('mobile/about/pagina', $data);
+
+        $data['comentario'] = get_add_comentario($this);
+        $this->load->view('mobile/comentario/pagina', $data);
 
 
 //        $this->load->view('mobile/inicio.php');
@@ -63,6 +66,33 @@ class Mobil extends CI_Controller {
         }
         //var_dump($coordenadas);
         echo json_encode($coordenadas);
+    }
+
+    function save_comments() {
+        if (
+                isset($_POST['username']) && !empty($_POST['username']) &&
+                isset($_POST['comment']) && !empty($_POST['comment']) &&
+                isset($_POST['titulo']) && !empty($_POST['titulo']) &&
+                isset($_POST['lugar_id']) && !empty($_POST['lugar_id'])
+        ) {
+            $username = $_POST['username'];
+            $comment = $_POST['comment'];
+            $lugar_id = $_POST['lugar_id'];
+            $titulo = $_POST['titulo'];
+            
+            $data = array('nombre_comentario' => $username, 
+                'titulo' => $titulo, 
+                'mensaje' => $comment, 
+                'id_lugar'=>$lugar_id,
+                'fecha' => date('Y-m-d H:i:s')
+                );
+
+            $is_save = $this->Comentario->save($data);
+            if ($is_save)
+                echo json_encode(array('success' => true, 'id_comment'=>$data['id']));
+            else
+                echo json_encode(array('success' => false, 'message' => 'No se pudo guardar el Comentario!'));
+        }
     }
 
 }

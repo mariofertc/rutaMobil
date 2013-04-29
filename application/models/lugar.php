@@ -18,7 +18,7 @@ class Lugar extends CI_Model {
         $this->db->where('categoria_id', $categoria_id);
         $this->db->from('lugar');
         $this->db->where('deleted', 0);
-        $this->db->limit(10);
+//        $this->db->limit(10);
         $query = $this->db->get();
         
         return $query;
@@ -31,15 +31,17 @@ class Lugar extends CI_Model {
         $this->db->where('id_lugar', $lugar_id);
         $this->db->where('deleted', 0);
         $this->db->from('fotos');
-        $this->db->limit(10);
+//        $this->db->limit(10);
         $query = $this->db->get();
         
         return $query;
     }
 
     function getall() {
-        $query = $this->db->get('lugar', 10);
+//        $query = $this->db->get('lugar', 10);
+        $this->db->from('lugar');
         $this->db->where('deleted', 0);
+        $query = $this->db->get();
         return $query;
     }
 
@@ -50,7 +52,6 @@ class Lugar extends CI_Model {
         $this->db->from('lugar');
         if ($where != "")
             $this->db->where($where);
-//        $this->db->where('deleted', 0);
         $this->db->where('deleted', 0);
         $this->db->order_by($order);
         $this->db->limit($offset + $num, $offset);
@@ -58,10 +59,12 @@ class Lugar extends CI_Model {
         return $this->db->get();
     }
 
-    function get_total() {
+    function get_total($where="") {
         $this->db->select("count(*) as total");
         $this->db->from("lugar");
-//        $this->db->where("deleted", 0);
+        $this->db->where("deleted", 0);
+        if($where!="")
+            $this->db->where($where);
         $query = $this->db->get();
         return $query->row();
     }

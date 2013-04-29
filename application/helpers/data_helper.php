@@ -57,7 +57,8 @@ function getData($model, $aColumns, $cllAccion = array(), $where = "") {
             $sWhere .= " AND " . $where . ' ';
 
     $rResult = $CI->$model->get_all($offset, ($page == null ? 0 : $page), $sWhere, $sOrder);
-    $iFilteredTotal = $CI->$model->get_total()->total;
+    $iFilteredTotal = $CI->$model->get_total($where)->total;
+//    $iFilteredTotal = $CI->$model->get_total()->total;
     $iTotal = $rResult->num_rows();
     /*
      * Output
@@ -66,6 +67,7 @@ function getData($model, $aColumns, $cllAccion = array(), $where = "") {
         "sEcho" => intval($_GET['sEcho']),
         "iTotalRecords" => $iTotal,
         "iTotalDisplayRecords" => $iFilteredTotal,
+//        "sWhere" => $sWhere,
         "aaData" => array()
     );
 

@@ -52,7 +52,7 @@ function get_lugares($oferta_items, $opciones, $ci) {
                     '"> <img src="' . base_url() . 'images/imglugar/' . $lugar->nombre_enlace . '/' . $lugar->imagen_path .
                     '" width  = "340" height = "279"> <h1>' . $lugar->nombre .
                     '</h1><p>' . $lugar->descripcion .
-                    '</p><img src="'. base_url() .'images/vote.png"> <span id=distancia_' . $lugar->id . ' class="ui-li-count">12 km</span></a></li>';
+                    '</p><img src="' . base_url() . 'images/vote.png"> <span id=distancia_' . $lugar->id . ' class="ui-li-count">12 km</span></a></li>';
         }
         $data_div .= "</ul>";
         //Shadow
@@ -91,10 +91,10 @@ function get_lugar($oferta_items, $opciones, $ci) {
             $data_div .= '<div data-role="collapsible-set"><div data-role="content" class="laciudad">';
             $data_div .= "<H1>DATOS IMPORTANTES</H1> <p>Distancia, tiempo estimado de llegada, etc.</p>";
             $data_div .= '<ul class = "items"><li class = "atrib" name = "opiniones"><div class = "icon3">S</div><h1>27 OPINIONES</h1>
-            <img src = "'. base_url() .'images/vote.png"></li><li class="atrib" name="distancia">
+            <img src = "' . base_url() . 'images/vote.png"></li><li class="atrib" name="distancia">
 <div class="icon3">S</div>
 <h1>DISTANCIA</h1>
-<p id="distancia2_'.$lugar->id.'">10 Km</p>
+<p id="distancia2_' . $lugar->id . '">10 Km</p>
 </li>
 <li class="atrib" name="tllegada">
 <div class="icon3">S</div>
@@ -119,7 +119,11 @@ function get_lugar($oferta_items, $opciones, $ci) {
             $data_div .= "<p>" . $lugar->direccion . "</p></div>";
             $data_div .= '<div data-role="collapsible" class="laciudad">';
             $data_div .= "<H1> QUE DEBEMOS SABER </H1>";
-            $data_div .= "<p>" . $lugar->interes . "</p></div></div>";
+            $data_div .= "<p>" . $lugar->interes . "</p></div>";
+            $data_div .= get_comentarios($lugar->id, $ci);
+            $data_div .= "</div>";
+
+
 
             //Shadow
             if (isset($opciones['shadow']))
@@ -184,7 +188,46 @@ function get_aboutus($ci) {
     //Contenido
     $data_div .= $ci->load->view('mobile/about/content', '', true);
     $data_div .= $ci->load->view('mobile/partial/footer_page', '', true);
+    $data_div .= "</div>";
     return $data_div;
+}
+
+function get_comentarios($lugar_id, $ci) {
+    $data_div = '<div data-role="collapsible" class="laciudad" name="comen">';
+    $data_div .= '<h2> VER COMENTARIOS</h2><ul data-role="listview" data-theme="c" data-divider-theme="a" class="comen" id="comments_list_' . $lugar_id . '">';
+    $data_div .= '<li data-role="list-divider">Todos los Comentarios <span class="ui-li-count">2</span></li>';
+    $row = $ci->Comentario->getall($lugar_id);
+    foreach ($row->result() as $comentario) {
+        $data_div .= '<li><a href="index.html"><h3>' . $comentario->nombre_comentario . '</h3><p><strong>' . $comentario->titulo .
+                '</strong></p><p>' . $comentario->mensaje . '</p><p class="ui-li-aside"><strong>' . $comentario->fecha .
+                '</strong></p></a></li>';
+//        die(var_dump($comentario));
+//        return var_dump($data_div);
+    }
+//    $data_div .= '<li><a href="index.html"><h3>jQuery Team</h3><p><strong>Boston Conference Planning</strong></p><p>In preparation for the upcoming conference in Boston, we need to start gathering a list of sponsors and speakers.</p><p class="ui-li-aside"><strong>9:18</strong>AM</p></a></li>';
+    $data_div .= '</ul><div data-role="navbar"  data-theme="b" ><ul><li><a href="#add_comment" data-icon="info"  data-position="inline" data-rel="dialog" onclick="sessionStorage.lugar_id=' . $lugar_id . '">AÑADIR COMENTARIO</a></li></ul></div></div>';
+    return $data_div;
+}
+
+function get_add_comentario() {
+    return '<div data-role="page" id="add_comment" data-title="Añadir Comentario"  data-theme="a" data-url="add_comment">
+	<div data-role="header" data-position="inline" data-theme="a">
+		<h1>INGRESE SU COMENTARIO</h1>
+	</div>
+	<div data-role="content" data-theme="b"  style="font-family: ' . "bebas_neueregular" . '" >
+		<form action="">
+			<label for="comentario" >
+				ingrese su comentario
+			</label>
+			<input id="usuario" placeholder="usuario" value="anónimo" type="text" />
+			<input id="titulo" placeholder="Escriba el título aquí..." value="" type="text" />
+			<input id="comentario" placeholder="Escriba su comentario aquí..." value="" type="text" />
+			<input id="id_lugar" value="" type="text" />
+			<a href="docs-dialogs.html" data-role="button" data-rel="back" data-theme="a" onClick="save_todo();" data-icon="check">Aplicar</a>       
+			<a href="index.html" data-icon="delete" data-role="button" data-rel="back" data-theme="c" data-transition="fade" data-direction="reverse" id="cancel">Cancelar</a>    
+		</form>
+	</div>
+</div>';
 }
 
 /* 
