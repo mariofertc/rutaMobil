@@ -192,7 +192,30 @@ function get_foto_data_row($data,$controller)
 	return $table_data_row;
 }
 
-
+/*
+Gets the html table to manage comments.
+*/
+function get_comentario_admin_table()
+{
+	$table='<table cellpadding="0" cellspacing="0" border="0" class="display" id="sortable_table">
+		<thead>
+			<tr>
+				<th width="5%"><input type="checkbox" id="select_all" /></th>
+				<th width="10%">Nombre</th>
+				<th width="30%">Titulo</th>
+				<th width="10%">Email</th>
+				<th width="10%">Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+	<!--Esto se llena con  ajax cloro -->	
+		</tbody>
+		<tfoot>
+			
+		</tfoot>
+	</table>';
+	return $table;
+}
 
 
 
@@ -516,33 +539,6 @@ function get_usuario_data_row($usuario,$controller)
 	return $table_data_row;
 }
 
-
-/*
-Gets the html table to manage comments.
-*/
-function get_comentario_admin_table()
-{
-	$table='<table cellpadding="0" cellspacing="0" border="0" class="display" id="sortable_table">
-		<thead>
-			<tr>
-				<th width="5%"><input type="checkbox" id="select_all" /></th>
-				<th width="10%">Nombre</th>
-				<th width="10%">Email</th>
-				<th width="30%">Texto</th>
-				<th width="10%">Fecha</th>
-				<th width="10%">Pais</th>
-				<th width="10%">Ciudad</th>
-			</tr>
-		</thead>
-		<tbody>
-	<!--Esto se llena con  ajax cloro -->	
-		</tbody>
-		<tfoot>
-			
-		</tfoot>
-	</table>';
-	return $table;
-}
 function get_comentario_manage_table($comentarios,$controller)
 {
 	$CI =& get_instance();

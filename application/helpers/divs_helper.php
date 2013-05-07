@@ -90,7 +90,7 @@ function get_lugar($oferta_items, $opciones, $ci) {
             $data_div .= "</ul>" . '<ol class = "flex-control-nav flex-control-paging"><ul class = "flex-direction-nav"></div>';
             $data_div .= '<div data-role="collapsible-set"><div data-role="content" class="laciudad">';
             $data_div .= "<H1>DATOS IMPORTANTES</H1> <p>Distancia, tiempo estimado de llegada, etc.</p>";
-            $data_div .= '<ul class = "items"><li class = "atrib" name = "opiniones"><div class = "icon3">S</div><h1>27 OPINIONES</h1>
+            $data_div .= '<ul class = "items"><li class = "atrib" name = "opiniones"><div class = "icon3">S</div><h1>' . $ci->Comentario->get_total($lugar->id)->total . ' OPINIONES</h1>
             <img src = "' . base_url() . 'images/vote.png"></li><li class="atrib" name="distancia">
 <div class="icon3">S</div>
 <h1>DISTANCIA</h1>
@@ -195,8 +195,8 @@ function get_aboutus($ci) {
 function get_comentarios($lugar_id, $ci) {
     $data_div = '<div data-role="collapsible" class="laciudad" name="comen">';
     $data_div .= '<h2> VER COMENTARIOS</h2><ul data-role="listview" data-theme="c" data-divider-theme="a" class="comen" id="comments_list_' . $lugar_id . '">';
-    $data_div .= '<li data-role="list-divider">Todos los Comentarios <span class="ui-li-count">2</span></li>';
     $row = $ci->Comentario->getall($lugar_id);
+    $data_div .= '<li data-role="list-divider">Todos los Comentarios <span class="ui-li-count">'. $row->num_rows() .'</span></li>';
     foreach ($row->result() as $comentario) {
         $data_div .= '<li><a href="index.html"><h3>' . $comentario->nombre_comentario . '</h3><p><strong>' . $comentario->titulo .
                 '</strong></p><p>' . $comentario->mensaje . '</p><p class="ui-li-aside"><strong>' . $comentario->fecha .

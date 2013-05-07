@@ -10,6 +10,9 @@ $lang['modulo_lugares_desc']='Agregar, Actualizar, Borrar y Buscar Lugares';
 $lang['modulo_fotos']='Fotos';
 $lang['modulo_fotos_desc']='Agregar, Actualizar, Borrar y Buscar Fotografías';
 
+$lang['modulo_comentarios']='Comentarios';
+$lang['modulo_comentarios_desc']='Agregar, Actualizar, Borrar y Buscar Comentarios';
+
 
 $lang['modulo_suppliers']='Proveedores';
 $lang['modulo_suppliers_desc']='Agregar, Actualizar, Borrar y Buscar proveedores';

@@ -14,6 +14,7 @@ class Comentario extends CI_Model {
     function getall($lugar_id) {
         $this->db->where('id_lugar', $lugar_id);
         $this->db->order_by('fecha', 'asc');
+        $this->db->where('deleted', 0);
         $query = $this->db->get('comentario');
         return $query;
     }
@@ -22,7 +23,7 @@ class Comentario extends CI_Model {
         if ($order == null)
             $order = "id";
         //$this->db->select('id','nombre');
-        $this->db->from('categoria');
+        $this->db->from('comentario');
         if ($where != "")
             $this->db->where($where);
         $this->db->where('deleted', 0);
@@ -35,7 +36,8 @@ class Comentario extends CI_Model {
     function get_total($lugar_id) {
         $this->db->select("count(*) as total");
         $this->db->from("comentario");
-//        $this->db->where("deleted", 0);
+        $this->db->where("deleted", 0);
+        $this->db->where("id_lugar", $lugar_id);
         $query = $this->db->get();
         return $query->row();
     }
@@ -45,7 +47,7 @@ class Comentario extends CI_Model {
      */
 
     function get_info($id) {
-        $this->db->from('categoria');
+        $this->db->from('comentario');
         $this->db->where('id', $id);
         // $this->db->where('items.deleted',0);
 
@@ -56,7 +58,7 @@ class Comentario extends CI_Model {
         } else {
             //Get empty base parent object, as $item_id is NOT an item
             $obj = new stdClass();
-            $fields = $this->db->list_fields('categoria');
+            $fields = $this->db->list_fields('comentario');
             foreach ($fields as $field) {
                 $obj->$field = '';
             }
@@ -89,7 +91,7 @@ class Comentario extends CI_Model {
 
         $this->db->where_in('id', $ids);
         try {
-            $success = $this->db->update('categoria', array('deleted' => 1));
+            $success = $this->db->update('comentario', array('deleted' => 1));
             $this->db->trans_complete();
             if ($this->db->trans_status() === FALSE) {
                 $this->db->trans_rollback();
