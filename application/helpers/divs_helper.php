@@ -52,7 +52,7 @@ function get_lugares($oferta_items, $opciones, $ci) {
                     '"> <img src="' . base_url() . 'images/imglugar/' . $lugar->nombre_enlace . '/' . $lugar->imagen_path .
                     '" width  = "340" height = "279"> <h1>' . $lugar->nombre .
                     '</h1><p>' . $lugar->descripcion .
-                    '</p><img src="' . base_url() . 'images/vote.png"> <span id=distancia_' . $lugar->id . ' class="ui-li-count">12 km</span></a></li>';
+                    '</p>'.$ci->Voto->get_total($lugar->id)->total.'<img src="' . base_url() . 'images/vote.png"> <span id=distancia_' . $lugar->id . ' class="ui-li-count">12 km</span></a></li>';
         }
         $data_div .= "</ul>";
         //Shadow
@@ -91,7 +91,7 @@ function get_lugar($oferta_items, $opciones, $ci) {
             $data_div .= '<div data-role="collapsible-set"><div data-role="content" class="laciudad">';
             $data_div .= "<H1>DATOS IMPORTANTES</H1> <p>Distancia, tiempo estimado de llegada, etc.</p>";
             $data_div .= '<ul class = "items"><li class = "atrib" name = "opiniones"><div class = "icon3">S</div><h1>' . $ci->Comentario->get_total($lugar->id)->total . ' OPINIONES</h1>
-            <img src = "' . base_url() . 'images/vote.png"></li><li class="atrib" name="distancia">
+            '.$ci->Voto->get_total($lugar->id)->total.'<a class = "voto_link" onClick="saveVoto('. $lugar->id .')"><img src = "' . base_url() . 'images/vote.png"></a></li><li class="atrib" name="distancia">
 <div class="icon3">S</div>
 <h1>DISTANCIA</h1>
 <p id="distancia2_' . $lugar->id . '">10 Km</p>

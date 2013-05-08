@@ -94,6 +94,21 @@ class Mobil extends CI_Controller {
                 echo json_encode(array('success' => false, 'message' => 'No se pudo guardar el Comentario!'));
         }
     }
+    function save_vote() {            
+            $data = array('voto' => $this->input->post('voto'),
+                'id_lugar' => $this->input->post('id_lugar'), 
+                'ip1' => $this->input->server('REMOTE_ADDR'), 
+                'ip2'=> $this->input->server('HTTP_X_FORWARDED_FOR'),
+                'fecha' => date('Y-m-d H:i:s')
+                );
+
+            $is_save = $this->Voto->save($data);
+            if ($is_save)
+                echo json_encode(array('success' => true, 'id_voto'=>$data['id']));
+            else
+                echo json_encode(array('success' => false, 'message' => 'No se pudo registrar tu voto!'));
+        
+    }
 
 }
 

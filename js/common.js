@@ -45,3 +45,20 @@ function capitaliseFirstLetter(string)
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+function saveVoto(lugar_id)
+{
+     $.ajax({
+       type: "POST",
+       url: 'mobil/save_vote',
+       data: {"id_lugar":lugar_id, 'voto':1},
+       
+       success: function(msg){
+           if(msg.success==true)
+            alert( "Su Voto ha sido registrado"); //Anything you want
+        else
+            alert("Fallo al registrar su voto. Error "  + msg);
+       },
+       dataType:'json'
+     });
+    
+}

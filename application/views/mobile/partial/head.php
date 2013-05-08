@@ -15,6 +15,11 @@
         <!--<script type="text/javascript" src="<?php // echo base_url();                ?>js/jquery/jquery-1.8.2.min.js"></script>-->
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery/jquery.mobile-1.2.0.js"></script>
+        
+        
+        
+        <script src="<?php echo base_url();?>js/common.js" type="text/javascript"></script>
+        
 
 
 
