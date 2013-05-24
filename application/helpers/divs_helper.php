@@ -3,7 +3,7 @@
 function get_oferta($oferta_items, $opciones) {
     $data_div = '<div data-role="content" data-theme="d">';
     if (isset($opciones['busqueda']) == true)
-        $data_div .= '<ul data-role="listview" data-dividertheme="e" class="titulo" data-inset="true" data-filter="true" data-filter-placeholder="Qué atractivo buscas?" data-autodividers="false">';
+        $data_div .= '<ul data-role="listview" data-dividertheme="e" class="titulo" data-inset="true" data-filter="true" data-filter-placeholder="Qué categoría buscas?" data-autodividers="false">';
     else
         $data_div .= '<ul data-role="listview" data-dividertheme="e" class="titulo" data-inset="true" data-autodividers="false">';
 
@@ -52,7 +52,8 @@ function get_lugares($oferta_items, $opciones, $ci) {
                     '"> <img src="' . base_url() . 'images/imglugar/' . $lugar->nombre_enlace . '/' . $lugar->imagen_path .
                     '" width  = "340" height = "279"> <h1>' . $lugar->nombre .
                     '</h1><p>' . $lugar->descripcion .
-                    '</p>'.$ci->Voto->get_total($lugar->id)->total.'<img src="' . base_url() . 'images/vote.png"> <span id=distancia_' . $lugar->id . ' class="ui-li-count">12 km</span></a></li>';
+                    '</p>'.'<div class = "like">'.$ci->Voto->get_total($lugar->id)->total.'</div> <span id=distancia_' . $lugar->id . ' class="ui-li-count">12 km</span></a></li>';
+//                    '</p>'.'<div class = "like">'.$ci->Voto->get_total($lugar->id)->total.'</div><img src="' . base_url() . 'images/vote.png"> <span id=distancia_' . $lugar->id . ' class="ui-li-count">12 km</span></a></li>';
         }
         $data_div .= "</ul>";
         //Shadow
@@ -89,25 +90,25 @@ function get_lugar($oferta_items, $opciones, $ci) {
             }
             $data_div .= "</ul>" . '<ol class = "flex-control-nav flex-control-paging"><ul class = "flex-direction-nav"></div>';
             $data_div .= '<div data-role="collapsible-set"><div data-role="content" class="laciudad">';
-            $data_div .= "<H1>DATOS IMPORTANTES</H1> <p>Distancia, tiempo estimado de llegada, etc.</p>";
-            $data_div .= '<ul class = "items"><li class = "atrib" name = "opiniones"><div class = "icon3">S</div><h1>' . $ci->Comentario->get_total($lugar->id)->total . ' OPINIONES</h1>
-            '.$ci->Voto->get_total($lugar->id)->total.'<a class = "voto_link" onClick="saveVoto('. $lugar->id .')"><img src = "' . base_url() . 'images/vote.png"></a></li><li class="atrib" name="distancia">
-<div class="icon3">S</div>
+            $data_div .= "<H1>DATOS IMPORTANTES</H1> <p>Distancia, tiempo estimado de llegada, etc.</p>";      
+			$data_div .= '<ul class = "items"><li title="Votar" class = "atrib2" name = "opiniones"><div class = "icon3" id="cora">N</div><h1>' . $ci->Comentario->get_total($lugar->id)->total . ' COMENTARIOS</h1>
+            '.$ci->Voto->get_total($lugar->id)->total.'<a class = "voto_link" onClick="saveVoto('. $lugar->id .')"><img src = "' . base_url() . 'images/vote.png"></a></li><li title="Distancia" class="atrib" name="distancia">
+<div class="icon3">R</div>
 <h1>DISTANCIA</h1>
 <p id="distancia2_' . $lugar->id . '">10 Km</p>
 </li>
-<li class="atrib" name="tllegada">
-<div class="icon3">S</div>
+<li title="Tiempo de llegada" class="atrib" name="tllegada">
+<div class="icon3">P</div>
 <h1>TIMEPO DE LLEGADA</h1>
 <p>4 Horas</p>
 </li>
-<li class="atrib" name="altitud">
+<li title="Altitud" class="atrib" name="altitud">
 <div class="icon3">S</div>
 <h1>ALTITUD</h1>
 <p>1000 Metros</p>
 </li>
-<li class="atrib" name="llevar">
-<div class="icon3">S</div>
+<li title="Que debes llevar" class="atrib" name="llevar">
+<div class="icon3">e</div>
 <h1>QUE DEBES LLEVAR</h1>
 <p>Ropa ligera</p>
 </li></ul>';
@@ -193,19 +194,19 @@ function get_aboutus($ci) {
 }
 
 function get_comentarios($lugar_id, $ci) {
-    $data_div = '<div data-role="collapsible" class="laciudad" name="comen">';
+    $data_div = '<div data-role="collapsible" class="comen" name="comen">';
     $data_div .= '<h2> VER COMENTARIOS</h2><ul data-role="listview" data-theme="c" data-divider-theme="a" class="comen" id="comments_list_' . $lugar_id . '">';
     $row = $ci->Comentario->getall($lugar_id);
     $data_div .= '<li data-role="list-divider">Todos los Comentarios <span class="ui-li-count">'. $row->num_rows() .'</span></li>';
     foreach ($row->result() as $comentario) {
-        $data_div .= '<li><a href="index.html"><h3>' . $comentario->nombre_comentario . '</h3><p><strong>' . $comentario->titulo .
+        $data_div .= '<li><h3>' . $comentario->nombre_comentario . '</h3><p><strong>' . $comentario->titulo .
                 '</strong></p><p>' . $comentario->mensaje . '</p><p class="ui-li-aside"><strong>' . $comentario->fecha .
-                '</strong></p></a></li>';
+                '</strong></p></li>';
 //        die(var_dump($comentario));
 //        return var_dump($data_div);
     }
 //    $data_div .= '<li><a href="index.html"><h3>jQuery Team</h3><p><strong>Boston Conference Planning</strong></p><p>In preparation for the upcoming conference in Boston, we need to start gathering a list of sponsors and speakers.</p><p class="ui-li-aside"><strong>9:18</strong>AM</p></a></li>';
-    $data_div .= '</ul><div data-role="navbar"  data-theme="b" ><ul><li><a href="#add_comment" data-icon="info"  data-position="inline" data-rel="dialog" onclick="sessionStorage.lugar_id=' . $lugar_id . '">AÑADIR COMENTARIO</a></li></ul></div></div>';
+    $data_div .= '</ul><div data-role="navbar"  data-theme="b" ><ul><li><a href="#add_comment" data-icon="info"  data-position="inline" data-rel="dialog" onclick="sessionStorage.lugar_id=' . $lugar_id . '">AÑADIR COMENTARIO</a></li><li><a href="#" data-icon="star"  data-position="inline" data-rel="dialog"> VOTAR </a></li></ul></div></div>';
     return $data_div;
 }
 

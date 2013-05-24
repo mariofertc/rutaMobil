@@ -609,3 +609,9 @@ div.pie ul li a{
 }
 
 
+.like{
+    background-image: url('../images/likes.jpg'); 
+    width:10%;
+    background-repeat: no-repeat;
+    
+}

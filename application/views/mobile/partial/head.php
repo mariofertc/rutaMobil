@@ -233,7 +233,7 @@
                     //                    alert("yo");
                 }
                 //                id_evento = navigator.geolocation.watchPosition(cargar,errorMapa, {'enableHighAccuracy':true});
-                id_evento = navigator.geolocation.watchPosition(cargar,errorMapa,{maximumAge:Infinity, timeout:50000, enableHighAccuracy:false});
+                id_evento = navigator.geolocation.watchPosition(cargar,errorMapa,{maximumAge:Infinity, timeout:50000, enableHighAccuracy:true});
 
                 
                 //                navigator.geolocation.getCurrentPosition(cargar,errorMapa);

@@ -4,7 +4,7 @@
 <div id="home_module_list">
     <?php
     foreach ($allowed_modules->result() as $modulo) {
-        if ($modulo->modulo_id == 'lugares')
+        if ($modulo->modulo_id == 'lugares' ||$modulo->modulo_id=='fotos')
             continue;
         ?>
         <div class="module_item">
