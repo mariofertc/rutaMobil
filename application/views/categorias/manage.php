@@ -36,6 +36,7 @@
 				imgLoader = new Image();// preload image
 				imgLoader.src = tb_pathToImage;
 				enable_row_selection();
+                                enable_checkboxes();
 			}
 		} );
 		$('#refresh').click(refresca);
