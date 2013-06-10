@@ -3,7 +3,7 @@
 function get_oferta($oferta_items, $opciones) {
     $data_div = '<div data-role="content" data-theme="d">';
     if (isset($opciones['busqueda']) == true)
-        $data_div .= '<ul data-role="listview" data-dividertheme="e" class="titulo" data-inset="true" data-filter="true" data-filter-placeholder="Qué categoría buscas?" data-autodividers="false">';
+        $data_div .= '<ul data-role="listview" data-dividertheme="e" class="titulo" data-inset="true" data-filter="true" data-filter-placeholder="¿Qué categoría buscas?" data-autodividers="false">';
     else
         $data_div .= '<ul data-role="listview" data-dividertheme="e" class="titulo" data-inset="true" data-autodividers="false">';
 
@@ -35,7 +35,7 @@ function get_lugares($oferta_items, $opciones, $ci) {
                 '</h1><h4>' . $oferta->descripcion . '</h4></li>';
         $data_div .= '<div data-role="content" data-theme="d" class="conte" >';
         if (isset($opciones['busqueda']) == true)
-            $data_div .= '<ul data-role="listview" data-dividertheme="e" class="titulo" data-inset="true" data-filter="true" data-filter-placeholder="Qué ' . $oferta->nombre . ' buscas?" data-autodividers="false">';
+            $data_div .= '<ul data-role="listview" data-dividertheme="e" class="titulo" data-inset="true" data-filter="true" data-filter-placeholder="¿Qué ' . $oferta->nombre . ' buscas?" data-autodividers="false">';
         else
             $data_div .= '<ul data-role="listview" data-dividertheme="e" class="titulo" data-inset="true" data-autodividers="false">';
 //        $data_div .= '<li><a href="#' . $oferta->nombre_enlace .
@@ -52,7 +52,7 @@ function get_lugares($oferta_items, $opciones, $ci) {
                     '"> <img src="' . base_url() . 'images/imglugar/' . $lugar->nombre_enlace . '/' . $lugar->imagen_path .
                     '" width  = "340" height = "279"> <h1>' . $lugar->nombre .
                     '</h1><p>' . $lugar->descripcion .
-                    '</p>'.'<div class = "like">'.$ci->Voto->get_total($lugar->id)->total.'</div> <span id=distancia_' . $lugar->id . ' class="ui-li-count">12 km</span></a></li>';
+                    '</p>'.'<div class = "like">'.$ci->Voto->get_total($lugar->id)->total.'</div> <div clas="cmvote" style="float:left;padding-top: 5px; font-size:0.8em;">VOTOS</div> <div class = "comen2">'.$ci->Comentario->get_total($lugar->id)->total.'</div> <div clas="cmcomen" style="float:left;padding-top: 5px;font-size:0.8em;">COMEN..</div> <span id=distancia_' . $lugar->id . ' class="ui-li-count">12 km</span></a></li>';
 //                    '</p>'.'<div class = "like">'.$ci->Voto->get_total($lugar->id)->total.'</div><img src="' . base_url() . 'images/vote.png"> <span id=distancia_' . $lugar->id . ' class="ui-li-count">12 km</span></a></li>';
         }
         $data_div .= "</ul>";
@@ -78,7 +78,7 @@ function get_lugar($oferta_items, $opciones, $ci) {
             //Titulo
             $data_div .= '<li class="title"> <div class="icontitle">' . $oferta->icon .
                     '</div> <h1>' . $lugar->nombre .
-                    '</h1><h4>Sector ' . $lugar->sector . '</h4></li>';
+                    '</h1><h4> ' . $lugar->sector . '</h4></li>';
             $data_div .= '<div data-role="content" data-theme="d" class="conte" >';
 
             $data_div .= "<div class = 'flexslider'>" . '<ul class = "slides">';
@@ -89,17 +89,25 @@ function get_lugar($oferta_items, $opciones, $ci) {
                             '</li>';
             }
             $data_div .= "</ul>" . '<ol class = "flex-control-nav flex-control-paging"><ul class = "flex-direction-nav"></div>';
-            $data_div .= '<div data-role="collapsible-set"><div data-role="content" class="laciudad">';
+            $data_div .= '<div data-role="collapsible-set"><div data-role="content" class="laciudadd">';
             $data_div .= "<H1>DATOS IMPORTANTES</H1> <p>Distancia, tiempo estimado de llegada, etc.</p>";      
-			$data_div .= '<ul class = "items"><li title="Votar" class = "atrib2" name = "opiniones"><div class = "icon3" id="cora">N</div><h1>' . $ci->Comentario->get_total($lugar->id)->total . ' COMENTARIOS</h1>
-            '.$ci->Voto->get_total($lugar->id)->total.'<a class = "voto_link" onClick="saveVoto('. $lugar->id .')"><img src = "' . base_url() . 'images/vote.png"></a></li><li title="Distancia" class="atrib" name="distancia">
+			$data_div .= '<ul class = "items"><li title="Votar" class = "atrib2" name = "opiniones" onClick="saveVoto('. $lugar->id .')"><div class = "icon3" id="cora">N</div><h1>'.$ci->Voto->get_total($lugar->id)->total.' -VOTACIONES</h1>
+            <a class = "voto_link"><img src = "' . base_url() . 'images/vote.png"></a></li>
+
+<li title="Añadir Comentario" class="atrib2" name="llevar">
+<a onclick="sessionStorage.lugar_id=' . $lugar->id . '" href="#add_comment" style = "display:block;text-decoration:none;"><div class="icon3">e</div>
+<h1>' . $ci->Comentario->get_total($lugar->id)->total . ' -COMENTARIOS</h1>
+<img src = "' . base_url() . 'images/comentarios.png">
+</a>
+</li>
+<li title="Distancia"class="atrib" name="distancia">
 <div class="icon3">R</div>
 <h1>DISTANCIA</h1>
 <p id="distancia2_' . $lugar->id . '">10 Km</p>
 </li>
 <li title="Tiempo de llegada" class="atrib" name="tllegada">
 <div class="icon3">P</div>
-<h1>TIMEPO DE LLEGADA</h1>
+<h1>TIEMPO DE LLEGADA</h1>
 <p>4 Horas</p>
 </li>
 <li title="Altitud" class="atrib" name="altitud">
@@ -107,19 +115,19 @@ function get_lugar($oferta_items, $opciones, $ci) {
 <h1>ALTITUD</h1>
 <p>1000 Metros</p>
 </li>
-<li title="Que debes llevar" class="atrib" name="llevar">
-<div class="icon3">e</div>
-<h1>QUE DEBES LLEVAR</h1>
-<p>Ropa ligera</p>
-</li></ul>';
+
+
+
+
+</ul>';
 
 
             $data_div .= "<p>" . $lugar->descripcion . "</p></div>";
             $data_div .= '<div data-role="collapsible" class="laciudad">';
-            $data_div .= "<H1> UBICACION DEL DESTINO </h1>";
+            $data_div .= "<H1> UBICACIÓN DEL DESTINO </h1>";
             $data_div .= "<p>" . $lugar->direccion . "</p></div>";
             $data_div .= '<div data-role="collapsible" class="laciudad">';
-            $data_div .= "<H1> QUE DEBEMOS SABER </H1>";
+            $data_div .= "<H1> QUE DEBES SABER </H1>";
             $data_div .= "<p>" . $lugar->interes . "</p></div>";
             $data_div .= get_comentarios($lugar->id, $ci);
             $data_div .= "</div>";
@@ -206,7 +214,7 @@ function get_comentarios($lugar_id, $ci) {
 //        return var_dump($data_div);
     }
 //    $data_div .= '<li><a href="index.html"><h3>jQuery Team</h3><p><strong>Boston Conference Planning</strong></p><p>In preparation for the upcoming conference in Boston, we need to start gathering a list of sponsors and speakers.</p><p class="ui-li-aside"><strong>9:18</strong>AM</p></a></li>';
-    $data_div .= '</ul><div data-role="navbar"  data-theme="b" ><ul><li><a href="#add_comment" data-icon="info"  data-position="inline" data-rel="dialog" onclick="sessionStorage.lugar_id=' . $lugar_id . '">AÑADIR COMENTARIO</a></li><li><a href="#" data-icon="star"  data-position="inline" data-rel="dialog"> VOTAR </a></li></ul></div></div>';
+    $data_div .= '</ul><div data-role="navbar"  data-theme="b" ><ul><li><a href="#add_comment" data-icon="plus"  data-position="inline" data-rel="dialog" onclick="sessionStorage.lugar_id=' . $lugar_id . '">AÑADIR COMENTARIO</a></li><li onClick="saveVoto('. $lugar_id .')"><a href="#" data-icon="star"  data-position="inline" data-rel="dialog"> VOTAR </a></li></ul></div></div>';
     return $data_div;
 }
 
@@ -223,7 +231,7 @@ function get_add_comentario() {
 			<input id="usuario" placeholder="usuario" value="anónimo" type="text" />
 			<input id="titulo" placeholder="Escriba el título aquí..." value="" type="text" />
 			<input id="comentario" placeholder="Escriba su comentario aquí..." value="" type="text" />
-			<input id="id_lugar" value="" type="text" />
+			<!-- <input id="id_lugar" value="" type="text" visibility="hidden"/>-->
 			<a href="docs-dialogs.html" data-role="button" data-rel="back" data-theme="a" onClick="save_todo();" data-icon="check">Aplicar</a>       
 			<a href="index.html" data-icon="delete" data-role="button" data-rel="back" data-theme="c" data-transition="fade" data-direction="reverse" id="cancel">Cancelar</a>    
 		</form>

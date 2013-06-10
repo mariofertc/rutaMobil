@@ -21,14 +21,33 @@
 /*@import url(table/themes/smoothness/jquery-ui-1.8.4.custom.css);*/
 
 
+html{
+
+
+	background-attachment: fixed;
+    background-image: url("../../images/cenefa2.png"),url("../../images/cenefa.png");
+    background-position: center bottom, 0 20%;
+    background-repeat: repeat-x, no-repeat;
+}
+
 body
 {
-	margin:0px;
+	/*margin:0px;
 	padding:0px;
 	background-color:#f7f7f7;
 	background-color: #fff;
 	font: 13px/20px normal Helvetica, Arial, sans-serif;
-	color: #4F5155;
+	color: #4F5155;*/
+
+
+    
+    color: #4F5155;
+    font: 13px/20px normal Helvetica,Arial,sans-serif;
+    margin: 0;
+    padding: 0;
+
+
+
 }
 
 	/*1716910359*/
@@ -36,6 +55,7 @@ body
 a.none
 {
 	text-decoration:none;
+	padding:0px;
 }
 
 
@@ -43,11 +63,12 @@ a.none
 {
 	position:relative;
 	width:100%;
-	background-color:#FFFFFF;	
+	/*background-color:#FFFFFF;	*/
 	margin:0px;
 	padding:0px;
-	border-bottom:1px solid #CCCCCC;
-	text-align:center;	
+	/*border-bottom:1px solid #CCCCCC;*/
+	text-align:center;
+	background: none repeat scroll 0 0 #9CD119;	
 
 }
 
@@ -101,7 +122,7 @@ a.none
 #new_button
 {
 	position:absolute;
-	bottom:-5px;
+	/*bottom:-5px;*/
 	right:0px;
 }
 

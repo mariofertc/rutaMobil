@@ -15,25 +15,29 @@
 #menubar_container
 {
 	position:absolute;
-	left:80px;
+	left:65px;
 	margin:0 auto;
-	width:1024px;
+	/*width:100%;*/
 	text-align:left;
 }
 
 .menu_item
 {
-	float:left;
-	width:65px;
-	height:100%;
-	text-align:center;	
+	float: left;
+    height: 100%;
+    line-height: 10px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    width: 75px;	
 }
 
 
 #menubar a:link, #menubar a:visited, #menubar a
 {
 	color:#FFFFFF;
-	text-decoration:underline;
+	text-decoration:none;
+	text-transform: uppercase;
 }
 
 #menubar a:hover
@@ -80,18 +84,20 @@
 	top:80px;
 	left:0px;
 	height:17%;
-	padding-top:3px;
+	/*padding-top:3px;*/
 	font-size:8pt;
 	font-weight:bold;
 }
 
 #menubar_date
 {
-	position:absolute;
-	top:80px;
-	right:0px;
-	height:17%;
-	padding-top:3px;
-	font-size:8pt;
-	font-weight:bold;
+	float: right;
+    font-size: 8pt;
+    font-weight: bold;
+    height: 17%;
+    left: 200px;
+    /*padding-left:320px;*/
+    position: absolute;
+    top: 80px;
+    width: 100%;
 }

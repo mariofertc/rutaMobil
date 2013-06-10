@@ -44,7 +44,7 @@
 
 	function refresca(event,on_complete)
 	{
-            if(event != null)
+        if(event != null)
 		event.preventDefault();
 		oTable.fnDraw();
 	}
@@ -99,7 +99,7 @@
 </script>
 
 <div id="title_bar">
-	<div id="title" class="float_left"><?php echo $this->lang->line('comun_list_of') . ' ' . $this->lang->line('module_' . $controller_name); ?></div>
+	<div id="title" class="float_left"><?php echo $this->lang->line('comun_list_of') . ' ' . $this->lang->line('modulo_' . $controller_name); ?></div>
 	<?php
 	if ($_SERVER['HTTP_HOST'] == 'localhost') {
 		?>
@@ -115,12 +115,12 @@
 	?>
 	<div id="new_button">
 		<?php
-		echo anchor("$controller_name/view/-1/$id_categoria?width=$form_width&height=$form_height", "<div class='big_button' style='float: left;'><span>" . $this->lang->line($controller_name . '_new') . "</span></div>", array('class' => 'thickbox none', 'title' => $this->lang->line($controller_name . '_new')));
+		echo anchor("$controller_name/view/-1/$id_categoria?width=$form_width&height=$form_height", "<div class='big_button' style='float: right;margin-right: 0;'><span>" . $this->lang->line($controller_name . '_new') . "</span></div>", array('class' => 'thickbox none', 'title' => $this->lang->line($controller_name . '_new')));
 		?>
 	</div>
 	<div id="new_buttond">
 		<?php
-		echo anchor("categorias", "<div class='big_button' style='float: left;'><span>" . $this->lang->line('categorias_categoria') . "</span></div>", array('title' => $this->lang->line('categorias_categoria')));
+		echo anchor("categorias", "<div class='big_button' style='float: right;margin-right: 14%;'><span>" . $this->lang->line('categorias_categoria') . "</span></div>", array('title' => $this->lang->line('categorias_categoria')));
 		?>
 	</div>
 </div>

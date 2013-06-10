@@ -115,12 +115,12 @@
 	?>
 	<div id="new_button">
 		<?php
-		echo anchor("$controller_name/view/-1/$id_lugar?width=$form_width&height=$form_height", "<div class='big_button' style='float: left;'><span>" . $this->lang->line($controller_name . '_new') . "</span></div>", array('class' => 'thickbox none', 'title' => $this->lang->line($controller_name . '_new')));
+		echo anchor("$controller_name/view/-1/$id_lugar?width=$form_width&height=$form_height", "<div class='big_button' style='float: right;margin-right: 0;'><span>" . $this->lang->line($controller_name . '_new') . "</span></div>", array('class' => 'thickbox none', 'title' => $this->lang->line($controller_name . '_new')));
 		?>
 	</div>
         <div id="new_buttond">
 		<?php
-		echo anchor("fotos/regresar/$id_lugar", "<div class='big_button' style='float: left;'><span>" . $this->lang->line('lugares_lugar') . "</span></div>", array('title' => $this->lang->line('lugares_lugar')));
+		echo anchor("fotos/regresar/$id_lugar", "<div class='big_button' style='float: right;margin-right: 14%;'><span>" . $this->lang->line('lugares_lugar') . "</span></div>", array('title' => $this->lang->line('lugares_lugar')));
 		?>
 	</div>
 </div>

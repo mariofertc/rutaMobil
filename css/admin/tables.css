@@ -8,7 +8,7 @@
 	border-top:1px solid #CCCCCC;	
 	background-position:5px 10px;
 	background-repeat:no-repeat;	
-	padding:3px 0px 3px 0px;
+	padding:10px 0px;
 }
 
 #table_action_header ul
@@ -28,7 +28,7 @@
 
 #table_action_header ul li span
 {
-	background-color:#0a6184;
+	background-color:#373535;
 	border:2px solid #DDDDDD;
 	font-size:14px;
 	padding:2px 5px 2px 5px;
@@ -208,10 +208,30 @@ table.dataTable{
 
 table.dataTable tr.odd{
 /*    background-color: red !important;*/
+      background-color: #EEEEEE !important;
 
 }
 table.dataTable td
 {
     padding: 10px  !important;
 
+}
+
+
+/*ojo*/
+
+.paging_full_numbers a.paginate_button, .paging_full_numbers a.paginate_active {
+
+border-radius: none;
+padding: 5px;
+
+
+
+}
+
+
+.dataTables_paginate {
+
+    padding-top: 10px;
+    
 }

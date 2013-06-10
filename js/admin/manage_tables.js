@@ -326,9 +326,9 @@ function hightlight_row(checkbox_id)
 	var new_checkbox = $("#sortable_table tbody tr :checkbox[value="+checkbox_id+"]");
 	var new_row = new_checkbox.parent().parent();
 
-	new_row.find("td").animate({backgroundColor:"#e1ffdd"},"slow","linear")
-		.animate({backgroundColor:"#e1ffdd"},5000)
-		.animate({backgroundColor:"#ffffff"},"slow","linear");
+	new_row.find("td").animate({backgroundColor:"green"},"slow","linear")
+		.animate({backgroundColor:"black"},5000)
+		.animate({backgroundColor:"red"},"slow","linear");
 }
 
 function get_selected_values()

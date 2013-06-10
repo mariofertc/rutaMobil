@@ -6,6 +6,9 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>Rutas Móbiles <?php echo $this->lang->line('login_login'); ?></title>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+
+
 <script type="text/javascript">
 $(document).ready(function()
 {

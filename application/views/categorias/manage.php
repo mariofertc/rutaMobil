@@ -100,7 +100,7 @@
 </script>
 
 <div id="title_bar">
-	<div id="title" class="float_left"><?php echo $this->lang->line('comun_list_of') . ' ' . $this->lang->line('module_' . $controller_name); ?></div>
+	<div id="title" class="float_left"><?php echo $this->lang->line('comun_list_of') . ' ' . $this->lang->line('modulo_' . $controller_name); ?></div>
 	<?php
 	if ($_SERVER['HTTP_HOST'] == 'localhost') {
 		?>

@@ -45,7 +45,8 @@ class Categorias extends Secure_area {
             '2' => array('function' => "lugares",
                 'comun_language' => "lugares_lugar",
                 'language' => "_muestra",
-                'height' => 200));
+                'height' => 200,
+                'class'=>"boton_admin"));
         echo getData('Categoria', $aColumns, $cllAccion);
     }
     

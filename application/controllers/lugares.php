@@ -50,7 +50,8 @@ class Lugares extends Secure_area {
             '2' => array('function' => "fotos",
                 'comun_language' => "fotos_foto",
                 'language' => "_muestra",
-                'height' => 200));
+                'height' => 200,
+                'class' => 'boton_admin'));
         $cllWhere = 'categoria_id = ' . $id_categoria;
         echo getData('Lugar', $aColumns, $cllAccion, $cllWhere);
     }

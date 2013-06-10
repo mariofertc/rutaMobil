@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------------------------------------------*/
 /* ---------->>> global settings needed for thickbox <<<-----------------------------------------------------------*/
 /* ----------------------------------------------------------------------------------------------------------------*/
-*{padding: 0; margin: 0;}
+*{padding: 0; margin: 0; text-decoration:none; }
 
 /* ----------------------------------------------------------------------------------------------------------------*/
 /* ---------->>> thickbox specific link and font settings <<<------------------------------------------------------*/
@@ -164,9 +164,12 @@ margin-top: expression(0 - parseInt(this.offsetHeight / 2) + (TBWindowMargin = d
 
 a.thickbox{
 	
-	background:silver;
+	/*background:silver;*/
+	/*padding:10px;*/
+	text-decoration: none;
+    text-transform: uppercase;
 	padding:10px;
-	
+	background-color: silver;
 	}
 	
 tr.odd{
@@ -174,3 +177,11 @@ tr.odd{
 	
 	
 	}
+.boton_admin{
+
+padding: 10px;
+background-color:silver;
+text-transform: uppercase;
+
+
+}

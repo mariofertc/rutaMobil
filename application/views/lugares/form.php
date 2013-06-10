@@ -72,7 +72,7 @@ echo form_open_multipart('lugares/save/' . $info->id, array('id' => 'form'));
                 'id' => 'descripcion',
                 'value' => $info->descripcion,
                 'rows' => 4,
-                'cols' => 18)
+                'cols' => 50)
             );
             ?>
         </div>
@@ -81,10 +81,12 @@ echo form_open_multipart('lugares/save/' . $info->id, array('id' => 'form'));
         <?php echo form_label('Que debe saber:', 'interes', array('class' => 'ssmall_wide')); ?>
         <div class='form_field'>
             <?php
-            echo form_input(array(
+            echo form_textarea(array(
                 'name' => 'interes',
                 'id' => 'interes',
-                'value' => $info->interes)
+                'value' => $info->interes,
+                'rows' => 4,
+                'cols' => 50)
             );
             ?>
         </div>

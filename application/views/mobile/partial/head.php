@@ -278,8 +278,59 @@
             $('#add_comment').live('pageshow', function(event, ui) {
                 $('#id_lugar').text( sessionStorage.lugar_id);
             });
+            <!--scripts flex slider-->
+            
+            
+            <!-- TOP -->
+//            $(window).scroll(function(){
+//if (window.pageYOffset >= 1500) {
+//$('#scroll-up:not(:visible)').fadeIn();
+//} else {
+//$('#scroll-up:visible').fadeOut();
+//}
+//}); 
+            
+             var backToTop = {
+            init: function () {
+                $('html, body').append('<a href="" id="backToTop" data-role="button"   data-corners="false" data-icon="arrow-u" data-theme="b">Back to top</a>');
+                $('#backToTop').click(backToTop.click);
+                $(window).bind('scrollstart', backToTop.scrollStart);
+                $(window).bind('scrollstop', backToTop.scrollStop);
+//                $('body').trigger('create');
+//                $('#oferta').trigger('pagecreate');
+            },
+            click: function () {
+                $('html, body').animate({scrollTop: 0}, 400);
+            },
+            scrollStart: function () {
+                $('#backToTop').hide();
+            },
+            scrollStop: function () {
+                var windowHeight = $(window).height();
+                if (window.pageYOffset > windowHeight) {
+                    $('#backToTop').fadeIn('slow');
+                }
+            }
+        };
+        
+//        $('#geo').live('pagecreate', function (event, ui) {
+//                geolocalizar();
+//            });
+
+//        $('#oferta').live('pageinit', function (event, ui) {
+        $('#home').live('pageinit', function (event, ui) {
+            backToTop.init();
+        });
         </script>
-        <!--scripts flex slider-->
+        <style type="text/css">
+        #backToTop {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            display: none;
+            background-color: lightblue;
+        }
+    </style>
 
     </head>
     <body>

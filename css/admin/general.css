@@ -118,7 +118,8 @@ label.important
 	position:relative;
 	width:140px;
 	height:45px;
-	background-image: url(../../images/big_action_button.gif);
+	/*background-image: url(../../images/big_action_button.gif);*/
+	background:#EEEEEE;
 	background-repeat:no-repeat;
 	cursor:pointer;
 }
@@ -128,10 +129,12 @@ label.important
 	position:absolute;
 	width:100%;
 	top:25%;
-	color:#FFF;
+	/*color:#FFF;*/
+	color:#373535;
 	font-size:13px;
 	font-weight:bold;
 	text-align:center;
+	text-transform: uppercase;
 }
 
 
@@ -170,6 +173,8 @@ label.important
 input
 {
 	font-family:arial;
+	margin-top: 5px;
+    padding-top: 10px;
 }
 
 .clearfix:after 
