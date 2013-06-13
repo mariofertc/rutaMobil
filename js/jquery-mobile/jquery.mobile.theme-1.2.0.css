@@ -811,12 +811,12 @@ a.ui-link-inherit {
 	border-bottom-right-radius: 		.6em /*{global-radii-blocks}*/;
 }
 .ui-corner-top {
-	-moz-border-radius-topleft: 		.6em /*{global-radii-blocks}*/;
-	-webkit-border-top-left-radius: 	.6em /*{global-radii-blocks}*/;
-	border-top-left-radius: 			.6em /*{global-radii-blocks}*/;
-	-moz-border-radius-topright: 		.6em /*{global-radii-blocks}*/;
-	-webkit-border-top-right-radius: 	.6em /*{global-radii-blocks}*/;
-	border-top-right-radius: 			.6em /*{global-radii-blocks}*/;
+/*	-moz-border-radius-topleft: 		.6em ;
+	-webkit-border-top-left-radius: 	.6em ;
+	border-top-left-radius: 		.6em ;
+	-moz-border-radius-topright: 		.6em ;
+	-webkit-border-top-right-radius: 	.6em ;
+	border-top-right-radius: 		.6em;*/
 }
 .ui-corner-bottom {
 	-moz-border-radius-bottomleft: 		.6em /*{global-radii-blocks}*/;
