@@ -329,6 +329,14 @@ function hightlight_row(checkbox_id)
 	new_row.find("td").animate({backgroundColor:"green"},"slow","linear")
 		.animate({backgroundColor:"black"},5000)
 		.animate({backgroundColor:"red"},"slow","linear");
+       
+       
+       new_row.find("td").css("background-color", "red");
+
+setTimeout(function() {
+    new_row.find("td").css("background-color", "aqua");
+   new_row.find("td").effect("highlight", {}, 3000);
+}, 2000);
 }
 
 function get_selected_values()
