@@ -805,9 +805,7 @@ a.ui-link-inherit {
 -----------------------------------------------------------------------------------------------------------*/
 
 .ui-corner-tl {
-	/*-moz-border-radius-topleft: 		.6em /*{global-radii-blocks}*/;*/
-	/*-webkit-border-top-left-radius: 	.6em /*{global-radii-blocks}*/;*/
-	/*border-top-left-radius: 			.6em /*{global-radii-blocks}*/;*/
+	
 }
 .ui-corner-tr {
 	-moz-border-radius-topright: 		.6em /*{global-radii-blocks}*/;
