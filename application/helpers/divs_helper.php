@@ -203,8 +203,8 @@ function get_aboutus($ci) {
 
 function get_comentarios($lugar_id, $ci) {
     $data_div = '<div data-role="collapsible" class="comen" name="comen">';
-    $data_div .= '<h2> VER COMENTARIOS <span id="itemCount" class="count ui-btn-up-c ui-btn-corner-all">'. $row->num_rows() .'</span> </h2><ul data-role="listview" data-theme="c" data-divider-theme="a" class="comen" id="comments_list_' . $lugar_id . '">';
     $row = $ci->Comentario->getall($lugar_id);
+    $data_div .= '<h2> VER COMENTARIOS <span id="itemCount" class="count ui-btn-up-c ui-btn-corner-all">'. $row->num_rows() .'</span> </h2><ul data-role="listview" data-theme="c" data-divider-theme="a" class="comen" id="comments_list_' . $lugar_id . '">';
     $data_div .= '<li data-role="list-divider">Todos los Comentarios <span class="ui-li-count">'. $row->num_rows() .'</span></li>';
     foreach ($row->result() as $comentario) {
         $data_div .= '<li><h3>' . $comentario->nombre_comentario . '</h3><p><strong>' . $comentario->titulo .
