@@ -1,12 +1,12 @@
 @font-face {
-    font-family: 'bebas_neueregular';
-    src: url('bebasneue/bebasneue-webfont.eot');
-    src: url('bebasneue/bebasneue-webfont.eot?#iefix') format('embedded-opentype'),
+        font-family: 'bebas_neueregular';
+        src: url('bebasneue/bebasneue-webfont.eot');
+        src: url('bebasneue/bebasneue-webfont.eot?#iefix') format('embedded-opentype'),
         url('bebasneue/bebasneue-webfont.woff') format('woff'),
         url('bebasneue/bebasneue-webfont.ttf') format('truetype'),
         url('bebasneue/bebasneue-webfont.svg#bebas_neueregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
+        font-weight: normal;
+        font-style: normal;
 
 }
 
@@ -17,15 +17,15 @@ html{
 
 
 @font-face {
-    font-family: 'WebSymbolsRegular';
-    src: url('websymbols/websymbols-regular-webfont.eot');
-    src: url('websymbols/websymbols-regular-webfont.eot?#iefix') format('embedded-opentype'),
+        font-family: 'WebSymbolsRegular';
+        src: url('websymbols/websymbols-regular-webfont.eot');
+        src: url('websymbols/websymbols-regular-webfont.eot?#iefix') format('embedded-opentype'),
         url('websymbols/websymbols-regular-webfont.woff') format('woff'),
         url('websymbols/websymbols-regular-webfont.ttf') format('truetype'),
         url('websymbols/websymbols-regular-webfont.svg#WebSymbolsRegular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
+        font-weight: normal;
+        font-style: normal;
+        }
 
 @keyframes corazon {
     to { transform: scale(.9); }
@@ -53,33 +53,33 @@ html{
     font-size: 2.1875em;
     color: #000;
             animation: corazon 1.2s infinite;
-    -webkit-animation: corazon 1.2s infinite;
-    -moz-animation: corazon 1.2s infinite;
-    -ms-animation: corazon 1.2s infinite;
-    -o-animation: corazon 1.2s infinite;
-
+            -webkit-animation: corazon 1.2s infinite;
+            -moz-animation: corazon 1.2s infinite;
+            -ms-animation: corazon 1.2s infinite;
+            -o-animation: corazon 1.2s infinite;
+            
             transform-origin: center;
-    -webkit-transform-origin: center;
-    -moz-transform-origin: center;
-    -ms-transform-origin: center;
-    -o-transform-origin: center;
+            -webkit-transform-origin: center;
+            -moz-transform-origin: center;
+            -ms-transform-origin: center;
+            -o-transform-origin: center;
 
 }
 
 
 
 #itemCount {
-        background-color: white;
-        background-image: url("../images/comen.png");
-        border: medium none;
-        color: black;
-        font-family: arial;
-        font-size: 12px;
-        font-weight: bold;
-        padding: 4.5px;
-        top: 50%;
+    background-color: white;
+    background-image: url("../images/comen.png");
+    background-repeat: no-repeat;
+    border: medium none;
+    color: black;
+    font-family: arial;
+    font-size: 12px;    
+    margin: 0;
+    padding: 4px 8px 5px 9px;
+    
 }
-
 
 
 .laciudad h2 .titu{
