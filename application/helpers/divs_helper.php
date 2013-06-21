@@ -38,13 +38,6 @@ function get_lugares($oferta_items, $opciones, $ci) {
             $data_div .= '<ul data-role="listview" data-dividertheme="e" class="titulo" data-inset="true" data-filter="true" data-filter-placeholder="¿Qué ' . $oferta->nombre . ' buscas?" data-autodividers="false">';
         else
             $data_div .= '<ul data-role="listview" data-dividertheme="e" class="titulo" data-inset="true" data-autodividers="false">';
-//        $data_div .= '<li><a href="#' . $oferta->nombre_enlace .
-//                '"> <div class="icon">' . $oferta->icon .
-//                '</div> <h1>' . $oferta->nombre .
-//                '</h1><p>' . $oferta->descripcion .
-//                '</p><!--<img src="images/vote.png">--> <!--<span class="ui-li-count">10 km</span>--></a></li>';
-//        $lugares = $ci->Lugar->get_by_categoria($oferta->id);
-//        $cigniter =& get_instance();
         $lugares = $ci->Lugar->get_by_categoria($oferta->id);
 
         foreach ($lugares->result() as $lugar) {
@@ -60,10 +53,10 @@ function get_lugares($oferta_items, $opciones, $ci) {
         if (isset($opciones['shadow']) == true)
             $data_div .= '<div class="shadow2box"><img src="' . base_url() . 'images/shadow.png" class="shadow2" alt="shadow"></div>';
         $data_div .= "</div>";
-        $data_div .= $ci->load->view('mobile/partial/footer_page', '', true);
+		$data['oferta'] = $oferta;
+        $data_div .= $ci->load->view('mobile/partial/footer_page', $data, true);
         $data_div .= "</div>";
     }
-
     return $data_div;
 }
 
@@ -139,7 +132,8 @@ function get_lugar($oferta_items, $opciones, $ci) {
                 if ($opciones['shadow'] == true)
                     $data_div .= '<div class="shadow2box"><img src="' . base_url() . 'images/shadow.png" class="shadow2" alt="shadow"></div>';
             $data_div .= "</div>";
-            $data_div .= $ci->load->view('mobile/partial/footer_page', '', true);
+			$data['lugar'] = $lugar;
+            $data_div .= $ci->load->view('mobile/partial/footer_page', $data, true);
             $data_div .= "</div>";
         }
     }

@@ -45,7 +45,31 @@ class Mobil extends CI_Controller {
         $this->load->view('mobil/mapa');
     }
 
-    function coordenadas() {
+    function coordenadas($id_categoria = null, $id_lugar = null) {
+        var_dump($id_categoria);
+        $coordenadas = array();
+        $categoria = $this->Categoria->getall();
+        foreach ($categoria->result() as $oferta) {
+            $lugares = $this->Lugar->get_by_categoria($oferta->id);
+            foreach ($lugares->result() as $lugar) {
+//               json_decode($lugar->coordenadas);
+//               $coordenadas[] = json_decode($lugar->coordenadas);
+//               $coordenadas[] = json_decode($lugar->coordenadas);
+
+                $coor = json_decode($lugar->coordenadas);
+                if (!isset($coor->latitud))
+                    continue;
+                $lat = $coor->latitud;
+                $lon = $coor->longitud;
+                $titulo = $lugar->nombre;
+                $coordenadas[] = array('latitud' => $lat, 'longitud' => $lon, 'titulo' => $titulo, 'id_lugar' => $lugar->id);
+            }
+        }
+        //var_dump($coordenadas);
+        echo json_encode($coordenadas);
+    }
+
+    function coordenadas_xxx($id_categoria = null, $id_lugar = null) {
         $coordenadas = array();
         $categoria = $this->Categoria->getall();
         foreach ($categoria->result() as $oferta) {
