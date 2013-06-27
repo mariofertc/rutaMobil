@@ -47,6 +47,17 @@ html{
     to { -o-transform: scale(.9); }
 }
 
+#backToTop {
+    background-color: black;
+    color: white;
+    font-family: 'bebas_neueregular';
+    left: 3%;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    text-decoration: none;
+}
+
 
 #cora {
     display: inline-block;
