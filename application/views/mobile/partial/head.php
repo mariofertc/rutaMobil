@@ -14,7 +14,9 @@
 
         <!--<script type="text/javascript" src="<?php // echo base_url();                ?>js/jquery/jquery-1.8.2.min.js"></script>-->
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+        <!--<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>-->
         <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery/jquery.mobile-1.2.0.js"></script>
+        <!--<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery/jquery.mobile-1.3.1.js"></script>-->
         
         
         
@@ -292,10 +294,19 @@
             
              var backToTop = {
             init: function () {
-                $('html, body').append('<a href="" id="backToTop" data-role="button"   data-corners="false" data-icon="arrow-u" data-theme="b">Back to top</a>');
+//                $('html, body').append('<a href="" id="backToTop" data-role="button"   data-corners="false" data-icon="arrow-u" data-theme="b">Back to top</a>');
+
+                var section2 = '<a href="" id="backToTop" data-role="button"   data-corners="false" data-icon="arrow-u" data-theme="b">Back to top</a>';
+                myClone2 = $(section2);                 
+                myClone2.appendTo("html").trigger('create');
+                
                 $('#backToTop').click(backToTop.click);
-                $(window).bind('scrollstart', backToTop.scrollStart);
-                $(window).bind('scrollstop', backToTop.scrollStop);
+//                $(window).bind('scrollstart', backToTop.scrollStart);
+//                $(window).bind('scrollstop', backToTop.scrollStop);
+                $(window).on('scrollstart', backToTop.scrollStart);
+                $(window).on('scrollstop', backToTop.scrollStop);
+                
+                
 //                $('body').trigger('create');
 //                $('#oferta').trigger('pagecreate');
             },
@@ -318,7 +329,7 @@
 //            });
 
 //        $('#oferta').live('pageinit', function (event, ui) {
-        $('#home').live('pageinit', function (event, ui) {
+        $(document).on('pageinit', '#home',function (event, ui) {
             backToTop.init();
         });
         </script>
@@ -328,7 +339,6 @@
             top: 0px;
             left: 0px;
             display: none;
-            background-color: lightblue;
         }
     </style>
 
