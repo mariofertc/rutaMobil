@@ -45,51 +45,24 @@ class Mobil extends CI_Controller {
         $this->load->view('mobil/mapa');
     }
 
-    function coordenadas($id_categoria = null, $id_lugar = null) {
-        var_dump($id_categoria);
+    function coordenadas() {
         $coordenadas = array();
         $categoria = $this->Categoria->getall();
         foreach ($categoria->result() as $oferta) {
             $lugares = $this->Lugar->get_by_categoria($oferta->id);
+            $data[$oferta->id][] = $oferta;
             foreach ($lugares->result() as $lugar) {
-//               json_decode($lugar->coordenadas);
-//               $coordenadas[] = json_decode($lugar->coordenadas);
-//               $coordenadas[] = json_decode($lugar->coordenadas);
-
                 $coor = json_decode($lugar->coordenadas);
                 if (!isset($coor->latitud))
                     continue;
                 $lat = $coor->latitud;
                 $lon = $coor->longitud;
                 $titulo = $lugar->nombre;
-                $coordenadas[] = array('latitud' => $lat, 'longitud' => $lon, 'titulo' => $titulo, 'id_lugar' => $lugar->id);
+                $data[$oferta->id][] = array('latitud' => $lat, 'longitud' => $lon, 'titulo' => $titulo, 'id_lugar' => $lugar->id);
+//                $coordenadas[] = array('latitud' => $lat, 'longitud' => $lon, 'titulo' => $titulo, 'id_lugar' => $lugar->id);
             }
         }
-        //var_dump($coordenadas);
-        echo json_encode($coordenadas);
-    }
-
-    function coordenadas_xxx($id_categoria = null, $id_lugar = null) {
-        $coordenadas = array();
-        $categoria = $this->Categoria->getall();
-        foreach ($categoria->result() as $oferta) {
-            $lugares = $this->Lugar->get_by_categoria($oferta->id);
-            foreach ($lugares->result() as $lugar) {
-//               json_decode($lugar->coordenadas);
-//               $coordenadas[] = json_decode($lugar->coordenadas);
-//               $coordenadas[] = json_decode($lugar->coordenadas);
-
-                $coor = json_decode($lugar->coordenadas);
-                if (!isset($coor->latitud))
-                    continue;
-                $lat = $coor->latitud;
-                $lon = $coor->longitud;
-                $titulo = $lugar->nombre;
-                $coordenadas[] = array('latitud' => $lat, 'longitud' => $lon, 'titulo' => $titulo, 'id_lugar' => $lugar->id);
-            }
-        }
-        //var_dump($coordenadas);
-        echo json_encode($coordenadas);
+        echo json_encode($data);
     }
 
     function save_comments() {
@@ -132,6 +105,13 @@ class Mobil extends CI_Controller {
             else
                 echo json_encode(array('success' => false, 'message' => 'No se pudo registrar tu voto!'));
         
+    }
+    
+    function get_lugares()
+    {
+        $lugares = $this->Lugar->get_by_categoria($_POST['id']);
+//        echo $lugares->result();
+        echo json_encode($lugares->result_array());
     }
 
 }

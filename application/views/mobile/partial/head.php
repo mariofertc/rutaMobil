@@ -77,8 +77,8 @@
                     url: '<?php echo site_url("mobil") ?>/coordenadas',
                     type: "GET",
                     success: function(coord){
-                        
-                        
+                        //alert(coord);
+                        //alert(sessionStorage.categoria_id);
                         var lat = datos.coords.latitude;
                         var lon = datos.coords.longitude;
                         //alert(coordenadas_current);
@@ -151,62 +151,65 @@
 
 
 
-                        //var latlng2 = new google.maps.LatLng(lat, lon);
                         //Carga de los Lugares.
                         $.each($.parseJSON(coord), function() {
-                            if(this != undefined && this.latitud != undefined)
-                            {
-                                //                                                alert(this.latitud + " " + this.longitud);
-                                //                                var latlng = new google.maps.LatLng(-1.398773, -78.414838);
-                                var latlng_lugares = new google.maps.LatLng(this.latitud , this.longitud);
-                                var opcionesOjos = {
-                                    position: latlng_lugares,
-                                    map: mapa,
-                                    icon: goldStar,
-                                    title: this.titulo
-                                };    
-                                var chinche2 = new google.maps.Marker(opcionesOjos);
-                                chinche2.setMap(mapa);
-                                
-                                //Aqui estas
-                                //                                var latln = new google.maps.LatLng(lat, lon);
-                                var distance_sitio = (google.maps.geometry.spherical.computeDistanceBetween(latlng_current, latlng_lugares)/1000).toFixed(2);
-                                var titulo = this.titulo;
-                                var coordenada = this.latitud + " - " + this.longitud;
-                                //Actualiza sitio contenido
-                                $('#distancia_'+this.id_lugar).html(distance_sitio + " Km");
-                                $('#distancia2_'+this.id_lugar).html(distance_sitio + " Km");
-                                google.maps.event.addListener(chinche2, "click", function() {
-                                    infowindow.setContent("<div style='color:black'>"
-                                        + titulo +
-                                        "</div><div style='color:black'>Distancia al lugar es: " +  (distance_sitio) + " km </div>" +
-                                        "<div style='color:black'>Coordenadas: " +  coordenada + " </div>"); 
-                                    infowindow.open(mapa,chinche2); 
+                            if(this.length > 1){
+                                var esOferta = true;
+                                $.each(this, function(){
+                                    if(esOferta){      
+//                                        alert(sessionStorage.categoria_id +  '-'+ this.id);
+                                        if(sessionStorage.categoria_id == this.id)
+                                        {
+//                                            alert(this.id);
+//                                            var myselect = $("select#oferta_select");
+//                                            myselect[0].selectedIndex = 3;
+//                                            myselect[0]. = 3;
+                                            $('select#oferta_select option[value='+this.id+']').attr('selected', 'selected');
+//                                            $('select#oferta_select option[value='+this.id+']').attr('selected', 'selected');
+                                            $('select#oferta_select').selectmenu('refresh');
+//                                            myselect.selectmenu("refresh");
+                                        }
+                                        esOferta = false;
+                                    }
+                                    else{
+                                        if(this != undefined && this.latitud != undefined)
+                                        {
+                                            var latlng_lugares = new google.maps.LatLng(this.latitud , this.longitud);  
+                                            var distance_sitio = (google.maps.geometry.spherical.computeDistanceBetween(latlng_current, latlng_lugares)/1000).toFixed(2);
+                                            var titulo = this.titulo;
+                                            var coordenada = this.latitud + " - " + this.longitud;
+                                            //Actualiza sitio contenido
+                                            $('#distancia_'+this.id_lugar).html(distance_sitio + " Km");
+                                            $('#distancia2_'+this.id_lugar).html(distance_sitio + " Km");
+                                            
+                                            if(sessionStorage.lugar_id == this.id_lugar)
+                                            {                     
+//                                            alert(sessionStorage.lugar_id + "-" + this.id_lugar);
+                                                var opcionesOjos = {
+                                                    position: latlng_lugares,
+                                                    map: mapa,
+                                                    icon: goldStar,
+                                                    title: this.titulo
+                                                };  
+                                                var chinche2 = new google.maps.Marker(opcionesOjos);
+                                                chinche2.setMap(mapa);
+                                                google.maps.event.addListener(chinche2, "click", function() {
+                                                    infowindow.setContent("<div style='color:black'>"
+                                                        + titulo +
+                                                        "</div><div style='color:black'>Distancia al lugar es: " +  (distance_sitio) + " km </div>" +
+                                                        "<div style='color:black'>Coordenadas: " +  coordenada + " </div>"); 
+                                                    infowindow.open(mapa,chinche2); 
+                                                });
+                                            }
+                                        }
+                                    }
+                                    if(sessionStorage.categoria_id == this.id)
+                                    {
+                                       
+                                    }
+                                    
+                                    
                                 });
-                                //abrir toolbox
-                                //                                var boxText = document.createElement("div");
-                                //                                boxText.style.cssText = "margin-top: 5px; background: rgba(25,245,245,0.4); padding: 5px; color:black; font-size:0.8em; text-align:center";
-                                //                                boxText.innerHTML = titulo;
-                                //                                var myOptions = {
-                                //                                    content: boxText
-                                //                                    ,disableAutoPan: false
-                                //                                    ,maxWidth: 0
-                                //                                    ,pixelOffset: new google.maps.Size(-20, 30)
-                                //                                    ,zIndex: null
-                                //                                    ,boxStyle: { 
-                                ////                                        background: "url(<?php echo base_url() ?>tipbox.gif') no-repeat"
-                                //                                        opacity: 0.8
-                                //                                        ,width: "100px"
-                                //                                    }
-                                //                                    ,closeBoxMargin: "10px 2px 2px 2px"
-                                //                                    ,closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif"
-                                //                                    ,infoBoxClearance: new google.maps.Size(1, 1)
-                                //                                    ,isHidden: false
-                                //                                    ,pane: "floatPane"
-                                //                                    ,enableEventPropagation: false
-                                //                                };
-                                //                                var ib = new InfoBox(myOptions);
-                                //                                ib.open(mapa, chinche2);
                             }
                         });
 
@@ -332,15 +335,39 @@
         $(document).on('pageinit', '#home',function (event, ui) {
             backToTop.init();
         });
+        
+        //cambia combos
+        $(document).on('change', 'select#oferta_select', function() { deg(this); });
+
+    function deg(obj){
+        var val = obj.value;
+//        var el = $('select#lugar_select');
+//        var ids =  obj.val;
+//        alert(val);
+//        var id = $('select#categoria_select');
+//        var opt = $('<option />');
+//        $opt.val(val).text(val).appendTo($el);
+//        $('select#lugar_select').selectmenu('refresh');
+        
+        jQuery.ajax({ url: '<?php echo site_url('mobil') ?>/get_lugares/',
+            data: {id: val},
+            type: 'post',
+            success: function(output) {
+//                alert(output);
+                $('select#lugar_select').empty();
+                $.each(output, function() {
+//                    alert (this.nombre + "-" + this.id);
+                    var el = $('select#lugar_select');
+                    var opt = '<option value="'+this.id+'">'+this.nombre+'</option>';
+                    el.append(opt);
+                    $('select#lugar_select').selectmenu('refresh');
+                });
+            },
+            dataType: "json"
+        });
+    }
         </script>
-        <style type="text/css">
-        #backToTop {
-            position: fixed;
-            top: 0px;
-            left: 0px;
-            display: none;
-        }
-    </style>
+        
 
     </head>
     <body>

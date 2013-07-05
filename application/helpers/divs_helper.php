@@ -172,13 +172,19 @@ function get_geo($oferta_items, $opciones, $ci) {
     $data_div = '<div data-role="page" id="geo" data-title="Mapa"  data-theme="a">';
     //Encabezado            
     $data_div .= $ci->load->view('mobile/partial/head_share', '', true);
+    $data_div .= '<div data-role="controlgroup" data-type="vertical">';
+    $data_div .= '<select name="oferta_select" id="oferta_select" data-native-menu=false><option value=0>Escoja una categoría...</option>';
+    
     foreach ($oferta_items->result() as $oferta) {
         $lugares = $ci->Lugar->get_by_categoria($oferta->id);
-        foreach ($lugares->result() as $lugar) {
-            
-        }
+        $data_div .= '<option value="'.$oferta->id.'">'.$oferta->nombre.'</option>';
     }
-    $data_div .= '<section><div id="mapa"></div></section>';
+    $data_div .= '</select>';
+    $data_div .= '<select name="lugar_select" id="lugar_select" data-native-menu=false><option>Escoja un lugar...</option>';
+    $data_div .= '</select>';
+    $data_div .= '</div>';
+    $data_div .= '<div data-role="content">';
+    $data_div .= '<div class="ui-bar-c ui-corner-all ui-shadow" style="padding:1em;"><div style="height:300px;" id="mapa"></div></div></div>';
     $data_div .= $ci->load->view('mobile/partial/footer_page', '', true);
     $data_div .= "</div>";
     return $data_div;
