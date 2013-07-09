@@ -55,12 +55,48 @@
             $(window).load(function() {
                 $('.flexslider').flexslider();
             });
+            sessionStorage.lugar_id =  0;
+            sessionStorage.categoria_id =  0;
+            //cambia combos
+            $(document).on('change', 'select#oferta_select', function() { deg(this); });
+    
+    function deg(obj){
+        var val = obj.value;
+        //        var el = $('select#lugar_select');
+        //        var ids =  obj.val;
+        //        alert(val);
+        //        var id = $('select#categoria_select');
+        //        var opt = $('<option />');
+        //        $opt.val(val).text(val).appendTo($el);
+        //        $('select#lugar_select').selectmenu('refresh');
+        
+        jQuery.ajax({ url: '<?php echo site_url('mobil') ?>/get_lugares/',
+            data: {id: val},
+            type: 'post',
+            success: function(output) {
+                //                alert(output);
+                $('select#lugar_select').empty();
+//                alert("entro");
+                $.each(output, function() {
+                    //                    alert (this.nombre + "-" + this.id);
+                    var el = $('select#lugar_select');
+                    var opt = '<option value="'+this.id+'">'+this.nombre+'</option>';
+                    el.append(opt);
+                });
+                $('select#lugar_select').selectmenu('refresh');
+            },
+            dataType: "json"
+        });
+    }
 
             //            function change_page(page_name) {
             //                $.mobile.changePage($('#' + page_name));
             //            }
 
-            $('#geo').live('pagecreate', function (event, ui) {
+//            $('#geo').live('pagecreate', function (event, ui) {
+//              $('#geo').live('pagebeforeshow', function (event, ui) {
+//              $('#geo').live('pageinit', function (event, ui) {
+              $('#geo').live('pageshow', function (event, ui) {
                 
                 //                google.maps.event.addListener(mapa, 'dblclick', function(event) {
                 //                                    mapa.setCenter(mapa.getCenter());
@@ -68,69 +104,45 @@
                 geolocalizar();
                 //                                google.maps.event.trigger(mapa, 'resize');
             });
-            //            $('#home').live('pagecreate', function (event, ui) {
-            //                geolocalizar();
-            //            });
             var mapa;
             function cargar(datos){
                 $.ajax({
                     url: '<?php echo site_url("mobil") ?>/coordenadas',
+                    data: {categoria_id:sessionStorage.categoria_id,
+                    lugar_id:sessionStorage.lugar_id},
                     type: "GET",
                     success: function(coord){
-                        //alert(coord);
-                        //alert(sessionStorage.categoria_id);
                         var lat = datos.coords.latitude;
                         var lon = datos.coords.longitude;
-                        //alert(coordenadas_current);
                         //Cruz de Bellavista -- Referencia a Baños
                         var latlng_banos = new google.maps.LatLng(-1.398773, -78.414838);
                         var latlng_current = new google.maps.LatLng(lat,lon);
                         //Ojos del Volcánn
                         //var latlng3 = new google.maps.LatLng(-1.378136,-78.43699);
-                        
-                        
-
                         //$("#status").text("Te encontre en: " + lat + " , " + lon);
                         $("#status").text("");
                         /*$("#mapa").css("height", 480).css("margin", "0 auto").css("width", 320);*/
-
                         var opcionesMapa = {
                             center: latlng_current,
                             zoom: 10,
                             mapTypeId: google.maps.MapTypeId.ROADMAP
                         };
-                        //                        document.getElementById("mapa").html("<div></div>");
                         mapa = new google.maps.Map(document.getElementById("mapa"), opcionesMapa);
-                        //                        mapa = new google.maps.Map($("#mapa")[0], opcionesMapa);
-                        
-                        //                        google.maps.event.addDomListener(window, 'resize', function() {
-                        //                            mapa.setCenter(latlng_current);
-                        //                        });
-
                         var goldStar = {
                             path: 'M 125,5 155,90 245,90 175,145 200,230 125,180 50,230 75,145 5,90 95,90 z',
                             //icon: new google.maps.MarkerImage('http://cdn1.iconfinder.com/data/icons/google_jfk_icons_by_carlosjj/128/maps.png'),
                             fillColor: "yellow",
                             fillOpacity: 0.8,
-                            scale: 0.2,
+                            scale: 0.1,
                             strokeColor: "gold",
                             strokeWeight: 2
                         };
-                        
-                        var image = new google.maps.MarkerImage('http://cdn1.iconfinder.com/data/icons/google_jfk_icons_by_carlosjj/128/maps.png',
-                        // This marker is 20 pixels wide by 32 pixels tall.
-                        new google.maps.Size(20, 32));
-
+//                        var image = new google.maps.MarkerImage('http://cdn1.iconfinder.com/data/icons/google_jfk_icons_by_carlosjj/128/maps.png',null,null,null,new google.maps.Size(30, 30));
                         var opcionesChinche = {
                             position: latlng_current,
-                            map: mapa,
-                            icon: "http://cdn1.iconfinder.com/data/icons/google_jfk_icons_by_carlosjj/128/maps.png"
-                            //title: "Aqui estas!!"
+                            map: mapa
+//                            icon: image
                         };
-
-
-
-
 
                         var chinche = new google.maps.Marker(opcionesChinche);
                         chinche.setMap(mapa);
@@ -140,40 +152,21 @@
                             infowindow.setContent("<div style='color:black'>Te encuentras aqui!</div><div style='color:black'>Distancia a Baños es: " +  (distance) + " km </div>"); //sets the content of your global infowindow to string "Tests: "
                             //                            infowindow.setContent("<div>Te encuentras aqui!</div><div>Distancia a Baños es:  km </div>"); //sets the content of your global infowindow to string "Tests: "
                             infowindow.open(mapa,chinche); //then opens the infowindow at the marker
-
                         });
                         infowindow = new google.maps.InfoWindow({   //infowindow options set
                             maxWidth: 355
                         });
-                        
-                        
-                        
-
-
-
                         //Carga de los Lugares.
                         $.each($.parseJSON(coord), function() {
-                            if(this.length > 1){
-                                var esOferta = true;
-                                $.each(this, function(){
-                                    if(esOferta){      
-//                                        alert(sessionStorage.categoria_id +  '-'+ this.id);
-                                        if(sessionStorage.categoria_id == this.id)
-                                        {
-//                                            alert(this.id);
-//                                            var myselect = $("select#oferta_select");
-//                                            myselect[0].selectedIndex = 3;
-//                                            myselect[0]. = 3;
-                                            $('select#oferta_select option[value='+this.id+']').attr('selected', 'selected');
-//                                            $('select#oferta_select option[value='+this.id+']').attr('selected', 'selected');
-                                            $('select#oferta_select').selectmenu('refresh');
-//                                            myselect.selectmenu("refresh");
-                                        }
-                                        esOferta = false;
-                                    }
-                                    else{
+                            if(this.length >= 1){
+                                $.each(this, function(){                                   
                                         if(this != undefined && this.latitud != undefined)
                                         {
+                                            if(sessionStorage.categoria_id == this.id_categoria && $('#oferta_select').val() != this.id_categoria)
+                                            {
+                                                $('#oferta_select').val(this.id_categoria).trigger('change');
+                                                $('select#oferta_select').selectmenu('refresh');
+                                            }
                                             var latlng_lugares = new google.maps.LatLng(this.latitud , this.longitud);  
                                             var distance_sitio = (google.maps.geometry.spherical.computeDistanceBetween(latlng_current, latlng_lugares)/1000).toFixed(2);
                                             var titulo = this.titulo;
@@ -181,10 +174,8 @@
                                             //Actualiza sitio contenido
                                             $('#distancia_'+this.id_lugar).html(distance_sitio + " Km");
                                             $('#distancia2_'+this.id_lugar).html(distance_sitio + " Km");
-                                            
-                                            if(sessionStorage.lugar_id == this.id_lugar)
-                                            {                     
-//                                            alert(sessionStorage.lugar_id + "-" + this.id_lugar);
+                                            if(sessionStorage.lugar_id == this.id_lugar || sessionStorage.lugar_id ==  0)
+                                            {
                                                 var opcionesOjos = {
                                                     position: latlng_lugares,
                                                     map: mapa,
@@ -200,15 +191,12 @@
                                                         "<div style='color:black'>Coordenadas: " +  coordenada + " </div>"); 
                                                     infowindow.open(mapa,chinche2); 
                                                 });
+                                                if(sessionStorage.lugar_id == this.id_lugar){
+                                                    $('select#lugar_select option[value='+this.id_lugar+']').attr('selected', 'selected');
+                                                    $('select#lugar_select').selectmenu('refresh');
+                                                }
                                             }
                                         }
-                                    }
-                                    if(sessionStorage.categoria_id == this.id)
-                                    {
-                                       
-                                    }
-                                    
-                                    
                                 });
                             }
                         });
@@ -216,7 +204,6 @@
                         //Aqui estas
                         //var latlng2 = new google.maps.LatLng(lat, lon);
                         distance = (google.maps.geometry.spherical.computeDistanceBetween(latlng_current, latlng_banos)/1000).toFixed(2);
-                        //		-1 22 44, -78 26 13
                         //$("#status").append("Distancia a Baños="+(distance)+" kms");
                     }
                 });
@@ -335,37 +322,6 @@
         $(document).on('pageinit', '#home',function (event, ui) {
             backToTop.init();
         });
-        
-        //cambia combos
-        $(document).on('change', 'select#oferta_select', function() { deg(this); });
-
-    function deg(obj){
-        var val = obj.value;
-//        var el = $('select#lugar_select');
-//        var ids =  obj.val;
-//        alert(val);
-//        var id = $('select#categoria_select');
-//        var opt = $('<option />');
-//        $opt.val(val).text(val).appendTo($el);
-//        $('select#lugar_select').selectmenu('refresh');
-        
-        jQuery.ajax({ url: '<?php echo site_url('mobil') ?>/get_lugares/',
-            data: {id: val},
-            type: 'post',
-            success: function(output) {
-//                alert(output);
-                $('select#lugar_select').empty();
-                $.each(output, function() {
-//                    alert (this.nombre + "-" + this.id);
-                    var el = $('select#lugar_select');
-                    var opt = '<option value="'+this.id+'">'+this.nombre+'</option>';
-                    el.append(opt);
-                    $('select#lugar_select').selectmenu('refresh');
-                });
-            },
-            dataType: "json"
-        });
-    }
         </script>
         
 

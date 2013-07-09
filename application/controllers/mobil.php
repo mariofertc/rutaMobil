@@ -46,11 +46,21 @@ class Mobil extends CI_Controller {
     }
 
     function coordenadas() {
-        $coordenadas = array();
-        $categoria = $this->Categoria->getall();
+        //Si es 0, entonces debe enviar todas las locaciones.
+        $categoria_id = $_GET['categoria_id'];
+        $lugar_id = $_GET['lugar_id'];
+        
+        $data = array();
+//        $categoria = $this->Categoria->getall();
+        $where_categoria = $categoria_id != 0?array('id'=>$categoria_id):array();
+        $categoria = $this->Categoria->get_all(100,0,$where_categoria);
+//        if($categoria_id == 0 && $lugar_id == 0)
+            
+        $where_lugar = $lugar_id!=0?array('id'=>$lugar_id):array();
         foreach ($categoria->result() as $oferta) {
-            $lugares = $this->Lugar->get_by_categoria($oferta->id);
-            $data[$oferta->id][] = $oferta;
+//            var_dump($where_lugar);
+            $lugares = $this->Lugar->get_all(100,0, array_merge($where_lugar,array("categoria_id"=>$oferta->id)));
+//            var_dump($lugares);
             foreach ($lugares->result() as $lugar) {
                 $coor = json_decode($lugar->coordenadas);
                 if (!isset($coor->latitud))
@@ -58,7 +68,8 @@ class Mobil extends CI_Controller {
                 $lat = $coor->latitud;
                 $lon = $coor->longitud;
                 $titulo = $lugar->nombre;
-                $data[$oferta->id][] = array('latitud' => $lat, 'longitud' => $lon, 'titulo' => $titulo, 'id_lugar' => $lugar->id);
+                $data[$oferta->id][] = array('latitud' => $lat, 'longitud' => $lon, 'titulo' => $titulo, 'id_lugar' => $lugar->id, 
+                    'id_categoria' => $oferta->id);
 //                $coordenadas[] = array('latitud' => $lat, 'longitud' => $lon, 'titulo' => $titulo, 'id_lugar' => $lugar->id);
             }
         }

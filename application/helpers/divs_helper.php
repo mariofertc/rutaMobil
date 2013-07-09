@@ -53,7 +53,7 @@ function get_lugares($oferta_items, $opciones, $ci) {
         if (isset($opciones['shadow']) == true)
             $data_div .= '<div class="shadow2box"><img src="' . base_url() . 'images/shadow.png" class="shadow2" alt="shadow"></div>';
         $data_div .= "</div>";
-		$data['oferta'] = $oferta;
+	$data['oferta'] = $oferta;
         $data_div .= $ci->load->view('mobile/partial/footer_page', $data, true);
         $data_div .= "</div>";
     }
@@ -132,7 +132,7 @@ function get_lugar($oferta_items, $opciones, $ci) {
                 if ($opciones['shadow'] == true)
                     $data_div .= '<div class="shadow2box"><img src="' . base_url() . 'images/shadow.png" class="shadow2" alt="shadow"></div>';
             $data_div .= "</div>";
-			$data['lugar'] = $lugar;
+            $data['lugar'] = $lugar;
             $data_div .= $ci->load->view('mobile/partial/footer_page', $data, true);
             $data_div .= "</div>";
         }
@@ -159,8 +159,8 @@ function get_photos($oferta_items, $opciones, $ci) {
                 $data_div .= '<li><a rel="external" href="' . base_url() . 'images/imglugar/' . $lugar->nombre_enlace . '/' . $photo->imagen_path . '"><img src="' . base_url() . 'images/imglugar/' . $lugar->nombre_enlace . '/thumbs/' . $photo->imagen_path . '" alt="Image 018" /></a></li>';
             }
             $data_div .= '</ul>';
-
-            $data_div .= $ci->load->view('mobile/partial/footer_page', '', true);
+            $data['lugar'] = $lugar;
+            $data_div .= $ci->load->view('mobile/partial/footer_page', $data, true);
             $data_div .= "</div>";
         }
     }
@@ -174,17 +174,21 @@ function get_geo($oferta_items, $opciones, $ci) {
     $data_div .= $ci->load->view('mobile/partial/head_share', '', true);
     $data_div .= '<div data-role="controlgroup" data-type="vertical">';
     $data_div .= '<select name="oferta_select" id="oferta_select" data-native-menu=false><option value=0>Escoja una categoría...</option>';
-    
+//    $lugares = 
     foreach ($oferta_items->result() as $oferta) {
         $lugares = $ci->Lugar->get_by_categoria($oferta->id);
         $data_div .= '<option value="'.$oferta->id.'">'.$oferta->nombre.'</option>';
     }
     $data_div .= '</select>';
     $data_div .= '<select name="lugar_select" id="lugar_select" data-native-menu=false><option>Escoja un lugar...</option>';
+//    foreach ($oferta_items->result() as $oferta) {
+//        $lugares = $ci->Lugar->get_by_categoria($oferta->id);
+//        $data_div .= '<option value="'.$oferta->id.'">'.$oferta->nombre.'</option>';
+//    }
     $data_div .= '</select>';
     $data_div .= '</div>';
     $data_div .= '<div data-role="content">';
-    $data_div .= '<div class="ui-bar-c ui-corner-all ui-shadow" style="padding:1em;"><div style="height:300px;" id="mapa"></div></div></div>';
+    $data_div .= '<div class="ui-bar-c ui-shadow" style="padding:1em;"><div style="height:300px;" id="mapa"></div></div></div>';
     $data_div .= $ci->load->view('mobile/partial/footer_page', '', true);
     $data_div .= "</div>";
     return $data_div;
