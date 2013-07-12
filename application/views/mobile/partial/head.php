@@ -157,6 +157,7 @@
                             maxWidth: 355
                         });
                         //Carga de los Lugares.
+                        var indice_lugar =  0;
                         $.each($.parseJSON(coord), function() {
                             if(this.length >= 1){
                                 $.each(this, function(){                                   
@@ -176,11 +177,16 @@
                                             $('#distancia2_'+this.id_lugar).html(distance_sitio + " Km");
                                             if(sessionStorage.lugar_id == this.id_lugar || sessionStorage.lugar_id ==  0)
                                             {
+                                                indice_lugar ++;
                                                 var opcionesOjos = {
                                                     position: latlng_lugares,
                                                     map: mapa,
-                                                    icon: goldStar,
-                                                    title: this.titulo
+//                                                    icon: goldStar,
+//                                                    icon: 'http://www.googlemapsmarkers.com/v1/'+ indice_lugar + '/0099FF',
+                                                    icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld='+ indice_lugar +'|0055FF|ffffff',
+                                                    title: this.titulo,
+                                                    
+                                                    draggable: true
                                                 };  
                                                 var chinche2 = new google.maps.Marker(opcionesOjos);
                                                 chinche2.setMap(mapa);

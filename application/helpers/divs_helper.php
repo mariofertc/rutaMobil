@@ -188,7 +188,7 @@ function get_geo($oferta_items, $opciones, $ci) {
     $data_div .= '</select>';
     $data_div .= '</div>';
     $data_div .= '<div data-role="content">';
-    $data_div .= '<div class="ui-bar-c ui-shadow" style="padding:1em;"><div style="height:300px;" id="mapa"></div></div></div>';
+    $data_div .= '<div class="ui-bar-c ui-shadow" style="padding:1em;"><div id="mapa"></div></div></div>';
     $data_div .= $ci->load->view('mobile/partial/footer_page', '', true);
     $data_div .= "</div>";
     return $data_div;
