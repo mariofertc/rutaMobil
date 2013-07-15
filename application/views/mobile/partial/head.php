@@ -59,6 +59,11 @@
             sessionStorage.categoria_id =  0;
             //cambia combos
             $(document).on('change', 'select#oferta_select', function() { deg(this); });
+            $(document).on('click', '#search_map', function() { 
+                sessionStorage.categoria_id = $('#oferta_select').val();
+                sessionStorage.lugar_id  = $('#lugar_select').val();
+                geolocalizar();
+            });
     
     function deg(obj){
         var val = obj.value;
@@ -74,12 +79,10 @@
             data: {id: val},
             type: 'post',
             success: function(output) {
-                //                alert(output);
-                $('select#lugar_select').empty();
-//                alert("entro");
+                var el = $('select#lugar_select');
+                el.empty();
+                el.append('<option value=0>Escoja un lugar...</option>');
                 $.each(output, function() {
-                    //                    alert (this.nombre + "-" + this.id);
-                    var el = $('select#lugar_select');
                     var opt = '<option value="'+this.id+'">'+this.nombre+'</option>';
                     el.append(opt);
                 });
@@ -128,15 +131,6 @@
                             mapTypeId: google.maps.MapTypeId.ROADMAP
                         };
                         mapa = new google.maps.Map(document.getElementById("mapa"), opcionesMapa);
-                        var goldStar = {
-                            path: 'M 125,5 155,90 245,90 175,145 200,230 125,180 50,230 75,145 5,90 95,90 z',
-                            //icon: new google.maps.MarkerImage('http://cdn1.iconfinder.com/data/icons/google_jfk_icons_by_carlosjj/128/maps.png'),
-                            fillColor: "yellow",
-                            fillOpacity: 0.8,
-                            scale: 0.1,
-                            strokeColor: "gold",
-                            strokeWeight: 2
-                        };
 //                        var image = new google.maps.MarkerImage('http://cdn1.iconfinder.com/data/icons/google_jfk_icons_by_carlosjj/128/maps.png',null,null,null,new google.maps.Size(30, 30));
                         var opcionesChinche = {
                             position: latlng_current,
@@ -158,6 +152,7 @@
                         });
                         //Carga de los Lugares.
                         var indice_lugar =  0;
+                        $('#sitios_mapa').html("");
                         $.each($.parseJSON(coord), function() {
                             if(this.length >= 1){
                                 $.each(this, function(){                                   
@@ -175,15 +170,16 @@
                                             //Actualiza sitio contenido
                                             $('#distancia_'+this.id_lugar).html(distance_sitio + " Km");
                                             $('#distancia2_'+this.id_lugar).html(distance_sitio + " Km");
+                                            var icono = null;
                                             if(sessionStorage.lugar_id == this.id_lugar || sessionStorage.lugar_id ==  0)
                                             {
                                                 indice_lugar ++;
+                                                icono =  'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld='+ indice_lugar +'|0055FF|ffffff';
                                                 var opcionesOjos = {
                                                     position: latlng_lugares,
                                                     map: mapa,
-//                                                    icon: goldStar,
 //                                                    icon: 'http://www.googlemapsmarkers.com/v1/'+ indice_lugar + '/0099FF',
-                                                    icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld='+ indice_lugar +'|0055FF|ffffff',
+                                                    icon: icono,
                                                     title: this.titulo,
                                                     
                                                     draggable: true
@@ -197,15 +193,52 @@
                                                         "<div style='color:black'>Coordenadas: " +  coordenada + " </div>"); 
                                                     infowindow.open(mapa,chinche2); 
                                                 });
+                                            
+                                                //Actualiza el listado de sitios
+                                                
+                                                $("#sitios_mapa").append('<li><img src='+ icono +' class="ui-li-thumb ui-corner-tr" style="z-index:100">' + $('#distancia_'+this.id_lugar).parent().parent().clone().html() + '</li>'); 
+//                                                $("#sitios_mapa").append($('#distancia_'+this.id_lugar).parent().parent().clone()); 
+//                                                $("#sitios_mapa").append('<li>' + $('#distancia_'+this.id_lugar).parent().clone().html() + '</li>'); 
+//                                                $('#sitios_mapa').append('<li><a href="#"> <img src="<?php base_url() ?>images/imglugar/" width  = "340" height = "279"> <h1>' + this.titulo +
+//                                                '</h1><p></p><div class = "like"></div> <div clas="cmvote" style="float:left;padding-top: 5px; font-size:0.8em;">VOTOS</div> <div class = "comen2"></div> <div class="cmcomen" style="float:left;padding-top: 5px;font-size:0.8em;">COMEN..</div> <span class="ui-li-count">12 km</span></a></li>');
+                                                
+                                                
                                                 if(sessionStorage.lugar_id == this.id_lugar){
                                                     $('select#lugar_select option[value='+this.id_lugar+']').attr('selected', 'selected');
                                                     $('select#lugar_select').selectmenu('refresh');
+                                                    
+                                                    //Get route
+                                                    var directionsService = new google.maps.DirectionsService();
+                                                    var directionsRequest = {
+                                                        origin: latlng_current,
+                                                        destination: latlng_lugares,
+                                                        travelMode: google.maps.DirectionsTravelMode.DRIVING,
+                                                        unitSystem: google.maps.UnitSystem.METRIC
+                                                    };
+                                                    directionsService.route(
+                                                        directionsRequest,
+                                                        function(response, status)
+                                                        {
+                                                          if (status == google.maps.DirectionsStatus.OK)
+                                                          {
+                                                            new google.maps.DirectionsRenderer({
+                                                              map: mapa,
+                                                              directions: response
+                                                            });
+                                                          }
+                                                          else
+                                                            $("#error").append("Unable to retrieve your route<br />");
+                                                        }
+                                                      );
                                                 }
                                             }
                                         }
                                 });
                             }
                         });
+                        
+                        //Refresh Style
+                        $('#sitios_mapa').listview('refresh');
 
                         //Aqui estas
                         //var latlng2 = new google.maps.LatLng(lat, lon);

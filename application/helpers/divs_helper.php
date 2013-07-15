@@ -180,15 +180,21 @@ function get_geo($oferta_items, $opciones, $ci) {
         $data_div .= '<option value="'.$oferta->id.'">'.$oferta->nombre.'</option>';
     }
     $data_div .= '</select>';
-    $data_div .= '<select name="lugar_select" id="lugar_select" data-native-menu=false><option>Escoja un lugar...</option>';
-//    foreach ($oferta_items->result() as $oferta) {
-//        $lugares = $ci->Lugar->get_by_categoria($oferta->id);
-//        $data_div .= '<option value="'.$oferta->id.'">'.$oferta->nombre.'</option>';
-//    }
+    $data_div .= '<select name="lugar_select" id="lugar_select" data-native-menu=false><option value=0>Escoja un lugar...</option>';
     $data_div .= '</select>';
+    $data_div .= '<a id="search_map" data-role="button" data-icon="search">Ir Lugar &raquo;</a>';
     $data_div .= '</div>';
     $data_div .= '<div data-role="content">';
     $data_div .= '<div class="ui-bar-c ui-shadow" style="padding:1em;"><div id="mapa"></div></div></div>';
+    $data_div .= '<div data-role="collapsible-set" data-corners="false" >
+<div data-role="collapsible" data-collapsed="true">
+<h3>SITIOS</h3>
+<p>
+<ul id="sitios_mapa" data-role="listview" data-dividertheme="e" class="titulo" data-inset="true" data-autodividers="false">
+</ul>
+</p>
+</div> <!-- sierre -->
+</div> <!-- sierre SET-->';
     $data_div .= $ci->load->view('mobile/partial/footer_page', '', true);
     $data_div .= "</div>";
     return $data_div;
