@@ -771,12 +771,12 @@ label.ui-submit { font-size: 16px; line-height: 1.4; font-weight: normal; margin
 	border-top: none;      
 	background-image: none; 
 }
-.ui-collapsible-inset .ui-collapsible-content { margin: 0; border-right-width: 1px; border-left-width: 1px; }
+.ui-collapsible-inset .ui-collapsible-content { margin: 0; border-right-width: 1px; border-left-width: 1px; padding: 5px; }
 .ui-collapsible-content-collapsed { display: none; }
 .ui-collapsible-set { margin: .5em 0; }
 .ui-collapsible-set .ui-collapsible { margin: -1px 0 0; }
 .ui-collapsible-set .ui-collapsible:first-child { margin-top: 0; }
-.ui-controlgroup, fieldset.ui-controlgroup { padding: 0; margin: .5em 0; zoom: 1; }
+.ui-controlgroup, fieldset.ui-controlgroup { padding: 0; margin: .5em 0.5em; zoom: 1; }
 .ui-controlgroup.ui-mini, fieldset.ui-controlgroup.ui-mini { margin: .25em 0; }
 .ui-field-contain .ui-controlgroup, .ui-field-contain fieldset.ui-controlgroup { margin: 0; }
 .ui-bar .ui-controlgroup { margin: 0 5px; }

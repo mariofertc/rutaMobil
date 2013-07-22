@@ -169,21 +169,21 @@ function get_photos($oferta_items, $opciones, $ci) {
 }
 
 function get_geo($oferta_items, $opciones, $ci) {
-    $data_div = '<div data-role="page" id="geo" data-title="Mapa"  data-theme="a">';
+    $data_div = '<div data-role="page" id="geo" data-title="Mapa"  data-theme="c">';
     //Encabezado            
     $data_div .= $ci->load->view('mobile/partial/head_share', '', true);
     //Inicio de Combos de búsqueda del Mapa
-    $data_div .= '<div data-role="controlgroup" data-type="horizontal" class="nav_geo">';
-    $data_div .= '<select name="oferta_select" id="oferta_select" data-native-menu=false><option value=0>Escoja una categoría...</option>';
+    $data_div .= '<div data-role="controlgroup"   data-type="horizontal" class="nav_geo">';
+    $data_div .= '<select name="oferta_select" id="oferta_select"  data-native-menu=false><option value=0>Escoja una categoría...</option>';
 //    $lugares = 
     foreach ($oferta_items->result() as $oferta) {
         $lugares = $ci->Lugar->get_by_categoria($oferta->id);
         $data_div .= '<option value="'.$oferta->id.'">'.$oferta->nombre.'</option>';
     }
     $data_div .= '</select>';
-    $data_div .= '<select name="lugar_select" id="lugar_select" data-native-menu=false><option value=0>Escoja un lugar...</option>';
+    $data_div .= '<select name="lugar_select" id="lugar_select"  data-native-menu=false><option value=0>Escoja un lugar...</option>';
     $data_div .= '</select>';
-    $data_div .= '<a id="search_map" data-role="button" data-icon="search">Ir Lugar &raquo;</a>';
+    $data_div .= '<a id="search_map" data-role="button" data-iconpos="right"  data-icon="search">Ir Lugar &raquo;</a>';
     $data_div .= '</div>';
     $data_div .= '<div data-role="content">';
     $data_div .= '<div class="ui-bar-c ui-shadow" style="padding:1em;"><div id="mapa"></div></div></div>';

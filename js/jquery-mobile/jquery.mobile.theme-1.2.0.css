@@ -829,20 +829,20 @@ a.ui-link-inherit {
 	
 	}
 .ui-corner-right {
-	-moz-border-radius-topright: 		.6em ;
+	/*-moz-border-radius-topright: 		.6em ;
 	-webkit-border-top-right-radius: 	.6em ;
 	border-top-right-radius: 			.6em ;
 	-moz-border-radius-bottomright: 	.6em ;
 	-webkit-border-bottom-right-radius: .6em ;
-	border-bottom-right-radius: 		.6em ;
+	border-bottom-right-radius: 		.6em ;*/
 }
 .ui-corner-left {
-	-moz-border-radius-topleft: 		.6em ;
+	/*-moz-border-radius-topleft: 		.6em ;
 	-webkit-border-top-left-radius: 	.6em ;
 	border-top-left-radius: 			.6em ;
 	-moz-border-radius-bottomleft: 		.6em ;
 	-webkit-border-bottom-left-radius: 	.6em ;
-	border-bottom-left-radius: 			.6em ;
+	border-bottom-left-radius: 			.6em ;*/
 }
 .ui-corner-all {
 	-moz-border-radius: 				.6em ;
