@@ -20,9 +20,18 @@ $(document).ready(function()
 	$("#login_form input:first").focus();
 });
 </script>
+
+<style>
+body{ 
+
+
+ }
+	
+</style>
+
 </head>
 <body>
-<div data-role="page">
+<div data-role="page" data-theme="none" style="font-family:verdana;font-size:0.8em">
 <?php echo form_open('login', array("target"=>"_self")) ?>
 <div data-role ="header">
 <h1>Rutas Móviles 0.1</h1>
