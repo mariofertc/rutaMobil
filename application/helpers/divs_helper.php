@@ -172,7 +172,8 @@ function get_geo($oferta_items, $opciones, $ci) {
     $data_div = '<div data-role="page" id="geo" data-title="Mapa"  data-theme="a">';
     //Encabezado            
     $data_div .= $ci->load->view('mobile/partial/head_share', '', true);
-    $data_div .= '<div data-role="controlgroup" data-type="vertical">';
+    //Inicio de Combos de búsqueda del Mapa
+    $data_div .= '<div data-role="controlgroup" data-type="horizontal" class="nav_geo">';
     $data_div .= '<select name="oferta_select" id="oferta_select" data-native-menu=false><option value=0>Escoja una categoría...</option>';
 //    $lugares = 
     foreach ($oferta_items->result() as $oferta) {
@@ -188,7 +189,7 @@ function get_geo($oferta_items, $opciones, $ci) {
     $data_div .= '<div class="ui-bar-c ui-shadow" style="padding:1em;"><div id="mapa"></div></div></div>';
     $data_div .= '<div data-role="collapsible-set" data-corners="false" >
 <div data-role="collapsible" data-collapsed="true">
-<h3>SITIOS</h3>
+<h3>Sitios Encontrados</h3>
 <p>
 <ul id="sitios_mapa" data-role="listview" data-dividertheme="e" class="titulo" data-inset="true" data-autodividers="false">
 </ul>

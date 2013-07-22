@@ -5,7 +5,12 @@
 <link rel="stylesheet" rev="stylesheet" href="<?php echo base_url();?>css/login.css" />
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>Rutas Móbiles <?php echo $this->lang->line('login_login'); ?></title>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+<link href="<?php echo base_url(); ?>js/jquery-mobile/jquery.mobile.theme-1.2.0.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo base_url(); ?>js/jquery-mobile/jquery.mobile.structure-1.2.0.css" rel="stylesheet" type="text/css"/>
+
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery/jquery.mobile-1.2.0.js"></script>
 
 
 
@@ -17,18 +22,12 @@ $(document).ready(function()
 </script>
 </head>
 <body>
+<div data-role="page">
+<?php echo form_open('login', array("target"=>"_self")) ?>
+<div data-role ="header">
 <h1>Rutas Móviles 0.1</h1>
-<?php
-if ($_SERVER['HTTP_HOST'] == 'www.rutasmoviles.com')
-{
-?>
-<h2>Usuario = admin</h2>
-<h2>Contraseña = *****</h2>
-<?php
-}
-?>
-<?php echo form_open('login') ?>
-<div id="container">
+</div>
+<div data-role ="content">
 <?php echo validation_errors(); ?>
 	<div id="top">
 	<?php echo $this->lang->line('login_login'); ?>
@@ -56,10 +55,14 @@ if ($_SERVER['HTTP_HOST'] == 'www.rutasmoviles.com')
 		</div>
 		
 		<div id="submit_button">
-		<?php echo form_submit('loginButton','Go'); ?>
+		<?php echo form_submit('loginButton','Entrar'); ?>
 		</div>
 	</div>
 </div>
 <?php echo form_close(); ?>
+	<div data-role ="footer">
+	<h1>CopyRight Rutas Móbiles</h1>
+	</div>
+</div>
 </body>
 </html>

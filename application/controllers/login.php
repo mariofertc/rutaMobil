@@ -22,7 +22,13 @@ class Login extends CI_Controller {
                 $this->load->view('login');
             } else {
                 //echo "yap";
+                // $this->load->view('home');
                 redirect('home');
+                // header('Location: '.site_url('home').', true, 302');
+                // header('url='.site_url('home'));
+
+
+                // exit;
             }
         }
     }
