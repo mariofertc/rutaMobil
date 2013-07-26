@@ -32,7 +32,7 @@ function get_lugares($oferta_items, $opciones, $ci) {
         //Titulo
         $data_div .= '<li class="title"> <div class="icontitle">' . $oferta->icon .
                 '</div> <h1>' . $oferta->nombre .
-                '</h1><h4>' . $oferta->descripcion . '</h4></li>';
+                '</h1><h4><a href="#home">inicio</a>/<a href="#oferta">oferta</a>&nbsp;' . $oferta->descripcion . '</h4></li>';
         $data_div .= '<div data-role="content" data-theme="d" class="conte" >';
         if (isset($opciones['busqueda']) == true)
             $data_div .= '<ul data-role="listview" data-dividertheme="e" class="titulo" data-inset="true" data-filter="true" data-filter-placeholder="¿Qué ' . $oferta->nombre . ' buscas?" data-autodividers="false">';
@@ -71,7 +71,7 @@ function get_lugar($oferta_items, $opciones, $ci) {
             //Titulo
             $data_div .= '<li class="title"> <div class="icontitle">' . $oferta->icon .
                     '</div> <h1>' . $lugar->nombre .
-                    '</h1><h4> ' . $lugar->sector . '</h4></li>';
+                    '</h1><h4><a href="#home">inicio</a>/<a href="#oferta">oferta</a>/<a href="#'. $oferta->nombre_enlace .'">'.$oferta->nombre_enlace.'</a></h4></li>';
             $data_div .= '<div data-role="content" data-theme="d" class="conte" >';
 
             $data_div .= "<div class = 'flexslider'>" . '<ul class = "slides">';

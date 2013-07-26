@@ -196,7 +196,7 @@
                                             
                                                 //Actualiza el listado de sitios
                                                 
-                                                $("#sitios_mapa").append('<li><img src='+ icono +' class="ui-li-thumb ui-corner-tr" style="z-index:100">' + $('#distancia_'+this.id_lugar).parent().parent().clone().html() + '</li>'); 
+                                                $("#sitios_mapa").append('<li><img src='+ icono +' class="ui-li-thumb ui-corner-tr" style="z-index:100; padding:5px 5px">' + $('#distancia_'+this.id_lugar).parent().parent().clone().html() + '</li>'); 
 //                                                $("#sitios_mapa").append($('#distancia_'+this.id_lugar).parent().parent().clone()); 
 //                                                $("#sitios_mapa").append('<li>' + $('#distancia_'+this.id_lugar).parent().clone().html() + '</li>'); 
 //                                                $('#sitios_mapa').append('<li><a href="#"> <img src="<?php base_url() ?>images/imglugar/" width  = "340" height = "279"> <h1>' + this.titulo +

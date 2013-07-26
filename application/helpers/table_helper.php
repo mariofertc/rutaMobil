@@ -161,7 +161,7 @@ function get_foto_admin_table()
 				<th width="20%">Imagen</th>
 				<th width="30%">Descripción</th>
 				<th width="10%">Orden</th>
-                                <th width="20%">Acciones</th>
+                                <th width="5%">Acciones</th>
 			</tr>
 		</thead>
 		<tbody>
