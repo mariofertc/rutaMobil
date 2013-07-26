@@ -19,6 +19,18 @@
 //			"bJQueryUI": true,
 			"sPaginationType": "full_numbers",
 			"sAjaxSource": '<?php echo site_url("$controller_name/mis_datos/$id_lugar") ?>',
+                        aoColumnDefs: [
+                            {
+                                //Deshabilitar el orden en la primera columna.
+                                bSortable: false,
+                                aTargets: [ 0 ]
+                            },
+                            {
+                                //Deshabilitar el orden en la primera columna.
+                                bSortable: false,
+                                aTargets: [ 5 ]
+                            }
+                        ],
 			/*"aoColumns": [
 											{ "asSorting": [ "asc" ] },
 											{ "asSorting": [ "desc", "asc", "asc" ] },

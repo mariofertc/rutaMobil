@@ -160,6 +160,7 @@ function get_foto_admin_table()
 				<th width="20%">Nombre</th>
 				<th width="20%">Imagen</th>
 				<th width="30%">Descripción</th>
+				<th width="10%">Orden</th>
                                 <th width="20%">Acciones</th>
 			</tr>
 		</thead>
@@ -186,6 +187,7 @@ function get_foto_data_row($data,$controller)
 	$table_data_row.='<td width="20%">'.character_limiter($data->nombre,13).'</td>';
 	$table_data_row.='<td width="40%">'.character_limiter($data->imagen_path,30).'</td>';
 	$table_data_row.='<td width="40%">'.character_limiter($data->descripcion,30).'</td>';
+	$table_data_row.='<td width="10%">'.$data->orden.'</td>';
 	$table_data_row.='<td width="5%">'.anchor($controller_name."/view/$data->id?width=".$width."&height=".$height, $CI->lang->line('comun_edit'),array('class'=>'thickbox','title'=>$CI->lang->line($controller_name.'_update'))).'</td>';		
 	$table_data_row.='</tr>';
 	

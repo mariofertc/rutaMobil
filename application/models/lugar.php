@@ -31,6 +31,7 @@ class Lugar extends CI_Model {
         $this->db->where('id_lugar', $lugar_id);
         $this->db->where('deleted', 0);
         $this->db->from('fotos');
+        $this->db->order_by('orden');
 //        $this->db->limit(10);
         $query = $this->db->get();
         

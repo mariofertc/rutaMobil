@@ -39,7 +39,9 @@ class Fotos extends Secure_area {
             'id' => array('checked' => true, 'es_mas' => true),
             'nombre' => array('limit' => 13),
             'imagen_path' => array('limit' => 30),
-            'descripcion' => array('limit' => 30));
+            'descripcion' => array('limit' => 30),
+            'orden'=>array('limit' => 30) 
+            );
         //Eventos Tabla
         $cllAccion = array(
             '1' => array(
@@ -70,6 +72,7 @@ class Fotos extends Secure_area {
 //        $coordenadas = json_encode( array('latitud' => $this->input->post('latitud'), 'longitud' => $this->input->post('longitud')));;
         $data = array(
             'nombre' => $this->input->post('nombre'),
+            'orden' => $this->input->post('orden'),
 //            'imagen_path' => '',
             'descripcion' => $this->input->post('descripcion')
 //            'fecha_actualizacion' => date('Y-m-d h:i:s')

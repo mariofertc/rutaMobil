@@ -61,6 +61,19 @@ echo form_open_multipart('fotos/save/' . $info->id, array('id' => 'form'));
             ?>
         </div>
     </div>
+    
+    <div class="field_row clearfix">
+        <?php echo form_label('Orden:', 'orden', array('class' => 'ssmall_wide')); ?>
+        <div class='form_field'>
+            <?php
+            echo form_input(array(
+                'name' => 'orden',
+                'id' => 'orden',
+                'value' => $info->orden)
+            );
+            ?>
+        </div>
+    </div>
 
     <?php echo form_hidden('lugar_id', $id_lugar) ?>
 </fieldset>
