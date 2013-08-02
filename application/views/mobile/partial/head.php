@@ -141,15 +141,17 @@
                         var chinche = new google.maps.Marker(opcionesChinche);
                         chinche.setMap(mapa);
                         //google.maps.event.addListener(chinche, 'click', function() {            popup();       });
-                        google.maps.event.addListener(chinche, "click", function() {
-                            //                            infowindow.setContent("Te encuentras aqui!Distancia a Baños es: " +  (distance) + " km"); //sets the content of your global infowindow to string "Tests: "
-                            infowindow.setContent("<div style='color:black'>Te encuentras aqui!</div><div style='color:black'>Distancia a Baños es: " +  (distance) + " km </div>"); //sets the content of your global infowindow to string "Tests: "
-                            //                            infowindow.setContent("<div>Te encuentras aqui!</div><div>Distancia a Baños es:  km </div>"); //sets the content of your global infowindow to string "Tests: "
-                            infowindow.open(mapa,chinche); //then opens the infowindow at the marker
-                        });
+
                         infowindow = new google.maps.InfoWindow({   //infowindow options set
                             maxWidth: 320
                         });
+                        google.maps.event.addListener(chinche, "click", function() {
+                            //                            infowindow.setContent("Te encuentras aqui!Distancia a Baños es: " +  (distance) + " km"); //sets the content of your global infowindow to string "Tests: "
+                            infowindow.setContent("<div id='hook' class = 'info_mapa'><h3>Te encuentras aqui!</h3><p>Distancia a Baños es: " +  (distance) + " km </p></div>"); //sets the content of your global infowindow to string "Tests: "
+                            //                            infowindow.setContent("<div>Te encuentras aqui!</div><div>Distancia a Baños es:  km </div>"); //sets the content of your global infowindow to string "Tests: "
+                            infowindow.open(mapa,chinche); //then opens the infowindow at the marker
+                        });
+
                         //Carga de los Lugares.
                         var indice_lugar =  0;
                         $('#sitios_mapa').html("");
@@ -195,20 +197,9 @@
                                                         "<p>Coordenadas: " +  coordenada + " </p></div>"); 
                                                     infowindow.open(mapa,chinche2); 
                                                 });
-
-                                                google.maps.event.addListener(infowindow, "domready", function() {   
-                                                  $('#hook').parent().parent().parent().siblings().addClass("info_mapa");
-                                                });
                                             
                                                 //Actualiza el listado de sitios
-                                                
-                                                $("#sitios_mapa").append('<li><img src='+ icono +' class="ui-li-thumb ui-corner-tr" style="z-index:100; padding:5px 5px">' + $('#distancia_'+this.id_lugar).parent().parent().clone().html() + '</li>'); 
-//                                                $("#sitios_mapa").append($('#distancia_'+this.id_lugar).parent().parent().clone()); 
-//                                                $("#sitios_mapa").append('<li>' + $('#distancia_'+this.id_lugar).parent().clone().html() + '</li>'); 
-//                                                $('#sitios_mapa').append('<li><a href="#"> <img src="<?php base_url() ?>images/imglugar/" width  = "340" height = "279"> <h1>' + this.titulo +
-//                                                '</h1><p></p><div class = "like"></div> <div clas="cmvote" style="float:left;padding-top: 5px; font-size:0.8em;">VOTOS</div> <div class = "comen2"></div> <div class="cmcomen" style="float:left;padding-top: 5px;font-size:0.8em;">COMEN..</div> <span class="ui-li-count">12 km</span></a></li>');
-                                                
-                                                
+                                                $("#sitios_mapa").append('<li><img src='+ icono +' class="ui-li-thumb ui-corner-tr" style="z-index:100; padding:5px 5px">' + $('#distancia_'+this.id_lugar).parent().parent().clone().html() + '</li>');
                                                 if(sessionStorage.lugar_id == this.id_lugar){
                                                     $('select#lugar_select option[value='+this.id_lugar+']').attr('selected', 'selected');
                                                     $('select#lugar_select').selectmenu('refresh');
@@ -242,7 +233,8 @@
                                 });
                             }
                         });
-                        
+                        //Añadir estilos al infoWindow.
+                        google.maps.event.addListener(infowindow, "domready", function(){$('#hook').parent().parent().parent().siblings().addClass("info_mapa");});     
                         //Refresh Style
                         $('#sitios_mapa').listview('refresh');
 
