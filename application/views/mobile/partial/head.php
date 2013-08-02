@@ -148,7 +148,7 @@
                             infowindow.open(mapa,chinche); //then opens the infowindow at the marker
                         });
                         infowindow = new google.maps.InfoWindow({   //infowindow options set
-                            maxWidth: 355
+                            maxWidth: 320
                         });
                         //Carga de los Lugares.
                         var indice_lugar =  0;
@@ -165,11 +165,13 @@
                                             }
                                             var latlng_lugares = new google.maps.LatLng(this.latitud , this.longitud);  
                                             var distance_sitio = (google.maps.geometry.spherical.computeDistanceBetween(latlng_current, latlng_lugares)/1000).toFixed(2);
+                                            var arrive_time = (distance_sitio / 90).toFixed(2);
                                             var titulo = this.titulo;
                                             var coordenada = this.latitud + " - " + this.longitud;
                                             //Actualiza sitio contenido
                                             $('#distancia_'+this.id_lugar).html(distance_sitio + " Km");
                                             $('#distancia2_'+this.id_lugar).html(distance_sitio + " Km");
+                                            $('#tiempo_'+this.id_lugar).html(arrive_time + " Horas");
                                             var icono = null;
                                             if(sessionStorage.lugar_id == this.id_lugar || sessionStorage.lugar_id ==  0)
                                             {
@@ -187,11 +189,15 @@
                                                 var chinche2 = new google.maps.Marker(opcionesOjos);
                                                 chinche2.setMap(mapa);
                                                 google.maps.event.addListener(chinche2, "click", function() {
-                                                    infowindow.setContent("<div style='color:black'>"
+                                                    infowindow.setContent("<div id='hook' class='info_mapa'><h3>"
                                                         + titulo +
-                                                        "</div><div style='color:black'>Distancia al lugar es: " +  (distance_sitio) + " km </div>" +
-                                                        "<div style='color:black'>Coordenadas: " +  coordenada + " </div>"); 
+                                                        "</h3><p>Distancia al lugar es: " +  (distance_sitio) + " km </p>" +
+                                                        "<p>Coordenadas: " +  coordenada + " </p></div>"); 
                                                     infowindow.open(mapa,chinche2); 
+                                                });
+
+                                                google.maps.event.addListener(infowindow, "domready", function() {   
+                                                  $('#hook').parent().parent().parent().siblings().addClass("info_mapa");
                                                 });
                                             
                                                 //Actualiza el listado de sitios

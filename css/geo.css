@@ -12,3 +12,25 @@
 #search_map{
 	width: 33%;
 }
+.info_mapa
+{
+	font-family: "Comic Sans MS", cursive;
+ font-size: 10px;
+ border-top-width: 0px;
+ border-right-width: 0px;
+ border-bottom-width: 0px;
+ border-left-width: 0px;
+ border-top-style: none;
+ border-right-style: none;
+ border-bottom-style: none;
+ border-left-style: none;
+ letter-spacing: normal;
+ text-align: center;
+ vertical-align: middle;
+ word-spacing: normal;
+ border-radius: 25px;
+}
+
+img[src*="iws3.png"] {
+    display: none;
+}

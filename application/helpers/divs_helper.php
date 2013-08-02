@@ -32,7 +32,7 @@ function get_lugares($oferta_items, $opciones, $ci) {
         //Titulo
         $data_div .= '<li class="title"> <div class="icontitle">' . $oferta->icon .
                 '</div> <h1>' . $oferta->nombre .
-                '</h1><h4><a href="#home">inicio</a>/<a href="#oferta">oferta</a>&nbsp;' . $oferta->descripcion . '</h4></li>';
+                '</h1><div class="migas"><h4><a href="#home">inicio</a>/<a href="#oferta">oferta</a>&nbsp;' . $oferta->descripcion . '</h4></div></li>';
         $data_div .= '<div data-role="content" data-theme="d" class="conte" >';
         if (isset($opciones['busqueda']) == true)
             $data_div .= '<ul data-role="listview" data-dividertheme="e" class="titulo" data-inset="true" data-filter="true" data-filter-placeholder="¿Qué ' . $oferta->nombre . ' buscas?" data-autodividers="false">';
@@ -71,7 +71,7 @@ function get_lugar($oferta_items, $opciones, $ci) {
             //Titulo
             $data_div .= '<li class="title"> <div class="icontitle">' . $oferta->icon .
                     '</div> <h1>' . $lugar->nombre .
-                    '</h1><h4><a href="#home">inicio</a>/<a href="#oferta">oferta</a>/<a href="#'. $oferta->nombre_enlace .'">'.$oferta->nombre_enlace.'</a></h4></li>';
+                    '</h1><div class="migas"><h4><a href="#home">inicio</a>/<a href="#oferta">oferta</a>/<a href="#'. $oferta->nombre_enlace .'">'.$oferta->nombre_enlace.'</a></h4></div></li>';
             $data_div .= '<div data-role="content" data-theme="d" class="conte" >';
 
             $data_div .= "<div class = 'flexslider'>" . '<ul class = "slides">';
@@ -101,7 +101,7 @@ function get_lugar($oferta_items, $opciones, $ci) {
 <li title="Tiempo de llegada" class="atrib" name="tllegada">
 <div class="icon3">P</div>
 <h1>TIEMPO DE LLEGADA</h1>
-<p>4 Horas</p>
+<p id="tiempo_'.$lugar->id.'">4 Horas</p>
 </li>
 <li title="Altitud" class="atrib" name="altitud">
 <div class="icon3">S</div>

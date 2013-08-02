@@ -17,4 +17,4 @@
 
 
     <li class="title2"> <div class="icontitle">C</div> <h1>Oferta Turística</h1>
-    <h4><a href="#home">inicio</a></h4></li>
+    <div class='migas'><h4><a href="#home">inicio</a></h4></div></li>
