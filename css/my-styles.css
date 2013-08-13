@@ -72,8 +72,7 @@ html{
     font-size:16px;
 }
 
-body .ui-body-c, body .ui-overlay-c { text-shadow:0 0 0; }
-body .ui-body-c, body .ui-overlay-c { text-shadow:0 0 0 !important; } // more specificity
+
 
 #backToTop {
     background-color: black;
@@ -485,7 +484,7 @@ a.ui-link.icon3 h1{
     top:0px;
     font-family: 'Terminal Dosis', Arial, sans-serif;
     font-weight: normal;
-    font-size: 1.1em;
+    font-size: 1em;
 }
 .content form{
     font-family: 'bebas_neueregular', sans-serif;
