@@ -1,3 +1,21 @@
+.migas h4 a
+{
+    text-transform: uppercase;
+    text-decoration: none;
+    color: black !important;
+    font-weight: normal;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+}
+.migas h4 a:hover
+{
+   color:orange !important;
+  
+
+}
 
 
 @font-face {
@@ -10,6 +28,10 @@
         font-weight: normal;
         font-style: normal;
 
+}
+
+html{
+    font-size:16px;
 }
 
 
@@ -44,35 +66,6 @@
 @-o-keyframes corazon {
     to { -o-transform: scale(.9); }
 }
-
-
-.migas h4 a
-{
-    text-transform: uppercase;
-    text-decoration: none;
-    color: black !important;
-    font-weight: normal;
-    -webkit-transition: all 1s ease;
-    -moz-transition: all 1s ease;
-    -ms-transition: all 1s ease;
-    -o-transition: all 1s ease;
-    transition: all 1s ease;
-}
-
-
-
-.migas h4 a:hover
-{
-   color:orange !important;
-  
-
-}
-
-html{
-    font-size:16px;
-}
-
-
 
 #backToTop {
     background-color: black;
@@ -198,11 +191,11 @@ line-height: 1.5em;
     font-family: 'bebas_neueregular';
     font-style: normal;
     font-weight: normal;
-    font-size: 1em;
+    /*font-size: 1em;*/
 }
 
 .titulo p{
-    font-family:Arial,Elvetica;
+    font-family: 'Terminal Dosis', Arial, sans-serif;
     font-style: normal;
     /*font-weight: normal;*/
     font-size:14px;
@@ -484,7 +477,6 @@ a.ui-link.icon3 h1{
     top:0px;
     font-family: 'Terminal Dosis', Arial, sans-serif;
     font-weight: normal;
-    font-size: 1em;
 }
 .content form{
     font-family: 'bebas_neueregular', sans-serif;
