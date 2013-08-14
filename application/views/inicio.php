@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Bienvenido a Rutas Móbiles</title>
+	<title>Bienvenido a ecuadorinmobile</title>
 
 	<style type="text/css">
 
