@@ -13,4 +13,3 @@
         <p class="copyright">&copy; 2012 Rutas moviles.com &nbsp;&nbsp;</p>
 </div>
 
-<!-- <a href="index.html" data-role="button" data-icon="smile" data-theme="b">data-icon="smile"</a> -->

@@ -22,6 +22,8 @@
         
         <script src="<?php echo base_url();?>js/common.js" type="text/javascript"></script>
         
+     
+        
 
 
 
@@ -35,7 +37,8 @@
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyASASA_pjRkAuGNn0_02vfc0eFGlLKH9hE&sensor=false&v=3&libraries=geometry"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>js/mapa/geoPosition.js"></script>
 
-
+        <!--== ICONOS PERSONALIZADOS==-->
+        
         <link href="<?php echo base_url(); ?>css/descripcion.css" rel="stylesheet" type="text/css"/>
         <link href="<?php echo base_url(); ?>css/photoswipe.css" type="text/css" rel="stylesheet" />
         <link href="<?php echo base_url(); ?>css/my-styles.css" rel="stylesheet" type="text/css"/>
