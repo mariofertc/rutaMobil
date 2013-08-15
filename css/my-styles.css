@@ -69,6 +69,12 @@ html{
 
 }
 
+/* custom icons */
+.ui-icon-phone-touch
+ {
+    background-image: url(../geo.png);
+    background-repeat: no-repeat;
+}
 
 
 #backToTop {
