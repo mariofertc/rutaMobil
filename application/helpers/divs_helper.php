@@ -32,7 +32,7 @@ function get_lugares($oferta_items, $opciones, $ci) {
         //Titulo
         $data_div .= '<li class="title"> <div class="icontitle">' . $oferta->icon .
                 '</div> <h1>' . $oferta->nombre .
-                '</h1><div class="migas"><h4><a href="#home">inicio</a>/<a href="#oferta">oferta</a>&nbsp;' . $oferta->descripcion . '</h4></div></li>';
+                '</h1><div class="migas"><h4><a href="#home">inicio</a>/<a href="#oferta">oferta</a>&nbsp;'  . '</h4></div></li>';
         $data_div .= '<div data-role="content" data-theme="d" class="conte" >';
         if (isset($opciones['busqueda']) == true)
             $data_div .= '<ul data-role="listview" data-dividertheme="e" class="titulo" data-inset="true" data-filter="true" data-filter-placeholder="¿Qué ' . $oferta->nombre . ' buscas?" data-autodividers="false">';

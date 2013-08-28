@@ -1,7 +1,6 @@
 <?php
 
 class Comentario extends CI_Model {
-
     var $title = '';
     var $content = '';
     var $date = '';
@@ -13,7 +12,7 @@ class Comentario extends CI_Model {
 
     function getall($lugar_id) {
         $this->db->where('id_lugar', $lugar_id);
-        $this->db->order_by('fecha', 'asc');
+        $this->db->order_by('fecha', 'desc');
         $this->db->where('deleted', 0);
         $query = $this->db->get('comentario');
         return $query;
