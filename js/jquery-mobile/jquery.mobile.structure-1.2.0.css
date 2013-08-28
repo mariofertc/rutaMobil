@@ -765,12 +765,18 @@ label.ui-submit { font-size: 16px; line-height: 1.4; font-weight: normal; margin
 .ui-collapsible-content {
 	display: block;
 	margin: 0 -15px;	
-	/* padding: 10px 2px; */
 	border-left-width: 0;
 	border-right-width: 0;
 	border-top: none;      
 	background-image: none; 
+	
 }
+
+#maps{
+
+	padding: 0 12px;
+}
+
 .ui-collapsible-inset .ui-collapsible-content { margin: 0; border-right-width: 1px; border-left-width: 1px; /*padding: 5px;*/ }
 .ui-collapsible-content-collapsed { display: none; }
 .ui-collapsible-set { margin: .5em 0; }

@@ -188,7 +188,7 @@ function get_geo($oferta_items, $opciones, $ci) {
     $data_div .= '<div data-role="content">';
     $data_div .= '<div class="ui-bar-c ui-shadow" style="padding:1em;"><div id="mapa"></div></div></div>';
     $data_div .= '<div data-role="collapsible-set" data-corners="false" >
-<div data-role="collapsible" data-collapsed="true">
+<div id="maps"data-role="collapsible" data-collapsed="false">
 <h3>Sitios Encontrados</h3>
 <p>
 <ul id="sitios_mapa" data-role="listview" data-dividertheme="e" class="titulo" data-inset="true" data-autodividers="false">
