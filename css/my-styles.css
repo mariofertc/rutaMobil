@@ -289,7 +289,7 @@ line-height: 1.5em;
     
 }
 .bannerr {
-    background-image : url(../../images/banner.gif);
+    background-image : url(../images/banner.gif);
     background-repeat: no-repeat;
     height           :49px;    
 }

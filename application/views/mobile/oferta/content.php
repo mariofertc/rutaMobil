@@ -1,6 +1,6 @@
 <div data-role="page" id="oferta" data-theme="a">
 
-	<?php $this->load->view("mobile/oferta/head"); ?>
+	<?php $this->load->view("mobile/partial/head_share"); ?>
 
 	
 		

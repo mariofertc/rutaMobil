@@ -83,5 +83,5 @@
 	</div>
 </div>
 <!--Incluede Footer-->
-<?php $this->load->view("mobile/partial/footer_page"); ?>
+<?php $this->load->view("mobile/home/footer"); ?>
 </div>

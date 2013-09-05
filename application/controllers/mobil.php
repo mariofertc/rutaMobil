@@ -31,6 +31,7 @@ class Mobil extends CI_Controller {
 
         $data['comentario'] = get_add_comentario($this);
         $this->load->view('mobile/comentario/pagina', $data);
+        $this->load->view('mobile/partial/footer', $data);
 
 
 //        $this->load->view('mobile/inicio.php');

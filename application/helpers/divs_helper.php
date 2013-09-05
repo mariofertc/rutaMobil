@@ -67,7 +67,7 @@ function get_lugar($oferta_items, $opciones, $ci) {
         foreach ($lugares->result() as $lugar) {
             $data_div .= '<div data-role="page" id="' . $lugar->nombre_enlace . '" data-theme="d" data-title="' . $lugar->nombre . '">';
             //Encabezado            
-            $data_div .= $ci->load->view('mobile/partial/head_share_photo', array('id' => $lugar->nombre_enlace . '1'), true);
+            $data_div .= $ci->load->view('mobile/partial/head_share', array('id' => $lugar->nombre_enlace . '1'), true);
             //Titulo
             $data_div .= '<li class="title"> <div class="icontitle">' . $oferta->icon .
                     '</div> <h1>' . $lugar->nombre .
@@ -78,7 +78,7 @@ function get_lugar($oferta_items, $opciones, $ci) {
             foreach ($ci->Lugar->get_photos($lugar->id)->result() as $row) {
                 if (isset($row->imagen_path))
                     $data_div .= '<li class = "" style = "width: 100%; float: left; margin-right: -100%; position: relative; display: none;">' .
-                            '<img src = "' . base_url() . 'images/imglugar/' . $lugar->nombre_enlace . '/' . $row->imagen_path . '">' .
+                            '<a href="#'.$lugar->nombre_enlace.'1"><img src = "' . base_url() . 'images/imglugar/' . $lugar->nombre_enlace . '/' . $row->imagen_path . '"></a>' .
                             '</li>';
             }
             $data_div .= "</ul>" . '<ol class = "flex-control-nav flex-control-paging"><ul class = "flex-direction-nav"></div>';
@@ -133,7 +133,7 @@ function get_lugar($oferta_items, $opciones, $ci) {
                     $data_div .= '<div class="shadow2box"><img src="' . base_url() . 'images/shadow.png" class="shadow2" alt="shadow"></div>';
             $data_div .= "</div>";
             $data['lugar'] = $lugar;
-            $data_div .= $ci->load->view('mobile/partial/footer_page', $data, true);
+            $data_div .= $ci->load->view('mobile/partial/footer_share_photo', $data, true);
             $data_div .= "</div>";
         }
     }

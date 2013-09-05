@@ -1,5 +1,4 @@
 <div data-role="header" data-theme="a" class="yellow">
-   <div class="bannerr"></div>
 		<div data-role="navbar" data-theme="e" class="pie">
             <ul>
                 <li title="inicio"><a href="#home" class="ui-btn-active"data-transition="slideup" data-icon="home">Inicio</a></li>
