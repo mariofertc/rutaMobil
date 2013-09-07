@@ -1,3 +1,4 @@
+
 function get_dimensions() 
 {
 	var dims = {width:0,height:0};
@@ -59,6 +60,70 @@ function saveVoto(lugar_id)
             alert("Fallo al registrar su voto. Error "  + msg);
        },
        dataType:'json'
-     });
-    
+     });    
 }
+
+
+$(document).on('change', 'select#oferta_select', function() {
+    deg(this);
+});
+function deg(obj) {
+    var val = obj.value;
+    jQuery.ajax({url: 'mobil/get_lugares/',
+        data: {id: val},
+        type: 'post',
+        success: function(output) {
+            var el = $('select#lugar_select');
+            el.empty();
+            el.append('<option value=0>Escoja un lugar...</option>');
+            $.each(output, function() {
+                var opt = '<option value="' + this.id + '">' + this.nombre + '</option>';
+                el.append(opt);
+            });
+            $('select#lugar_select').selectmenu('refresh');
+        },
+        dataType: "json"
+    });
+}
+
+//scrip ts flex slider
+//TOP
+//            $(window).scroll(function(){
+//if (window.pageYOffset >= 1500) {
+//$('#scroll-up:not(:visible)').fadeIn();
+//} else {
+//$('#scroll-up:visible').fadeOut();
+//}
+//}); 
+
+var backToTop = {
+    init: function() {
+//                $('html, body').append('<a href="" id="backToTop" data-role="button"   data-corners="false" data-icon="arrow-u" data-theme="b">Back to top</a>');
+
+        var section2 = '<a href="" id="backToTop" data-role="button"   data-corners="false" data-icon="arrow-u" data-theme="b">Back to top</a>';
+        myClone2 = $(section2);
+        myClone2.appendTo("html").trigger('create');
+        $('#backToTop').click(backToTop.click);
+//                $(window).bind('scrollstart', backToTop.scrollStart);
+//                $(window).bind('scrollstop', backToTop.scrollStop);
+        $(window).on('scrollstart', backToTop.scrollStart);
+        $(window).on('scrollstop', backToTop.scrollStop);
+//                $('body').trigger('create');
+//                $('#oferta').trigger('pagecreate');
+    },
+    click: function() {
+        $('html, body').animate({scrollTop: 0}, 400);
+    },
+    scrollStart: function() {
+        $('#backToTop').hide();
+    },
+    scrollStop: function() {
+        var windowHeight = $(window).height();
+        if (window.pageYOffset > windowHeight) {
+            $('#backToTop').fadeIn('slow');
+        }
+    }
+};
+$(document).on('pagecreate', '#home', function(event, ui) {
+    backToTop.init();
+});

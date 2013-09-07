@@ -28,7 +28,8 @@ function get_lugares($oferta_items, $opciones, $ci) {
     foreach ($oferta_items->result() as $oferta) {
         $data_div .= '<div data-role="page" id="' . $oferta->nombre_enlace . '" data-theme="a">';
         //Encabezado
-        $data_div .= $ci->load->view('mobile/partial/head_share', '', true);
+        $data['oferta'] = $oferta;
+        $data_div .= $ci->load->view('mobile/partial/head_share', $data, true);
         //Titulo
         $data_div .= '<li class="title"> <div class="icontitle">' . $oferta->icon .
                 '</div> <h1>' . $oferta->nombre .
@@ -53,8 +54,8 @@ function get_lugares($oferta_items, $opciones, $ci) {
         if (isset($opciones['shadow']) == true)
             $data_div .= '<div class="shadow2box"><img src="' . base_url() . 'images/shadow.png" class="shadow2" alt="shadow"></div>';
         $data_div .= "</div>";
-	$data['oferta'] = $oferta;
-        $data_div .= $ci->load->view('mobile/partial/footer_page', $data, true);
+	
+        $data_div .= $ci->load->view('mobile/partial/footer_page', null, true);
         $data_div .= "</div>";
     }
     return $data_div;
@@ -67,7 +68,8 @@ function get_lugar($oferta_items, $opciones, $ci) {
         foreach ($lugares->result() as $lugar) {
             $data_div .= '<div data-role="page" id="' . $lugar->nombre_enlace . '" data-theme="d" data-title="' . $lugar->nombre . '">';
             //Encabezado            
-            $data_div .= $ci->load->view('mobile/partial/head_share', array('id' => $lugar->nombre_enlace . '1'), true);
+            $data['lugar'] = $lugar;
+            $data_div .= $ci->load->view('mobile/partial/head_share', $data, true);
             //Titulo
             $data_div .= '<li class="title"> <div class="icontitle">' . $oferta->icon .
                     '</div> <h1>' . $lugar->nombre .
@@ -132,8 +134,8 @@ function get_lugar($oferta_items, $opciones, $ci) {
                 if ($opciones['shadow'] == true)
                     $data_div .= '<div class="shadow2box"><img src="' . base_url() . 'images/shadow.png" class="shadow2" alt="shadow"></div>';
             $data_div .= "</div>";
-            $data['lugar'] = $lugar;
-            $data_div .= $ci->load->view('mobile/partial/footer_share_photo', $data, true);
+            
+            $data_div .= $ci->load->view('mobile/partial/footer_share_photo', array('id' => $lugar->nombre_enlace . '1'), true);
             $data_div .= "</div>";
         }
     }
@@ -150,8 +152,8 @@ function get_photos($oferta_items, $opciones, $ci) {
             //<div data-role="page" id="iglesia1" data-title="Portfolio">
             $data_div .= '<div data-role="page" id="' . $lugar->nombre_enlace . '1" data-theme="d" data-title="' . $lugar->nombre . '">';
             //Encabezado
-
-            $data_div .= $ci->load->view('mobile/partial/head_share', '', true);
+            $data['lugar'] = $lugar;
+            $data_div .= $ci->load->view('mobile/partial/head_share', $data, true);
             //Titulo
             $data_div .= '<ul id="gallery' . $val++ . '" class="gallery">';
             $row = $ci->Lugar->get_photos($lugar->id);
@@ -159,8 +161,7 @@ function get_photos($oferta_items, $opciones, $ci) {
                 $data_div .= '<li><a rel="external" href="' . base_url() . 'images/imglugar/' . $lugar->nombre_enlace . '/' . $photo->imagen_path . '"><img src="' . base_url() . 'images/imglugar/' . $lugar->nombre_enlace . '/thumbs/' . $photo->imagen_path . '" alt="Image 018" /></a></li>';
             }
             $data_div .= '</ul>';
-            $data['lugar'] = $lugar;
-            $data_div .= $ci->load->view('mobile/partial/footer_page', $data, true);
+            $data_div .= $ci->load->view('mobile/partial/footer_page', null, true);
             $data_div .= "</div>";
         }
     }
@@ -171,17 +172,16 @@ function get_photos($oferta_items, $opciones, $ci) {
 function get_geo($oferta_items, $opciones, $ci) {
     $data_div = '<div data-role="page" id="geo" data-title="Mapa"  data-theme="c">';
     //Encabezado            
-    $data_div .= $ci->load->view('mobile/partial/head_share', '', true);
+    $data_div .= $ci->load->view('mobile/partial/head_share', null, true);
     //Inicio de Combos de búsqueda del Mapa
-    $data_div .= '<div data-role="controlgroup"   data-type="horizontal" class="nav_geo">';
-    $data_div .= '<select name="oferta_select" id="oferta_select"  data-native-menu=false><option value=0>Escoja una categoría...</option>';
+    $data_div .= '<div data-role="controlgroup" data-type="horizontal" class="nav_geo">';
+    $data_div .= '<select name="oferta_select" id="oferta_select" <!--data-native-menu=false --> data-placeholder="true"><option value=0>Escoja una categoría...</option>';
 //    $lugares = 
     foreach ($oferta_items->result() as $oferta) {
-        $lugares = $ci->Lugar->get_by_categoria($oferta->id);
         $data_div .= '<option value="'.$oferta->id.'">'.$oferta->nombre.'</option>';
     }
     $data_div .= '</select>';
-    $data_div .= '<select name="lugar_select" id="lugar_select"  data-native-menu=false><option value=0>Escoja un lugar...</option>';
+    $data_div .= '<select name="lugar_select" id="lugar_select" <!--data-native-menu=false -->><option value=0>Escoja un lugar...</option>';
     $data_div .= '</select>';
     $data_div .= '<a id="search_map" data-role="button" data-iconpos="right"  data-icon="search">Ir Lugar &raquo;</a>';
     $data_div .= '</div>';
@@ -196,7 +196,7 @@ function get_geo($oferta_items, $opciones, $ci) {
 </p>
 </div> <!-- sierre -->
 </div> <!-- sierre SET-->';
-    $data_div .= $ci->load->view('mobile/partial/footer_page', '', true);
+    $data_div .= $ci->load->view('mobile/partial/footer_page', null, true);
     $data_div .= "</div>";
     return $data_div;
 }
@@ -204,10 +204,10 @@ function get_geo($oferta_items, $opciones, $ci) {
 function get_aboutus($ci) {
     $data_div = '<div data-role="page" id="aboutus" data-title="Mapa"  data-theme="a">';
     //Encabezado            
-    $data_div .= $ci->load->view('mobile/partial/head_share', '', true);
+    $data_div .= $ci->load->view('mobile/partial/head_share', null, true);
     //Contenido
-    $data_div .= $ci->load->view('mobile/about/content', '', true);
-    $data_div .= $ci->load->view('mobile/partial/footer_page', '', true);
+    $data_div .= $ci->load->view('mobile/about/content', null, true);
+    $data_div .= $ci->load->view('mobile/partial/footer_page', null, true);
     $data_div .= "</div>";
     return $data_div;
 }
