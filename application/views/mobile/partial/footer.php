@@ -17,6 +17,7 @@
 <!--scripts flex slider-->
 <script src="<?php echo base_url(); ?>js/jquery/jquery.flexslider.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery/infobox.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery/lazyload.js"></script>
 <script src="<?php echo base_url(); ?>js/mapa.js"></script>
 <script src="<?php echo base_url(); ?>js/comentarios.js"></script>
 </body>

@@ -1,5 +1,4 @@
 <?php
-
 function get_oferta($oferta_items, $opciones) {
     $data_div = '<div data-role="content" data-theme="d">';
     if (isset($opciones['busqueda']) == true)
@@ -43,7 +42,9 @@ function get_lugares($oferta_items, $opciones, $ci) {
 
         foreach ($lugares->result() as $lugar) {
             $data_div .= '<li><a href="#' . $lugar->nombre_enlace .
-                    '"> <img src="' . base_url() . 'images/imglugar/' . $lugar->nombre_enlace . '/' . $lugar->imagen_path .
+                    '"> <img  class="lazy" src= "'. base_url() .'images/stripes.png" data-original ="' . base_url() . 'images/imglugar/' . $lugar->nombre_enlace . '/' . $lugar->imagen_path .
+//                    <img class="lazy" src="img/grey.gif" data-original="img/example.jpg" width="640" height="480">
+//                    '"> <img src= "' . base_url() . 'images/imglugar/' . $lugar->nombre_enlace . '/' . $lugar->imagen_path .
                     '" width  = "340" height = "279"> <h1>' . $lugar->nombre .
                     '</h1><p>' . $lugar->descripcion .
                     '</p>'.'<div class = "like">'.$ci->Voto->get_total($lugar->id)->total.'</div> <div clas="cmvote" style="float:left;padding-top: 5px; font-size:0.8em;">VOTOS</div> <div class = "comen2">'.$ci->Comentario->get_total($lugar->id)->total.'</div> <div clas="cmcomen" style="float:left;padding-top: 5px;font-size:0.8em;">COMEN..</div> <span id=distancia_' . $lugar->id . ' class="ui-li-count">12 km</span></a></li>';
@@ -80,7 +81,9 @@ function get_lugar($oferta_items, $opciones, $ci) {
             foreach ($ci->Lugar->get_photos($lugar->id)->result() as $row) {
                 if (isset($row->imagen_path))
                     $data_div .= '<li class = "" style = "width: 100%; float: left; margin-right: -100%; position: relative; display: none;">' .
-                            '<a href="#'.$lugar->nombre_enlace.'1"><img src = "' . base_url() . 'images/imglugar/' . $lugar->nombre_enlace . '/' . $row->imagen_path . '"></a>' .
+                            //'<a href="#'.$lugar->nombre_enlace.'1"><img src = "' . base_url() . 'images/imglugar/' . $lugar->nombre_enlace . '/' . $row->imagen_path . '"></a>' .
+                            '<a href="#'.$lugar->nombre_enlace.'1"><img class="lazy" src = "'. base_url() .'images/stripes.png" data-original ="' . base_url() . 'images/imglugar/' . $lugar->nombre_enlace . '/' . $row->imagen_path . '"></a>' .
+                            //<img class="lazy" src="img/grey.gif" data-original="img/example.jpg" width="640" height="480">
                             '</li>';
             }
             $data_div .= "</ul>" . '<ol class = "flex-control-nav flex-control-paging"><ul class = "flex-direction-nav"></div>';
@@ -158,7 +161,7 @@ function get_photos($oferta_items, $opciones, $ci) {
             $data_div .= '<ul id="gallery' . $val++ . '" class="gallery">';
             $row = $ci->Lugar->get_photos($lugar->id);
             foreach ($row->result() as $photo) {
-                $data_div .= '<li><a rel="external" href="' . base_url() . 'images/imglugar/' . $lugar->nombre_enlace . '/' . $photo->imagen_path . '"><img src="' . base_url() . 'images/imglugar/' . $lugar->nombre_enlace . '/thumbs/' . $photo->imagen_path . '" alt="Image 018" /></a></li>';
+                $data_div .= '<li><a rel="external" href="' . base_url() . 'images/imglugar/' . $lugar->nombre_enlace . '/' . $photo->imagen_path . '"><img class="lazy" src="'. base_url() .'images/stripes.png" data-original ="' . base_url() . 'images/imglugar/' . $lugar->nombre_enlace . '/thumbs/' . $photo->imagen_path . '" alt="Image 018" /></a></li>';
             }
             $data_div .= '</ul>';
             $data_div .= $ci->load->view('mobile/partial/footer_page', null, true);
@@ -249,8 +252,6 @@ function get_add_comentario() {
 	</div>
 </div>';
 }
-
 /* 
- * To change this template, choose Tools | Templates
- * and open the template in the editors.
+ * Fin de divs_helper
  */

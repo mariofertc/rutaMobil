@@ -1,4 +1,3 @@
-
 function get_dimensions() 
 {
 	var dims = {width:0,height:0};
@@ -126,4 +125,25 @@ var backToTop = {
 };
 $(document).on('pagecreate', '#home', function(event, ui) {
     backToTop.init();
+});
+
+//$('body').on('pageinit', '#atractivos', function( evt, ui ) {
+//    $("#atractivos").lazyloader();
+//    $.mobile.lazyloader.prototype.timeoutOptions.mousewheel = 300;
+//    $.mobile.lazyloader.prototype.timeoutOptions.scrollstart = 700;
+//    $.mobile.lazyloader.prototype.timeoutOptions.scrollstop = 100;
+//    $.mobile.lazyloader.prototype.timeoutOptions.showprogress = 100;
+//});
+$(document).ready(function(){
+//$("img.lazy").lazyload(
+//        {effect : "fadeIn"});
+//});
+//$('body').on('pageinit', '#atractivos', function( evt, ui ) {
+$("img.lazy").lazyload({
+    effect : "fadeIn",
+    failure_limit : 10,
+//    skip_invisible : true
+//    threshold : 200
+});
+$("img.lazy").show().lazyload();
 });
