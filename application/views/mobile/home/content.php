@@ -1,20 +1,48 @@
 <?php $this->load->view("mobile/home/head"); ?>
 <div data-role="content" data-theme="d">
-	<div data-role="collapsible-set">
 
-		<div data-role="content" class="laciudad">
-		 <!--<h1 class="tagline">Response project&nbsp;&nbsp;<p>Historia, antecedentes <p>
-		 <div class="icontitle">C</div>
-		</h1>-->
-			<!-- <li class="title"> <div class="icontitle">C</div> <h1>LA CIUDAD</h1>
-			 <h4>Baños de Agua Santa</h4></li>-->
+
+<div data-role="content" class="laciudad2">
+  <H1>DATOS IMPORTANTES</H1>
+  <p>Distancia,tiempo estimado de llegada, etc. </p>
+   
+   <ul class="items" >
+            <li class="atrib" name="opiniones"> <div class="icon3">S</div> <h1>27 VOTACIONES</h1>
+            <p>27 me gustan</p>
+            </li> 
+             
+             <li class="atrib" name="llevar"><div class="icon3">S</div><h1> 50 COMENTARIOS</h1>
+            <p>50 nuevos comentarios</p>
+            </li> 
+            
+            <li class="atrib" name="distancia"> <div class="icon3">S</div> <h1>DISTANCIA</h1>
+            <p>10 Km</p>
+            </li>             
+            
+            <li class="atrib" name="tllegada"><div class="icon3">S</div><h1>TIMEPO DE LLEGADA</h1>
+            <p>4 Horas</p>
+            </li>            
+            
+            <li class="atrib" name="altitud"><div class="icon3">S</div><h1>ALTITUD</h1>
+            <p>1000 Metros</p>
+            </li>
+            
+           
+             
+  </ul> 
+ 
+</div>
+
+        <div data-role="content" class="laciudad2">
+		 
 
             <h2 style="padding:0px;margin:0px;font-family: 'bebas_neueregular',Verdana; font-weight:normal;">Baños de Agua Santa</h2>
 			<p>Es un cantón perteneciente a la Provincia de Tungurahua, se encuentra ubicada en la base del volcán Tungurahua, en el flanco oriental de la Cordillera de los Andes, sobre una meseta montañosa drenada por los ríos Bascún, Ulba y Pastaza que inciden directamente en la geografía de Baños. Su significativa diferencia de altitud, que va desde los 5016 m.s.n.m en la cima del volcán Tungurahua, pasando por los 1820 m.s.n.m a los que se encuentra la ciudad de Baños, hasta los 1050 m.s.n.m en el límite provincial con Pastaza, generan especiales condiciones climáticas en su camino hacia el oriente, lo que hace del cantón Baños uno de los sitios más privilegiados para la existencia de flora, fauna y paisajes únicos en el mundo.
 			</p>
 		</div>
 
-
+	<div data-role="collapsible-set">
+		
 		<div data-role="collapsible" class="laciudad">
 			<H1>LIMITES DE LA CIUDAD</H1>
 			<p style="padding-top:10px;">Baños, una pequeña ciudad que se encuentra asentada en sobre una meseta basáltica, está rodeado de altas montañas en los andes ecuatorianos, tiene una extensión de 340 hectáreas; conocido en el mundo entero por sus bondades naturales, sus ríos, sus cascadas su flora y fauna, las aguas medicinales que brotan del fondo de la tierra, por el volcán Tungurahua.<br/><br/>

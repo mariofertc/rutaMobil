@@ -517,7 +517,7 @@ background-end}*/);
 	color: 					#333 /*{d-body-color}*/;
 	/*text-shadow: ;*/
 	background: url("../../images/stripes.png") repeat ;
-    border: 1px solid #CCCCCC;
+    /*border: 1px solid #CCCCCC;*/
 }
 .ui-overlay-d {
 	background-image: none;
