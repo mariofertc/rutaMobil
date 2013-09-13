@@ -95,12 +95,14 @@ function cargar(datos) {
             google.maps.event.addListener(infowindow, "domready", function() {
                 $('#hook').parent().parent().parent().siblings().addClass("info_mapa");
             });
-            //Refresh Style
-            $('#sitios_mapa').listview('refresh');
+            //Add lazy load to cloned images.
+            $("img.lazy").show().lazyload();
             distance = (google.maps.geometry.spherical.computeDistanceBetween(obj.latlng_current, latlng_banos) / 1000).toFixed(2);
             google.maps.event.addListenerOnce(mapa, 'idle', function() { mapa.fitBounds( bounds );});
 //            mapa.fitBounds(bounds);
 //            mapa.panToBounds(bounds);
+            //Refresh Style
+            $('#sitios_mapa').listview('refresh');
         }
     }); //Fin del Ajax call           
 }
