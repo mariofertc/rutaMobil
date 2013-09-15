@@ -90,7 +90,9 @@ class Foto extends CI_Model {
         } else {
             //Get empty base parent object, as $item_id is NOT an item
             $obj = new stdClass();
-            $fields = $this->db->list_fields('lugar');
+            $fields_lugar = $this->db->list_fields('lugar');
+            $fields_fotos = $this->db->list_fields('fotos');
+            $fields = (object) array_merge((array) $fields_lugar, (array) $fields_fotos);
             foreach ($fields as $field) {
                 $obj->$field = '';
             }

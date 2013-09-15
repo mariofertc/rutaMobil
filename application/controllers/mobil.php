@@ -9,8 +9,16 @@ class Mobil extends CI_Controller {
         //$this->load->view('mobil/bienvenido');
         //$this->load->view('mobil/menu');
         $this->load->view('mobile/partial/head.php');
-        $this->load->view('mobile/home/content.php');
-        $categoria = $this->Categoria->getall();
+        //$this->load->view('mobile/home/content.php');
+//        $categoria = $this->Categoria->getall();
+        $inicio = $this->Categoria->get_all(100,0,"order = 0");
+//        $this->load->view('mobile/home/content.php');
+        $data['lugar'] = get_lugar($inicio, array('busqueda' => false, 'shadow' => false), $this);
+        $this->load->view('mobile/lugar/pagina', $data);
+        $data['lugar'] = get_photos($inicio, array('busqueda' => false, 'shadow' => false), $this);
+        $this->load->view('mobile/lugar/pagina', $data);
+        
+        $categoria = $this->Categoria->get_all(100,0,"order > 0");
         $data['oferta'] = get_oferta($categoria, array('busqueda' => true, 'shadow' => true));
         $this->load->view('mobile/oferta/content.php', $data);
 
