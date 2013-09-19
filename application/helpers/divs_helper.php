@@ -67,15 +67,18 @@ function get_lugar($oferta_items, $opciones, $ci) {
     foreach ($oferta_items->result() as $oferta) {
         $lugares = $ci->Lugar->get_by_categoria($oferta->id);
         foreach ($lugares->result() as $lugar) {
-            $data_div .= '<div data-role="page" id="' . $lugar->nombre_enlace . '" data-theme="d" data-title="' . $lugar->nombre . '">';
+               $data_div .= '<div data-role="page" id="' . $lugar->nombre_enlace . '" data-theme="d" data-title="' . $lugar->nombre . '">';
             //Encabezado            
             $data['lugar'] = $lugar;
             $data_div .= $ci->load->view('mobile/partial/head_share', $data, true);
             //Titulo
             $data_div .= '<li class="title"> <div class="icontitle">' . $oferta->icon .
                     '</div> <h1>' . $lugar->nombre .
-                    '</h1><div class="migas"><h4><a href="#home">inicio</a>/<a href="#oferta">oferta</a>/<a href="#'. $oferta->nombre_enlace .'">'.$oferta->nombre_enlace.'</a></h4></div></li>';
-            $data_div .= '<div data-role="content" data-theme="d" class="conte" >';
+                    '</h1>';
+            if (!isset($opciones['no_breadcrumbs']))
+                $data_div .='<div class="migas"><h4><a href="#home">inicio</a>/<a href="#oferta">oferta</a>/<a href="#'. $oferta->nombre_enlace .'">'.$oferta->nombre_enlace.'</a></h4></div>';
+            $data_div .='</li>';
+            $data_div .='<div data-role="content" data-theme="d" class="conte">';
 
             $data_div .= "<div class = 'flexslider'>" . '<ul class = "slides">';
             foreach ($ci->Lugar->get_photos($lugar->id)->result() as $row) {
@@ -113,13 +116,7 @@ function get_lugar($oferta_items, $opciones, $ci) {
 <h1>ALTITUD</h1>
 <p>1000 Metros</p>
 </li>
-
-
-
-
 </ul>';
-
-
             $data_div .= "<p>" . $lugar->descripcion . "</p></div>";
             $data_div .= '<div data-role="collapsible" class="laciudad">';
             $data_div .= "<H1> UBICACIÓN DEL DESTINO </h1>";
@@ -130,15 +127,13 @@ function get_lugar($oferta_items, $opciones, $ci) {
             $data_div .= get_comentarios($lugar->id, $ci);
             $data_div .= "</div>";
 
-
-
             //Shadow
             if (isset($opciones['shadow']))
                 if ($opciones['shadow'] == true)
                     $data_div .= '<div class="shadow2box"><img src="' . base_url() . 'images/shadow.png" class="shadow2" alt="shadow"></div>';
             $data_div .= "</div>";
-            
-            $data_div .= $ci->load->view('mobile/partial/footer_share_photo', array('id' => $lugar->nombre_enlace . '1'), true);
+            $opciones['id'] = $lugar->nombre_enlace . '1';
+            $data_div .= $ci->load->view('mobile/partial/footer_share_photo', $opciones, true);
             $data_div .= "</div>";
         }
     }
@@ -205,7 +200,7 @@ function get_geo($oferta_items, $opciones, $ci) {
 }
 
 function get_aboutus($ci) {
-    $data_div = '<div data-role="page" id="aboutus" data-title="Mapa"  data-theme="a">';
+    $data_div = '<div data-role="page" id="aboutus" data-title="Contactanos"  data-theme="a">';
     //Encabezado            
     $data_div .= $ci->load->view('mobile/partial/head_share', null, true);
     //Contenido
@@ -249,6 +244,14 @@ function get_add_comentario() {
 			<a href="docs-dialogs.html" data-role="button" data-rel="back" data-theme="a" onClick="save_todo();" data-icon="check">Aplicar</a>       
 			<a href="index.html" data-icon="delete" data-role="button" data-rel="back" data-theme="c" data-transition="fade" data-direction="reverse" id="cancel">Cancelar</a>    
 		</form>
+	</div>
+</div>';
+}
+
+function get_add_thankyou() {
+    return '<div data-role="page" id="thankyou" data-title="Gracias" data-theme="a" data-url="thankyou">
+	<div data-role="header" data-position="inline" data-theme="a">
+		<h1>Gracias por su mensaje.</h1>
 	</div>
 </div>';
 }

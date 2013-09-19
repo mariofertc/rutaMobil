@@ -13,7 +13,7 @@
             info@banos-ecuador.com</li>
     </ul>
     <div data-role="content" class="content" data-theme="d" style="margin-top:15px">
-        <form>
+        <form action='mobil/send_email' data-url="true">
             <label for="name">Nombre:</label>
             <input type="text" name="name" id="name" value="" placeholder="Escribe aquí tu nombre" />
             <br />
@@ -21,9 +21,9 @@
             <input type="text" name="email" id="email" value="" placeholder="correo@dominio.(com,es,etc.)" />
             <br />
             <label for="textarea">Mensaje:</label>
-            <textarea name="textarea" id="textarea" placeholder="Escribe tu mensaje"></textarea>
+            <textarea name="mensaje" id="mensaje" placeholder="Escribe tu mensaje"></textarea>
             <br />
-            <a href="#thankyou" data-rel="dialog" data-transition="pop" data-role="button" data-inline="true" data-theme="a">Send</a>
+            <input type='submit' data-rel="dialog" data-transition="pop" data-role="button" data-inline="true" data-theme="a" value='Send'/>
             <a href="#aboutus" data-role="button" data-inline="true" data-theme="a">Reset </a>
         </form>
     </div>

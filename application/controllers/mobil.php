@@ -13,7 +13,7 @@ class Mobil extends CI_Controller {
 //        $categoria = $this->Categoria->getall();
         $inicio = $this->Categoria->get_all(100,0,"order = 0");
 //        $this->load->view('mobile/home/content.php');
-        $data['lugar'] = get_lugar($inicio, array('busqueda' => false, 'shadow' => false), $this);
+        $data['lugar'] = get_lugar($inicio, array('no_breadcrumbs' => true, 'shadow' => false, 'no_back'=>true), $this);
         $this->load->view('mobile/lugar/pagina', $data);
         $data['lugar'] = get_photos($inicio, array('busqueda' => false, 'shadow' => false), $this);
         $this->load->view('mobile/lugar/pagina', $data);
@@ -38,6 +38,8 @@ class Mobil extends CI_Controller {
         $this->load->view('mobile/about/pagina', $data);
 
         $data['comentario'] = get_add_comentario($this);
+        $this->load->view('mobile/comentario/pagina', $data);
+        $data['comentario'] = get_add_thankyou($this);
         $this->load->view('mobile/comentario/pagina', $data);
         $this->load->view('mobile/partial/footer', $data);
 
@@ -130,10 +132,41 @@ class Mobil extends CI_Controller {
     function get_lugares()
     {
         $lugares = $this->Lugar->get_by_categoria($_POST['id']);
-//        echo $lugares->result();
         echo json_encode($lugares->result_array());
     }
 
+    function send_email()
+    {
+       $to = $this->input->get('email');
+       $name = $this->input->get('name');
+       $messagetext = "Estimado ".$name."\r\nAgradecemos su tiempo para contactarse con nosotros.\r\n\r\nSu mensaje:\r\n".$this->input->get('mensaje');
+       $subject = "Contactos Ecuadorinmobile";
+       $config=array(
+      'protocol'=>'smtp',
+      'smtp_host'=>'ssl://hosting.dnsseguras.com',
+      'smtp_port'=>465,
+      'smtp_user'=>'info@ecuadorinmobile.com',
+      'smtp_pass'=>'12345qwer_1'
+    );
+       $config['smtp_timeout'] = 5;
+    $this->load->library("email",$config);
+    $this->email->set_newline("\r\n");
+    $this->email->from("info@ecuadorinmobile.com","Administrador");
+    $this->email->to($to); 
+    $this->email->bcc('mariofertc@hotmail.es'); 
+    $this->email->subject($subject); 
+    $this->email->message($messagetext); 
+    if($this->email->send())
+    {
+//        $this->load->view('mobile/lugar/pagina', $data);
+        redirect('mobil#thankyou', 'location');
+//        echo "{success:'Mensaje enviado correctamente'}";
+    }
+    else
+    {
+        show_error($this->email->print_debugger());
+    }
+}
 }
 
 /* End of file welcome.php */
