@@ -219,10 +219,7 @@ function get_comentarios($lugar_id, $ci) {
         $data_div .= '<li><h3>' . $comentario->nombre_comentario . '</h3><p><strong>' . $comentario->titulo .
                 '</strong></p><p>' . $comentario->mensaje . '</p><p class="ui-li-aside"><strong>' . $comentario->fecha .
                 '</strong></p></li>';
-//        die(var_dump($comentario));
-//        return var_dump($data_div);
     }
-//    $data_div .= '<li><a href="index.html"><h3>jQuery Team</h3><p><strong>Boston Conference Planning</strong></p><p>In preparation for the upcoming conference in Boston, we need to start gathering a list of sponsors and speakers.</p><p class="ui-li-aside"><strong>9:18</strong>AM</p></a></li>';
     $data_div .= '</ul><div data-role="navbar"  data-theme="b" ><ul><li><a href="#add_comment" data-icon="plus"  data-position="inline" data-rel="dialog" onclick="sessionStorage.lugar_id=' . $lugar_id . '">AÑADIR COMENTARIO</a></li><li onClick="saveVoto('. $lugar_id .')"><a href="#" data-icon="star"  data-position="inline" data-rel="dialog"> VOTAR </a></li></ul></div></div>';
     return $data_div;
 }
@@ -248,12 +245,17 @@ function get_add_comentario() {
 </div>';
 }
 
-function get_add_thankyou() {
-    return '<div data-role="page" id="thankyou" data-title="Gracias" data-theme="a" data-url="thankyou">
-	<div data-role="header" data-position="inline" data-theme="a">
+function get_add_thankyou($ci) {
+    $data_div = '<div data-role="page" id="thankyou" data-title="Gracias" data-theme="a" data-url="thankyou">';
+    //Encabezado            
+    $data_div .= $ci->load->view('mobile/partial/head_share', null, true);
+    //Contenido
+    $data_div .= '<div data-role="header" data-position="inline" data-theme="a">
 		<h1>Gracias por su mensaje.</h1>
-	</div>
-</div>';
+                </div>';
+    $data_div .= $ci->load->view('mobile/partial/footer_page', null, true);
+    $data_div .= "</div>";
+    return $data_div;
 }
 /* 
  * Fin de divs_helper

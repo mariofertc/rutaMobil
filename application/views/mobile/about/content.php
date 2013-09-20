@@ -13,7 +13,7 @@
             info@banos-ecuador.com</li>
     </ul>
     <div data-role="content" class="content" data-theme="d" style="margin-top:15px">
-        <form action='mobil/send_email' data-url="true">
+        <form action='mobil/send_email' data-ajax="false">
             <label for="name">Nombre:</label>
             <input type="text" name="name" id="name" value="" placeholder="Escribe aquí tu nombre" />
             <br />

@@ -137,36 +137,35 @@ class Mobil extends CI_Controller {
 
     function send_email()
     {
-       $to = $this->input->get('email');
-       $name = $this->input->get('name');
-       $messagetext = "Estimado ".$name."\r\nAgradecemos su tiempo para contactarse con nosotros.\r\n\r\nSu mensaje:\r\n".$this->input->get('mensaje');
-       $subject = "Contactos Ecuadorinmobile";
-       $config=array(
-      'protocol'=>'smtp',
-      'smtp_host'=>'ssl://hosting.dnsseguras.com',
-      'smtp_port'=>465,
-      'smtp_user'=>'info@ecuadorinmobile.com',
-      'smtp_pass'=>'12345qwer_1'
-    );
-       $config['smtp_timeout'] = 5;
-    $this->load->library("email",$config);
-    $this->email->set_newline("\r\n");
-    $this->email->from("info@ecuadorinmobile.com","Administrador");
-    $this->email->to($to); 
-    $this->email->bcc('mariofertc@hotmail.es'); 
-    $this->email->subject($subject); 
-    $this->email->message($messagetext); 
-    if($this->email->send())
-    {
-//        $this->load->view('mobile/lugar/pagina', $data);
-        redirect('mobil#thankyou', 'location');
-//        echo "{success:'Mensaje enviado correctamente'}";
+        $to = $this->input->get('email');
+        $name = $this->input->get('name');
+        $messagetext = "Estimado ".$name."\r\nAgradecemos su tiempo para contactarse con nosotros.\r\n\r\nSu mensaje:\r\n".$this->input->get('mensaje');
+        $subject = "Contactos Ecuadorinmobile";
+        $config=array(
+         'protocol'=>'smtp',
+         'smtp_host'=>'ssl://hosting.dnsseguras.com',
+         'smtp_port'=>465,
+         'smtp_user'=>'info@ecuadorinmobile.com',
+         'smtp_pass'=>'12345qwer_1'
+        );
+        $config['smtp_timeout'] = 5;
+        $this->load->library("email",$config);
+        $this->email->set_newline("\r\n");
+        $this->email->from("info@ecuadorinmobile.com","Administrador");
+        $this->email->to($to); 
+        $this->email->bcc('mariofertc@hotmail.es'); 
+        $this->email->subject($subject); 
+        $this->email->message($messagetext); 
+        if($this->email->send())
+        {
+            header('Location: mobil#thankyou');
+//            redirect('#thankyou",'location');
+        }
+        else
+        {
+            show_error($this->email->print_debugger());
+        }
     }
-    else
-    {
-        show_error($this->email->print_debugger());
-    }
-}
 }
 
 /* End of file welcome.php */
