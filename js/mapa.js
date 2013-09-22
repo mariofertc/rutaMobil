@@ -102,7 +102,8 @@ function cargar(datos) {
 //            mapa.fitBounds(bounds);
 //            mapa.panToBounds(bounds);
             //Refresh Style
-            $('#sitios_mapa').listview('refresh');
+            if ( $('#sitios_mapa').hasClass('ui-listview')) {
+            $('#sitios_mapa').listview('refresh');}
         }
     }); //Fin del Ajax call           
 }

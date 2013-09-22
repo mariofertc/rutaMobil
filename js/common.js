@@ -124,11 +124,12 @@ var backToTop = {
     }
 };
 $(document).on('pagecreate', '#home', function(event, ui) {
-    backToTop.init();
+//    backToTop.init();
 });
 
 $(document).ready(function(){
-$("img.lazy").lazyload({
+    backToTop.init();
+    $("img.lazy").lazyload({
 //    effect : "fadeIn",
     failure_limit : 10,
 //    skip_invisible : true

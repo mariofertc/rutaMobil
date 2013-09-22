@@ -85,7 +85,7 @@ function get_lugar($oferta_items, $opciones, $ci) {
                 if (isset($row->imagen_path))
                     $data_div .= '<li class = "" style = "width: 100%; float: left; margin-right: -100%; position: relative; display: none;">' .
                             //'<a href="#'.$lugar->nombre_enlace.'1"><img src = "' . base_url() . 'images/imglugar/' . $lugar->nombre_enlace . '/' . $row->imagen_path . '"></a>' .
-                            '<a href="#'.$lugar->nombre_enlace.'1"><img class="lazy" src = "'. base_url() .'images/stripes.png" data-original ="' . base_url() . 'images/imglugar/' . $lugar->nombre_enlace . '/' . $row->imagen_path . '"></a>' .
+                            '<a href="#'.$lugar->nombre_enlace.'1"><img class="lazy" src = "'. base_url() .'images/stripes_l.png" data-original ="' . base_url() . 'images/imglugar/' . $lugar->nombre_enlace . '/' . $row->imagen_path . '"></a>' .
                             //<img class="lazy" src="img/grey.gif" data-original="img/example.jpg" width="640" height="480">
                             '</li>';
             }

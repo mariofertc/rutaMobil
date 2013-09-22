@@ -18,7 +18,7 @@ class Categoria extends CI_Model {
         return $query;
     }
 
-    function get_all($num = 0, $offset = 0, $where, $order = null) {
+    function get_all($num = 0, $offset = 0, $where=null, $order = null) {
         if ($order == null)
             $order = "id";
         //$this->db->select('id','nombre');

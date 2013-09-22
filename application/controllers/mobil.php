@@ -6,14 +6,12 @@ if (!defined('BASEPATH'))
 class Mobil extends CI_Controller {
 
     public function index() {
-        //$this->load->view('mobil/bienvenido');
-        //$this->load->view('mobil/menu');
         $this->load->view('mobile/partial/head.php');
-        //$this->load->view('mobile/home/content.php');
-//        $categoria = $this->Categoria->getall();
+        //Para el Inicio de la Pagina web.
         $inicio = $this->Categoria->get_all(100,0,"order = 0");
-//        $this->load->view('mobile/home/content.php');
         $data['lugar'] = get_lugar($inicio, array('no_breadcrumbs' => true, 'shadow' => false, 'no_back'=>true), $this);
+        $this->load->view('mobile/lugar/pagina', $data);
+        $data['lugar'] = get_lugares($inicio, array('busqueda' => true, 'shadow' => true), $this);
         $this->load->view('mobile/lugar/pagina', $data);
         $data['lugar'] = get_photos($inicio, array('busqueda' => false, 'shadow' => false), $this);
         $this->load->view('mobile/lugar/pagina', $data);
@@ -21,7 +19,6 @@ class Mobil extends CI_Controller {
         $categoria = $this->Categoria->get_all(100,0,"order > 0");
         $data['oferta'] = get_oferta($categoria, array('busqueda' => true, 'shadow' => true));
         $this->load->view('mobile/oferta/content.php', $data);
-
 
         $data['lugar'] = get_lugares($categoria, array('busqueda' => true, 'shadow' => true), $this);
         $this->load->view('mobile/lugar/pagina', $data);
@@ -153,7 +150,7 @@ class Mobil extends CI_Controller {
         $this->email->set_newline("\r\n");
         $this->email->from("info@ecuadorinmobile.com","Administrador");
         $this->email->to($to); 
-        $this->email->bcc('mariofertc@hotmail.es'); 
+        $this->email->bcc('ecuadori@ecuadorinmobile.com'); 
         $this->email->subject($subject); 
         $this->email->message($messagetext); 
         if($this->email->send())
