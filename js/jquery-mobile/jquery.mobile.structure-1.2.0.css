@@ -53,7 +53,7 @@ div.ui-mobile-viewport { overflow-x: hidden; }
 .ui-header .ui-btn-icon-notext { top: 6px; }
 .ui-header .ui-title, .ui-footer .ui-title { min-height: 1.1em; text-align: center; font-size: 16px; display: block; margin: .6em 30% .8em; padding: 0; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; outline: 0 !important; font-family: 'bebas_neueregular'; font-weight:normal;}
 .ui-footer .ui-title { margin: .6em 15px .8em; }
-.ui-content { overflow: visible; overflow-x: hidden; padding: 8px 10px; background: white; border: 1px solid silver; }
+.ui-content { overflow: visible; overflow-x: hidden; padding: 8px 10px; background: white;}
 .ui-icon { width: 18px; height: 18px; }
 .ui-nojs { position: absolute; left: -9999px; }
 .ui-hide-label label.ui-input-text, .ui-hide-label label.ui-select, .ui-hide-label label.ui-slider, .ui-hide-label label.ui-submit, .ui-hide-label .ui-controlgroup-label,
@@ -750,7 +750,7 @@ label.ui-submit { font-size: 16px; line-height: 1.4; font-weight: normal; margin
 .ui-collapsible-heading { font-size: 16px; display: block; margin: 0 -15px; padding: 0; position: relative; }
 .ui-collapsible-inset .ui-collapsible-heading { margin: 0; }
 .ui-collapsible-heading .ui-btn {font-family: 'bebas_neueregular',Helvetica,Arial,sans-serif; font-style: normal; font-weight: normal;text-align: left; margin: 0; border-left-width: 0; border-right-width: 0; }
-.ui-collapsible-inset .ui-collapsible-heading .ui-btn { /*border-right-width: 1px; border-left-width: 1px;*/ }
+.ui-collapsible-inset .ui-collapsible-heading .ui-btn { border-right-width: 1px; border-left-width: 1px; }
 .ui-collapsible-collapsed + .ui-collapsible:not(.ui-collapsible-inset) .ui-collapsible-heading .ui-btn { border-top-width: 0; }
 .ui-collapsible-set .ui-collapsible:not(.ui-collapsible-inset) .ui-collapsible-heading .ui-btn { border-top-width: 1px; }
 .ui-collapsible-heading .ui-btn-inner,
@@ -1077,8 +1077,12 @@ input.ui-input-text, textarea.ui-input-text { background-image: none; padding: .
 input.ui-input-text.ui-mini, textarea.ui-input-text.ui-mini { margin: .25em 0; }
 .ui-field-contain input.ui-input-text, .ui-field-contain textarea.ui-input-text { margin: 0; }
 input.ui-input-text, textarea.ui-input-text, .ui-input-search { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; box-sizing: border-box; }
-input.ui-input-text { -webkit-appearance: none; }
-textarea.ui-input-text { height: 50px; -webkit-transition: height 200ms linear; -moz-transition: height 200ms linear; -o-transition: height 200ms linear; transition: height 200ms linear; }
+input.ui-input-text { -webkit-appearance: none; border: 1px solid silver}
+
+form input.ui-input-text {
+	border: solid 1px silver;
+}
+textarea.ui-input-text {border: 1px solid silver; height: 50px; -webkit-transition: height 200ms linear; -moz-transition: height 200ms linear; -o-transition: height 200ms linear; transition: height 200ms linear; }
 .ui-input-search { padding: 0 30px; margin: .5em 0; background-image: none; position: relative; }
 .ui-input-search.ui-mini { margin: .25em 0; }
 .ui-field-contain .ui-input-search { margin: 0; }
