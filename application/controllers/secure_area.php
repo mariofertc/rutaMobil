@@ -1,9 +1,22 @@
 <?php
+/**
+ * Secure_Area Archivo, Ecuadorinmobile 
+ * 
+ * @author Mario Torres <mariofertc@mixmail.com>
+ * @version 1.0
+ * @package secure_area
+ */
+/**
+ * Seguridad para el Sistema de Administración.
+ * 
+ * Los controladores que desean tener seguridad deben extender la Clase Secure_area
+ * @package Secure_Area
+ */
 class Secure_area extends CI_Controller 
 {
-	/*
-	Controllers that are considered secure extend Secure_area, optionally a $module_id can
-	be set to also check if a user can access a particular module in the system.
+	/**
+         * Constructor
+         * @param string $module_id: Identificador del módulo.
 	*/
 	function __construct($module_id=null)
 	{
@@ -12,7 +25,6 @@ class Secure_area extends CI_Controller
 		 if(!$this->Empleado->is_logged_in())
 		 {
 			redirect('login');
-//			 $this->Empleado->login('invitado','invitado');
 		 }
 		
 		 if(!$this->Empleado->has_permission($module_id,$this->Empleado->get_logged_in_empleado_info()->persona_id))
@@ -26,5 +38,4 @@ class Secure_area extends CI_Controller
 		$this->load->vars($data);
 	}
 }
-/*Fin del Archivo
-	*/
+/*Fin del Archivo Secure_area.php*/

@@ -1,7 +1,13 @@
 <?php
-/*
-This interface is implemented by any controller that keeps track of data items, such
-as the customers, employees, and items controllers.
+/**
+ * Interfaz de Controlador Archivo, Ecuadorinmobile 
+ * 
+ * @author Mario Torres <mariofertc@mixmail.com>
+ * @version 1.0
+ * @package Interfaz
+ */
+/**
+Interfaz de controladores para formularios.
 */
 interface iData_controller
 {
@@ -14,4 +20,4 @@ interface iData_controller
 	public function delete();
 	public function get_form_width();
 }
-?>
+/*Fin del Archivo iData_controller.php*/

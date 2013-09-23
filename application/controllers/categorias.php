@@ -1,15 +1,23 @@
 <?php
-
+/**
+ * Controlador Categorias Archivo, Ecuadorinmobile 
+ * 
+ * @author Mario Torres <mariofertc@mixmail.com>
+ * @version 1.0
+ * @package Administrador
+ */
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 require_once ("persona_controller.php");
-//require_once ("secure_area.php");
-//require_once ("interfaces/idata_controller.php");
-//class Categoria extends Secure_area implements iData_controller
+/**
+ * Clase de Categorias
+ * 
+ * Controlador para acceder a las Categorías
+ * @package Administrador
+ */
 class Categorias extends Secure_area {
 
     function __construct() {
-//		parent::__construct('incidencias');
         parent::__construct('categorias');
     }
 
