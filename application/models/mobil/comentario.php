@@ -1,6 +1,7 @@
 <?php
 
 class Comentario extends CI_Model {
+
     var $title = '';
     var $content = '';
     var $date = '';
@@ -41,10 +42,9 @@ class Comentario extends CI_Model {
         return $query->row();
     }
 
-    /*
-      Gets information about a particular item
+    /**
+     * Gets information about a particular item
      */
-
     function get_info($id) {
         $this->db->from('comentario');
         $this->db->where('id', $id);
@@ -66,10 +66,9 @@ class Comentario extends CI_Model {
         }
     }
 
-    /*
-      Inserts or updates a comment
+    /**
+     * Inserts or updates a comment
      */
-
     function save(&$data, $id = false) {
 
         if ($this->db->insert('comentario', $data)) {
@@ -79,10 +78,9 @@ class Comentario extends CI_Model {
         return false;
     }
 
-    /*
-      Determines if a given item_id is an item
+    /**
+     * Determines if a given item_id is an item
      */
-
     function delete_list($ids) {
         $success = false;
 
@@ -104,3 +102,6 @@ class Comentario extends CI_Model {
     }
 
 }
+
+/* End of file comentario.php */
+/* Location: ./application/models/mobil/comentario.php */

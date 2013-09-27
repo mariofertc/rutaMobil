@@ -1,4 +1,29 @@
 <?php $this->load->view("partial/header"); ?>
+
+<div id="title_bar">
+    <div id="title" class="float_left"><?php echo $this->lang->line('comun_list_of') . ' ' . $this->lang->line('module_' . $controller_name); ?></div>
+    <div id="new_button">
+        <?php
+        echo anchor("$controller_name/view/-1?width=$form_width", "<div class='big_button' style='float: left;'><span>" . $this->lang->line($controller_name . '_new') . "</span></div>", array('class' => 'thickbox none', 'title' => $this->lang->line($controller_name . '_new')));
+        ?>
+        <?php
+        echo anchor("$controller_name/excel_import?width=$form_width", "<div class='big_button' style='float: left;'><span>Excel Import</span></div>", array('class' => 'thickbox none', 'title' => 'Import ' . $this->lang->line('module_' . $controller_name) . ' from Excel'));
+        ?>
+    </div>
+</div>
+<div id="table_action_header">
+    <ul>
+        <li class="float_left"><span><?php echo anchor("$controller_name/delete", $this->lang->line("comun_borrar"), array('id' => 'delete')); ?></span></li>
+        <li class="float_left"><span><?php echo anchor("$controller_name/refresh", $this->lang->line("comun_refresh"), array('id' => 'refresh')); ?></span></li>
+        <li class="float_left"><span><a href="#" id="email"><?php echo $this->lang->line("comun_email"); ?></a></span></li>
+    </ul>
+</div>
+<div id="table_holder">
+    <?php echo $admin_table; ?>
+</div>
+<div id="feedback_bar"></div>
+<?php $this->load->view("partial/footer"); ?>
+
 <script type="text/javascript">
     var oTable;
     $(document).ready(function() 
@@ -90,27 +115,3 @@
         }
     }
 </script>
-
-<div id="title_bar">
-    <div id="title" class="float_left"><?php echo $this->lang->line('comun_list_of') . ' ' . $this->lang->line('module_' . $controller_name); ?></div>
-    <div id="new_button">
-        <?php
-        echo anchor("$controller_name/view/-1?width=$form_width", "<div class='big_button' style='float: left;'><span>" . $this->lang->line($controller_name . '_new') . "</span></div>", array('class' => 'thickbox none', 'title' => $this->lang->line($controller_name . '_new')));
-        ?>
-        <?php
-        echo anchor("$controller_name/excel_import?width=$form_width", "<div class='big_button' style='float: left;'><span>Excel Import</span></div>", array('class' => 'thickbox none', 'title' => 'Import ' . $this->lang->line('module_' . $controller_name) . ' from Excel'));
-        ?>
-    </div>
-</div>
-<div id="table_action_header">
-    <ul>
-        <li class="float_left"><span><?php echo anchor("$controller_name/delete", $this->lang->line("comun_borrar"), array('id' => 'delete')); ?></span></li>
-        <li class="float_left"><span><?php echo anchor("$controller_name/refresh", $this->lang->line("comun_refresh"), array('id' => 'refresh')); ?></span></li>
-        <li class="float_left"><span><a href="#" id="email"><?php echo $this->lang->line("comun_email"); ?></a></span></li>
-    </ul>
-</div>
-<div id="table_holder">
-    <?php echo $admin_table; ?>
-</div>
-<div id="feedback_bar"></div>
-<?php $this->load->view("partial/footer"); ?>

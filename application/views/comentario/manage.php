@@ -1,4 +1,33 @@
 <?php $this->load->view("partial/header"); ?>
+<div id="title_bar">
+	<div id="title" class="float_left"><?php echo $this->lang->line('comun_list_of') . ' ' . $this->lang->line('module_' . $controller_name); ?></div>
+	<?php
+	if ($_SERVER['HTTP_HOST'] == 'localhost') {
+		?>
+		<div id="new_button'style='height:0px;''">
+			<div class='small_button' style='height:0px; left:70px'><span>
+					<a href="javascript:(function()%20{var%20url%20=%20'http://www.sprymedia.co.uk/VisualEvent/VisualEvent_Loader.js';if(%20typeof%20VisualEvent!='undefined'%20)%20{if%20(%20VisualEvent.instance%20!==%20null%20)%20{VisualEvent.close();}else%20{new%20VisualEvent();}}else%20{var%20n=document.createElement('script');n.setAttribute('language','JavaScript');n.setAttribute('src',url+'?rand='+new%20Date().getTime());document.body.appendChild(n);}})();">Visual Event</a>
+				</span>
+			</div>
+		</div>
+		<h3>Desarrollo</h3>
+		<?php
+	}
+	?>
+</div>
+<div id="table_action_header">
+	<ul>
+		<li class="float_left"><span><?php echo anchor("$controller_name/delete", $this->lang->line("comun_borrar"), array('id' => 'delete')); ?></span></li>
+		<li class="float_left"><span><?php echo anchor("$controller_name/refresh", $this->lang->line("comun_refresh"), array('id' => 'refresh')); ?></span></li>
+	</ul>
+</div>
+<div class="demo_jui">
+<?php echo $admin_table ?>
+	<div class="spacer"></div>
+</div>
+<div id="feedback_bar"></div>
+
+<?php $this->load->view("partial/footer"); ?>
 
 <script type="text/javascript">
 	var oTable;
@@ -97,33 +126,3 @@
 		}
 	}
 </script>
-
-<div id="title_bar">
-	<div id="title" class="float_left"><?php echo $this->lang->line('comun_list_of') . ' ' . $this->lang->line('module_' . $controller_name); ?></div>
-	<?php
-	if ($_SERVER['HTTP_HOST'] == 'localhost') {
-		?>
-		<div id="new_button'style='height:0px;''">
-			<div class='small_button' style='height:0px; left:70px'><span>
-					<a href="javascript:(function()%20{var%20url%20=%20'http://www.sprymedia.co.uk/VisualEvent/VisualEvent_Loader.js';if(%20typeof%20VisualEvent!='undefined'%20)%20{if%20(%20VisualEvent.instance%20!==%20null%20)%20{VisualEvent.close();}else%20{new%20VisualEvent();}}else%20{var%20n=document.createElement('script');n.setAttribute('language','JavaScript');n.setAttribute('src',url+'?rand='+new%20Date().getTime());document.body.appendChild(n);}})();">Visual Event</a>
-				</span>
-			</div>
-		</div>
-		<h3>Desarrollo</h3>
-		<?php
-	}
-	?>
-</div>
-<div id="table_action_header">
-	<ul>
-		<li class="float_left"><span><?php echo anchor("$controller_name/delete", $this->lang->line("comun_borrar"), array('id' => 'delete')); ?></span></li>
-		<li class="float_left"><span><?php echo anchor("$controller_name/refresh", $this->lang->line("comun_refresh"), array('id' => 'refresh')); ?></span></li>
-	</ul>
-</div>
-<div class="demo_jui">
-<?php echo $admin_table ?>
-	<div class="spacer"></div>
-</div>
-<div id="feedback_bar"></div>
-
-<?php $this->load->view("partial/footer"); ?>

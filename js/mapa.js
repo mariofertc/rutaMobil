@@ -1,6 +1,8 @@
 $(window).load(function() {
     $('.flexslider').flexslider();
-    if (geoPosition.init()) {geolocalizar();}
+    if (geoPosition.init()) {
+        geolocalizar();
+    }
 });
 sessionStorage.lugar_id = 0;
 sessionStorage.categoria_id = 0;
@@ -14,7 +16,7 @@ $(document).on('click', '#search_map', function() {
 var mapa;
 var infowindow = new google.maps.InfoWindow({maxWidth: 320});
 var obj = new Object();
-            var bounds = new google.maps.LatLngBounds();
+var bounds = new google.maps.LatLngBounds();
 function cargar(datos) {
     $.ajax({
         url: 'mobil/coordenadas',
@@ -63,8 +65,8 @@ function cargar(datos) {
                                 $('select#oferta_select').selectmenu('refresh');
                             }
                             obj.latlng_lugares = new google.maps.LatLng(this.latitud, this.longitud);
-                            if(obj.indice_lugar<5)
-                            bounds.extend(obj.latlng_lugares);
+                            if (obj.indice_lugar < 5)
+                                bounds.extend(obj.latlng_lugares);
                             obj.distance_sitio = (google.maps.geometry.spherical.computeDistanceBetween(obj.latlng_current, obj.latlng_lugares) / 1000).toFixed(2);
                             var arrive_time = (obj.distance_sitio / 90).toFixed(2);
                             obj.titulo = this.titulo;
@@ -98,12 +100,15 @@ function cargar(datos) {
             //Add lazy load to cloned images.
             $("img.lazy").show().lazyload();
             distance = (google.maps.geometry.spherical.computeDistanceBetween(obj.latlng_current, latlng_banos) / 1000).toFixed(2);
-            google.maps.event.addListenerOnce(mapa, 'idle', function() { mapa.fitBounds( bounds );});
+            google.maps.event.addListenerOnce(mapa, 'idle', function() {
+                mapa.fitBounds(bounds);
+            });
 //            mapa.fitBounds(bounds);
 //            mapa.panToBounds(bounds);
             //Refresh Style
-            if ( $('#sitios_mapa').hasClass('ui-listview')) {
-            $('#sitios_mapa').listview('refresh');}
+            if ($('#sitios_mapa').hasClass('ui-listview')) {
+                $('#sitios_mapa').listview('refresh');
+            }
         }
     }); //Fin del Ajax call           
 }
@@ -151,8 +156,14 @@ function getRoute(obj) {
             }
     );
 }
-$('#geo').live('pageinit', function(event, ui) {if (geoPosition.init()) {geolocalizar();}});
-$('#geo').live('pageshow', function(event, ui) { geolocalizar();});
+$('#geo').live('pageinit', function(event, ui) {
+    if (geoPosition.init()) {
+        geolocalizar();
+    }
+});
+$('#geo').live('pageshow', function(event, ui) {
+    geolocalizar();
+});
 
 var id_evento;
 function geolocalizar()
