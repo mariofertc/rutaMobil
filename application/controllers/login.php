@@ -1,5 +1,8 @@
 <?php
 
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
+
 class Login extends CI_Controller {
 
     function __construct() {
@@ -10,25 +13,16 @@ class Login extends CI_Controller {
         if ($this->Empleado->is_logged_in()) {
             redirect('home');
         } else {
-            // $this->form_validation->set_rules('username', 'lang:login_username', 'callback_login_check');
             $this->form_validation->set_rules('username', 'Usuario', 'callback_login_check');
             $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
             $this->form_validation->run();
-//			redirect('home');
             $this->form_validation->set_rules('username', 'lang:login_username', 'callback_login_check');
             $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 
             if ($this->form_validation->run() == FALSE) {
                 $this->load->view('login');
             } else {
-                //echo "yap";
-                // $this->load->view('home');
                 redirect('home');
-                // header('Location: '.site_url('home').', true, 302');
-                // header('url='.site_url('home'));
-
-
-                // exit;
             }
         }
     }
@@ -45,4 +39,5 @@ class Login extends CI_Controller {
 
 }
 
-?>
+/* End of file login.php */
+/* Location: ./application/controllers/login.php */

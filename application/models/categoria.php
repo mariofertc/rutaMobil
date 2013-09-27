@@ -18,10 +18,9 @@ class Categoria extends CI_Model {
         return $query;
     }
 
-    function get_all($num = 0, $offset = 0, $where=null, $order = null) {
+    function get_all($num = 0, $offset = 0, $where = null, $order = null) {
         if ($order == null)
             $order = "id";
-        //$this->db->select('id','nombre');
         $this->db->from('categoria');
         if ($where != "")
             $this->db->where($where);
@@ -40,14 +39,12 @@ class Categoria extends CI_Model {
         return $query->row();
     }
 
-    /*
-      Gets information about a particular item
+    /**
+     * Gets information about a particular item
      */
-
     function get_info($id) {
         $this->db->from('categoria');
         $this->db->where('id', $id);
-        // $this->db->where('items.deleted',0);
 
         $query = $this->db->get();
 
@@ -65,10 +62,9 @@ class Categoria extends CI_Model {
         }
     }
 
-    /*
-      Inserts or updates a cat
+    /**
+     * Inserts or updates a cat
      */
-
     function save(&$data, $id = false) {
         if (!$id or !$this->exists($id)) {
             if ($this->db->insert('categoria', $data)) {
@@ -85,10 +81,9 @@ class Categoria extends CI_Model {
         return false;
     }
 
-    /*
-      Determines if a given item_id is an item
+    /**
+     * Determines if a given item_id is an item
      */
-
     function exists($id) {
         //Bug php or mysql version, if it is char explicit convert to number.
         if (!is_numeric($id))
@@ -121,3 +116,6 @@ class Categoria extends CI_Model {
     }
 
 }
+
+/* End of file categoria.php */
+/* Location: ./application/models/categoria.php */

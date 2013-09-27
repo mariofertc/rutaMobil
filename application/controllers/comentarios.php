@@ -8,7 +8,6 @@ require_once ("secure_area.php");
 class Comentarios extends Secure_area {
 
     function __construct() {
-//		parent::__construct('incidencias');
         parent::__construct('comentarios');
     }
 
@@ -164,5 +163,5 @@ class Comentarios extends Secure_area {
 
 }
 
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
+/* End of file comentarios.php */
+/* Location: ./application/controllers/comentarios.php */

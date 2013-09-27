@@ -1,4 +1,7 @@
 <?php
+
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
 /**
  * Interfaz de Personas Archivo, Ecuadorinmobile 
  * 
@@ -10,11 +13,14 @@
  * Include de la Interfaz idata_controller
  */
 require_once("idata_controller.php");
+
 /**
  * Interfaz de personas.
-*/
-interface iPersona_controller extends iData_controller
-{
-	public function mailto();
+ */
+interface iPersona_controller extends iData_controller {
+
+    public function mailto();
 }
-/*Fin del Archivo iPersona_controller.php*/
+
+/* End of file iPersona_controller.php */
+/* Location: ./application/controllers/interfaces/iPersona_controller.php */

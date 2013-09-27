@@ -18,23 +18,10 @@ class Foto extends CI_Model {
         $this->db->where('id_lugar', $lugar_id);
         $this->db->from('fotos');
         $this->db->where('deleted',0);
-//        $this->db->limit(10);
         $query = $this->db->get();
         
         return $query;
     }
-    
-//    function get_photos($lugar_id = null)
-//    {
-//        if($lugar_id == null)
-//            return null;
-//        $this->db->where('id_lugar', $lugar_id);
-//        $this->db->from('fotos');
-//        $this->db->limit(10);
-//        $query = $this->db->get();
-//        
-//        return $query;
-//    }
 
     function getall() {
         $this->db->from('fotos');
@@ -44,16 +31,14 @@ class Foto extends CI_Model {
         return $query;
     }
 
-    function get_all($num = 0, $offset = 0, $where, $order = null) {
+    function get_all($num = 0, $offset = 0, $where=null, $order = null) {
         if ($order == null)
             $order = "id";
         $this->db->select('fotos.id as id, fotos.nombre as nombre, lugar.nombre_enlace as nombre_enlace, fotos.imagen_path as imagen_path, fotos.descripcion as descripcion, fotos.orden as orden', false);
-//        $this->db->select('fotos.id as id, fotos.nombre as nombre, concat(lugar.nombre_enlace,"/",fotos.imagen_path) as imagen_path, fotos.descripcion as descripcion', false);
         $this->db->from('fotos,lugar');
         if ($where != "")
             $this->db->where($where);
         $this->db->where('fotos.id_lugar = lugar.id and fotos.deleted = 0');
-//        $this->db->where('deleted', 0);
         $this->db->order_by($order);
         $this->db->limit($offset + $num, $offset);
 
@@ -70,19 +55,16 @@ class Foto extends CI_Model {
         return $query->row();
     }
 
-    /*
-      Gets information about a particular item
+    /**
+     * Gets information about a particular item
      */
 
     function get_info($id) {
-//        $this->db->select('fotos.id as id, fotos.nombre as nombre, concat(lugar.nombre_enlace,"/",fotos.imagen_path) as imagen_path, fotos.descripcion as descripcion, id_lugar', false);
         $this->db->select('fotos.id as id, fotos.nombre as nombre, lugar.nombre_enlace as nombre_enlace, fotos.imagen_path as imagen_path, fotos.descripcion as descripcion, id_lugar, fotos.orden as orden', false);
         $this->db->from('fotos, lugar');
         $this->db->where('fotos.id', $id);
         $this->db->where('fotos.id_lugar = lugar.id');
         $this->db->order_by('fotos.orden');
-        // $this->db->where('items.deleted',0);
-
         $query = $this->db->get();
 
         if ($query->num_rows() == 1) {
@@ -101,8 +83,8 @@ class Foto extends CI_Model {
         }
     }
 
-    /*
-      Inserts or updates a cat
+    /**
+     * Inserts or updates a cat
      */
 
     function save(&$data, $id = false) {
@@ -121,8 +103,8 @@ class Foto extends CI_Model {
         return false;
     }
 
-    /*
-      Determines if a given item_id is an item
+    /**
+     * Determines if a given item_id is an item
      */
 
     function exists($id) {
@@ -131,7 +113,6 @@ class Foto extends CI_Model {
             return false;
         $this->db->from('fotos');
         $this->db->where('id', $id);
-        // $this->db->where('deleted',0);
         $query = $this->db->get();
         return ($query->num_rows() == 1);
     }
@@ -162,3 +143,5 @@ class Foto extends CI_Model {
     }
 
 }
+/* End of file foto.php */
+/* Location: ./application/models/foto.php */

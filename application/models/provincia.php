@@ -1,4 +1,7 @@
 <?php
+/**
+ * No Implementado
+ */
 class Provincia extends CI_Model {
 
     var $title   = '';
@@ -56,3 +59,5 @@ class Provincia extends CI_Model {
     }
 
 }
+/* End of file provincia.php */
+/* Location: ./application/models/provincia.php */

@@ -2,18 +2,11 @@
 
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
-
-//require_once ("secure_area.php");
-//require_once ("interfaces/idata_controller.php");
-//class Categoria extends Secure_area implements iData_controller
-//require_once ("persona_controller.php");
-
 require_once ("secure_area.php");
 
 class Lugares extends Secure_area {
 
     function __construct() {
-//		parent::__construct('incidencias');
         parent::__construct('lugares');
     }
 
@@ -33,10 +26,6 @@ class Lugares extends Secure_area {
             'direccion' => array('limit' => 30),
             'coordenadas' => array('limit' => 30),
             'imagen_path' => array('limit' => 30),
-//            'descripcion' => array('limit' => 30),
-//            'categoria_id' => array('limit' => 30),
-//            'interes' => array('limit' => 30),
-//            'sector' => array('limit' => 30),
             'nombre_enlace' => array('nombre' => 'nombre_enlace'));
         //Eventos Tabla
         $cllAccion = array(
@@ -57,8 +46,6 @@ class Lugares extends Secure_area {
     }
 
     function view($id = -1, $categoria_id = -1) {
-        //echo $categoria_id . $id;
-
         $data['info'] = $this->Lugar->get_info($id);
         $data['categoria_id'] = $categoria_id;
         $coordenada = json_decode($data['info']->coordenadas);
@@ -82,8 +69,6 @@ class Lugares extends Secure_area {
             'nombre_enlace' => $this->input->post('enlace'),
             'fecha_actualizacion' => date('Y-m-d h:i:s')
         );
-//        echo json_encode(array('success' => false, 'message' => $_FILES['userfile']));
-//        return;
 
         if (isset($_FILES['userfile'])) {
             //Subir Imagenes
@@ -165,12 +150,8 @@ class Lugares extends Secure_area {
     }
 
     function do_upload($path) {
-//        $this->gallery_path = realpath(APPPATH.'../images/imglugar/'. $path);
         $this->gallery_path = realpath(APPPATH . '../images/imglugar/') . '/' . $path;
-//exit($this->gallery_path."yo");
         if (!file_exists($this->gallery_path)) {
-//exit($this->gallery_path."yo");
-            //return false;
             mkdir($this->gallery_path, 0777);
         }
 
@@ -188,5 +169,5 @@ class Lugares extends Secure_area {
 
 }
 
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
+/* End of file lugares.php */
+/* Location: ./application/controllers/lugares.php */

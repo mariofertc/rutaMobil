@@ -3,11 +3,6 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-//require_once ("secure_area.php");
-//require_once ("interfaces/idata_controller.php");
-//class Categoria extends Secure_area implements iData_controller
-//require_once ("persona_controller.php");
-
 require_once ("secure_area.php");
 
 class Fotos extends Secure_area {
@@ -16,7 +11,6 @@ class Fotos extends Secure_area {
     var $gallery_path_url;
 
     function __construct() {
-//		parent::__construct('incidencias');
         parent::__construct('fotos');
     }
 
@@ -56,26 +50,16 @@ class Fotos extends Secure_area {
     }
 
     function view($id = -1, $lugar_id = -1) {
-        //echo $categoria_id . $id;
-
         $data['info'] = $this->Foto->get_info($id);
         $data['id_lugar'] = $lugar_id;
-//        $data['full_path'] = $this->Foto->get_full_path($data);
-//        $coordenada = json_decode($data['info']->coordenadas);
-//        $data['info']->latitud = isset($coordenada->latitud)?$coordenada->latitud:0;
-//        $data['info']->longitud = isset($coordenada->longitud)?$coordenada->longitud:0;
-
         $this->load->view("fotos/form", $data);
     }
 
     function save($id = -1) {
-//        $coordenadas = json_encode( array('latitud' => $this->input->post('latitud'), 'longitud' => $this->input->post('longitud')));;
         $data = array(
             'nombre' => $this->input->post('nombre'),
             'orden' => $this->input->post('orden'),
-//            'imagen_path' => '',
             'descripcion' => $this->input->post('descripcion')
-//            'fecha_actualizacion' => date('Y-m-d h:i:s')
         );
 
         $post_lugar_id = $this->input->post('lugar_id');
@@ -155,26 +139,20 @@ class Fotos extends Secure_area {
 
         
         $this->upload->initialize($config);
-//        echo $this->gallery_path;
-//        $this->load->library('upload', $config);
         if (!$this->upload->do_upload())
             return $this->upload->display_errors();
         $image_data = $this->upload->data();
         if (!file_exists($this->gallery_path . '/thumbs')) {
             mkdir($this->gallery_path . '/thumbs', 0777, true);
-//            chmod($this->gallery_path . '/thumbs', 0777);
         }
         $config = array(
             'source_image' => $image_data['full_path'],
             'new_image' => './images/imglugar/' . $path . '/thumbs',
-//            'create_thumb' => TRUE,
             'maintain_ratio' => TRUE,
             'width' => 150,
             'height' => 150,
             'image_library' => 'GD2'
         );
-
-        //$this->load->library('image_lib', $config);
         $this->image_lib->initialize($config);
         if (!$this->image_lib->resize()) {
             echo $this->image_lib->display_errors();
@@ -236,5 +214,5 @@ class Fotos extends Secure_area {
 
 }
 
-/* End of file welcome.php */
-    /* Location: ./application/controllers/welcome.php */
+/* End of file fotos.php */
+/* Location: ./application/controllers/fotos.php */

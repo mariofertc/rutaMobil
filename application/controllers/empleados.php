@@ -1,5 +1,8 @@
 <?php
 
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
+
 require_once ("persona_controller.php");
 
 class Empleados extends Persona_controller {
@@ -9,23 +12,16 @@ class Empleados extends Persona_controller {
     }
 
     function index() {
-//        $data['controller_name'] = strtolower($this->uri->segment(1));
-//        $data['form_width'] = $this->get_form_width();
-//        $data['manage_table'] = get_people_manage_table($this->Empleado->get_all(), $this);
-//        $this->load->view('people/manage', $data);
-
         $data['controller_name'] = strtolower($this->uri->segment(1));
         $data['admin_table'] = get_persona_admin_table();
         $data['form_width'] = $this->get_form_width();
         $data['form_height'] = $this->get_form_height();
-        $this->output->enable_profiler(TRUE);
         $this->load->view('personas/manage', $data);
     }
 
-    /*
-      Returns employee table data rows. This will be called with AJAX.
+    /**
+     * Returns employee table data rows. This will be called with AJAX.
      */
-
     function search() {
         $search = $this->input->post('search');
         $data_rows = get_people_manage_table_data_rows($this->Employee->search($search), $this);
@@ -52,17 +48,13 @@ class Empleados extends Persona_controller {
     }
 
     function mis_datos() {
-//		$data['controller_name'] = strtolower($this->uri->segment(1));
-//		$data['form_width'] = $this->get_form_width();
-//		$data['form_height'] = 150;
-//		$aColumns = array('id','nombre', 'descripcion', 'nombre_enlace');
         $aColumns = array(
             'persona_id' => array('checked' => true, 'es_mas' => true),
             'nombre' => array('limit' => 13),
             'apellido' => array('limit' => 30),
             'email' => array('limit' => 15),
             'telefono' => array('limit' => 15)
-            );
+        );
         //Eventos Tabla
         $cllAccion = array(
             '1' => array(
@@ -71,12 +63,14 @@ class Empleados extends Persona_controller {
                 'language' => "_update",
                 'width' => $this->get_form_width(),
                 'height' => $this->get_form_height(),
-        'class'  => 'thickbox'));
+                'class' => 'thickbox'));
         echo getData('Empleado', $aColumns, $cllAccion);
     }
+
     /*
       Inserts/updates an employee
      */
+
     function save($id = -1) {
         $persona_data = array(
             'nombre' => $this->input->post('nombre'),
@@ -229,10 +223,11 @@ class Empleados extends Persona_controller {
     function get_form_width() {
         return 650;
     }
+
     function get_form_height() {
         return 400;
     }
 
 }
-
-?>
+/* End of file empleados.php */
+/* Location: ./application/controllers/empleados.php */

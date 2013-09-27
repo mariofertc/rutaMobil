@@ -1,32 +1,29 @@
 <?php
+
 class Lugar extends CI_Model {
 
-    var $title   = '';
+    var $title = '';
     var $content = '';
-    var $date    = '';
+    var $date = '';
 
-    function __construct()
-    {
+    function __construct() {
         // Call the Model constructor
         parent::__construct();
     }
-    
-    function get_by_categoria($categoria_id = null)
-    {
-        if($categoria_id == null)
+
+    function get_by_categoria($categoria_id = null) {
+        if ($categoria_id == null)
             return null;
         $this->db->where('categoria_id', $categoria_id);
         $this->db->from('lugar');
         $this->db->where('deleted', 0);
-//        $this->db->limit(10);
         $query = $this->db->get();
-        
+
         return $query;
     }
-    
-    function get_photos($lugar_id = null)
-    {
-        if($lugar_id == null)
+
+    function get_photos($lugar_id = null) {
+        if ($lugar_id == null)
             return null;
         $this->db->where('id_lugar', $lugar_id);
         $this->db->where('deleted', 0);
@@ -34,12 +31,11 @@ class Lugar extends CI_Model {
         $this->db->order_by('orden');
 //        $this->db->limit(10);
         $query = $this->db->get();
-        
+
         return $query;
     }
 
     function getall() {
-//        $query = $this->db->get('lugar', 10);
         $this->db->from('lugar');
         $this->db->where('deleted', 0);
         $query = $this->db->get();
@@ -49,7 +45,6 @@ class Lugar extends CI_Model {
     function get_all($num = 0, $offset = 0, $where, $order = null) {
         if ($order == null)
             $order = "id";
-        //$this->db->select('id','nombre');
         $this->db->from('lugar');
         if ($where != "")
             $this->db->where($where);
@@ -60,24 +55,22 @@ class Lugar extends CI_Model {
         return $this->db->get();
     }
 
-    function get_total($where="") {
+    function get_total($where = "") {
         $this->db->select("count(*) as total");
         $this->db->from("lugar");
         $this->db->where("deleted", 0);
-        if($where!="")
+        if ($where != "")
             $this->db->where($where);
         $query = $this->db->get();
         return $query->row();
     }
 
-    /*
-      Gets information about a particular item
+    /**
+     * Gets information about a particular item
      */
-
     function get_info($id) {
         $this->db->from('lugar');
         $this->db->where('id', $id);
-        // $this->db->where('items.deleted',0);
 
         $query = $this->db->get();
 
@@ -95,10 +88,9 @@ class Lugar extends CI_Model {
         }
     }
 
-    /*
-      Inserts or updates a cat
+    /**
+     * Inserts or updates an item
      */
-
     function save(&$data, $id = false) {
         if (!$id or !$this->exists($id)) {
             if ($this->db->insert('lugar', $data)) {
@@ -115,17 +107,15 @@ class Lugar extends CI_Model {
         return false;
     }
 
-    /*
-      Determines if a given item_id is an item
+    /**
+     * Determines if a given item_id is an item
      */
-
     function exists($id) {
         //Bug php or mysql version, if it is char explicit convert to number.
         if (!is_numeric($id))
             return false;
         $this->db->from('lugar');
         $this->db->where('id', $id);
-        // $this->db->where('deleted',0);
         $query = $this->db->get();
         return ($query->num_rows() == 1);
     }
@@ -151,3 +141,6 @@ class Lugar extends CI_Model {
     }
 
 }
+
+/* End of file lugar.php */
+/* Location: ./application/models/lugar.php */

@@ -1,10 +1,10 @@
 <?php
 
 class Empleado extends Persona {
-    /*
-      Determines if a given person_id is an employee
-     */
 
+    /**
+     * Determines if a given person_id is an employee
+     */
     function exists($persona_id) {
         $this->db->from('empleado');
         $this->db->join('persona', 'persona.persona_id = empleado.persona_id');
@@ -15,8 +15,8 @@ class Empleado extends Persona {
         return ($query->num_rows() == 1);
     }
 
-    /*
-      Returns all the employees
+    /**
+     * Returns all the employees
      */
 
     function getall() {
@@ -27,7 +27,7 @@ class Empleado extends Persona {
         return $this->db->get();
     }
 
-    function get_all($num = 0, $offset = 0, $where, $order = '') {
+    function get_all($num = 0, $offset = 0, $where=null, $order = '') {
         $this->db->select('persona.*, persona.persona_id as empleado_id FROM empleado, persona where persona.persona_id = empleado.persona_id and empleado.deleted = 0 ' .
                 $where);
         $this->db->order_by($order);
@@ -35,33 +35,19 @@ class Empleado extends Persona {
 
         return $this->db->get();
     }
-//    function get_all($num = 0, $offset = 0, $where, $order = null) {
-//        if ($order == null)
-//            $order = "id";
-//        //$this->db->select('id','nombre');
-//        $this->db->from('categoria');
-//        if ($where != "")
-//            $this->db->where($where);
-//        $this->db->where('deleted', 0);
-//        $this->db->order_by($order);
-//        $this->db->limit($offset + $num, $offset);
-//
-//        return $this->db->get();
-//    }
+
 
     function get_total() {
         $this->db->select("count(*) as total");
         $this->db->from("empleado");
         $this->db->join('persona', 'persona.persona_id=empleado.persona_id');
         $this->db->where('empleado.deleted', 0);
-        //$q = $this->db->query($sql);
-        // return $this->db->get();
         $query = $this->db->get();
         return $query->row();
     }
 
-    /*
-      Gets information about a particular employee
+    /**
+     * Gets information about a particular employee
      */
 
     function get_info($empleado_id) {
@@ -89,8 +75,8 @@ class Empleado extends Persona {
         }
     }
 
-    /*
-      Gets information about multiple employees
+    /**
+     * Gets information about multiple employees
      */
 
     function get_multiple_info($empleado_ids) {
@@ -147,8 +133,8 @@ class Empleado extends Persona {
         return $success;
     }
 
-    /*
-      Deletes one empleado, not implemented yet!
+    /**
+     * Deletes one empleado, not implemented yet!
      */
 
     function delete($employee_id) {
@@ -178,8 +164,8 @@ class Empleado extends Persona {
         return $success;
     }
 
-    /*
-      Deletes a list of employees
+    /**
+     * Deletes a list of employees
      */
 
     function delete_list($empleado_ids) {
@@ -211,8 +197,8 @@ class Empleado extends Persona {
         return $success;
     }
 
-    /*
-      Get search suggestions to find employees
+    /**
+     * Get search suggestions to find employees
      */
 
     function get_search_suggestions($search, $limit = 5) {
@@ -222,8 +208,6 @@ class Empleado extends Persona {
         $this->db->join('persona', 'empleado.persona_id=persona.persona_id');
         $this->db->where("(nombre LIKE '%" . $this->db->escape_like_str($search) . "%' or 
 		apellido LIKE '%" . $this->db->escape_like_str($search) .
-                // "%' or 
-                // CONCAT('nombre',' ','apellido') LIKE '%".
                 "%' or 
 		nombre + ' ' + apellido LIKE '%" .
                 $this->db->escape_like_str($search) . "%') and deleted=0");
@@ -265,7 +249,6 @@ class Empleado extends Persona {
             $suggestions[] = $row->telefono;
         }
 
-
         //only return $limit suggestions
         if (count($suggestions > $limit)) {
             $suggestions = array_slice($suggestions, 0, $limit);
@@ -273,8 +256,8 @@ class Empleado extends Persona {
         return $suggestions;
     }
 
-    /*
-      Preform a search on employees
+    /**
+     * Preform a search on employees
      */
 
     function search($search) {
@@ -285,8 +268,6 @@ class Empleado extends Persona {
 		email LIKE '%" . $this->db->escape_like_str($search) . "%' or 
 		telefono LIKE '%" . $this->db->escape_like_str($search) . "%' or 
 		username LIKE '%" . $this->db->escape_like_str($search) .
-                //"%' or 
-                //CONCAT(`nombre`,' ',`apellido`) LIKE '%"
                 "%' or 
 		nombre + ' ' + apellido LIKE '%"
                 . $this->db->escape_like_str($search) . "%') and deleted=0");
@@ -295,12 +276,11 @@ class Empleado extends Persona {
         return $this->db->get();
     }
 
-    /*
-      Attempts to login employee and set session. Returns boolean based on outcome.
+    /**
+     * Attempts to login employee and set session. Returns boolean based on outcome.
      */
 
     function login($username, $password) {
-//        $query = $this->db->get_where('empleado', array('usuario' => $username, 'clave' => $password, 'deleted' => 0), 1);
         $query = $this->db->get_where('empleado', array('usuario' => $username, 'clave' => md5($password), 'deleted' => 0), 1);
         if ($query->num_rows() == 1) {
             $row = $query->row();
@@ -310,8 +290,8 @@ class Empleado extends Persona {
         return false;
     }
 
-    /*
-      Logs out a user by destorying all session data and redirect to login
+    /**
+     * Logs out a user by destorying all session data and redirect to login
      */
 
     function logout() {
@@ -319,17 +299,16 @@ class Empleado extends Persona {
         redirect('home');
     }
 
-    /*
-      Determins if a employee is logged in
+    /**
+     * Determins if a employee is logged in
      */
 
     function is_logged_in() {
-        //echo $this->session->userdata('person_id');
         return $this->session->userdata('persona_id') != false;
     }
 
-    /*
-      Gets information about the currently logged in employee.
+    /**
+     * Gets information about the currently logged in employee.
      */
 
     function get_logged_in_empleado_info() {
@@ -340,8 +319,8 @@ class Empleado extends Persona {
         return false;
     }
 
-    /*
-      Determins whether the employee specified employee has access the specific module.
+    /**
+     * Determins whether the employee specified employee has access the specific module.
      */
 
     function has_permission($modulo_id, $persona_id) {
@@ -358,5 +337,5 @@ class Empleado extends Persona {
     }
 
 }
-
-?>
+/* End of file empleado.php */
+/* Location: ./application/models/empleado.php */

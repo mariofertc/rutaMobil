@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Controlador Categorias Archivo, Ecuadorinmobile 
  * 
@@ -9,6 +10,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 require_once ("persona_controller.php");
+
 /**
  * Clase de Categorias
  * 
@@ -21,6 +23,9 @@ class Categorias extends Secure_area {
         parent::__construct('categorias');
     }
 
+    /**
+     * Listado de Categorías, CRUD.
+     */
     public function index() {
         $data['controller_name'] = strtolower($this->uri->segment(1));
         $data['admin_table'] = get_categoria_admin_table();
@@ -30,11 +35,11 @@ class Categorias extends Secure_area {
         $this->load->view('categorias/manage', $data);
     }
 
+    /**
+     * Obtiene los datos formateados para el datatable.
+     * @return string JSON que permite cargar los datos.
+     */
     function mis_datos() {
-//		$data['controller_name'] = strtolower($this->uri->segment(1));
-//		$data['form_width'] = $this->get_form_width();
-//		$data['form_height'] = 150;
-//		$aColumns = array('id','nombre', 'descripcion', 'nombre_enlace');
         $aColumns = array(
             'id' => array('checked' => true, 'es_mas' => true),
             'nombre' => array('limit' => 13),
@@ -49,29 +54,24 @@ class Categorias extends Secure_area {
                 'language' => "_update",
                 'width' => $this->get_form_width(),
                 'height' => $this->get_form_height(),
-        'class'  => 'thickbox'),
+                'class' => 'thickbox'),
             '2' => array('function' => "lugares",
                 'comun_language' => "lugares_lugar",
                 'language' => "_muestra",
                 'height' => 200,
-                'class'=>"boton_admin"));
+                'class' => "boton_admin"));
         echo getData('Categoria', $aColumns, $cllAccion);
     }
-    
-    function lugares($id =  -1)
-    {
-        if($id == -1)
+
+    function lugares($id = -1) {
+        if ($id == -1)
             return;
-        redirect('lugares/index/'.$id);
+        redirect('lugares/index/' . $id);
         $this->Lugares->index($id);
     }
 
     function view($id = -1) {
         $data['info'] = $this->Categoria->get_info($id);
-
-//		$estado = array('pendiente'=>'pendiente','solucionado'=>'solucionado');
-        // $array=array("foo"=>1,"bar"=>2,"baz"=>3,4,5);		
-//		$data['estado']=$estado;	
         $this->load->view("categorias/form", $data);
     }
 
@@ -84,10 +84,6 @@ class Categorias extends Secure_area {
             'ciudad_id' => 1,
             'order' => $this->input->post('order')
         );
-
-        // $this->db->set('order_date', 'NOW()', FALSE);
-        //$empleado_id=$this->Empleado->get_logged_in_empleado_info()->persona_id;
-
         $this->db->trans_start();
         try {
             if ($this->Categoria->save($data, $id)) {
@@ -171,5 +167,5 @@ class Categorias extends Secure_area {
 
 }
 
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
+/* End of file categorias.php */
+/* Location: ./application/controllers/categorias.php */
