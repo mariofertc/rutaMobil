@@ -1,16 +1,37 @@
 <?php
 
+/**
+ * Archivo Controlador Empleados, Ecuadorinmobile 
+ * 
+ * @author Mario Torres <mariofertc@mixmail.com>
+ * @version 1.0
+ * @package Administrador
+ */
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
 require_once ("persona_controller.php");
 
+/**
+ * Clase de Empleados
+ * 
+ * Controlador para manipular a los Usuarios.
+ * @package Administrador
+ */
 class Empleados extends Persona_controller {
 
+    /**
+     * Constructor de la clase
+     * @access public
+     */
     function __construct() {
         parent::__construct('empleados');
     }
 
+    /**
+     * Listado de Empleados.
+     * @access public
+     */
     function index() {
         $data['controller_name'] = strtolower($this->uri->segment(1));
         $data['admin_table'] = get_persona_admin_table();
@@ -19,34 +40,30 @@ class Empleados extends Persona_controller {
         $this->load->view('personas/manage', $data);
     }
 
-    /**
-     * Returns employee table data rows. This will be called with AJAX.
-     */
     function search() {
-        $search = $this->input->post('search');
-        $data_rows = get_people_manage_table_data_rows($this->Employee->search($search), $this);
-        echo $data_rows;
+        
     }
-
-    /*
-      Gives search suggestions based on what is being searched for
-     */
 
     function suggest() {
-        $suggestions = $this->Employee->get_search_suggestions($this->input->post('q'), $this->input->post('limit'));
-        echo implode("\n", $suggestions);
+        
     }
 
-    /*
-      Loads the employee edit form
+    /**
+     * Editar o Crear Nuevo Empleado.
+     * @access public
+     * @param type $empleado_id
      */
-
     function view($empleado_id = -1) {
         $data['persona_info'] = $this->Empleado->get_info($empleado_id);
         $data['all_modulos'] = $this->Modulo->get_all_modules();
         $this->load->view("empleados/form", $data);
     }
 
+    /**
+     * Retorna los empleado.
+     * @access public
+     * @return string JSON con los datos de los empleados
+     */
     function mis_datos() {
         $aColumns = array(
             'persona_id' => array('checked' => true, 'es_mas' => true),
@@ -67,10 +84,12 @@ class Empleados extends Persona_controller {
         echo getData('Empleado', $aColumns, $cllAccion);
     }
 
-    /*
-      Inserts/updates an employee
+    /**
+     * Almacena o Edita un Empleado
+     * @param int $id
+     * @access public
+     * @return string JSON Indicando si se guardo o no.
      */
-
     function save($id = -1) {
         $persona_data = array(
             'nombre' => $this->input->post('nombre'),
@@ -113,10 +132,11 @@ class Empleados extends Persona_controller {
         }
     }
 
-    /*
-      This deletes empelados from the empelados table
+    /**
+     * Elimina los items seleccionados
+     * @return string JSON Indicando si se elimino o no el objeto.
+     * @access public
      */
-
     function delete() {
         $empelados_to_delete = $this->input->post('ids');
 
@@ -216,18 +236,25 @@ class Empleados extends Persona_controller {
         echo json_encode(array('success' => $success, 'message' => $msg));
     }
 
-    /*
-      get the width for the add/edit form
+    /**
+     * Valor del Ancho de la Forma Modal
+     * @access public
+     * @return int
      */
-
     function get_form_width() {
         return 650;
     }
 
+    /**
+     * Valor del Alto de la Forma Modal
+     * @access public
+     * @return int
+     */
     function get_form_height() {
         return 400;
     }
 
 }
+
 /* End of file empleados.php */
 /* Location: ./application/controllers/empleados.php */

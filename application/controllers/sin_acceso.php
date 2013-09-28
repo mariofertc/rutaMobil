@@ -1,16 +1,33 @@
 <?php
 
+/**
+ * Archivo Controlador Sin_Acceso, Ecuadorinmobile 
+ * 
+ * @author Mario Torres <mariofertc@mixmail.com>
+ * @version 1.0
+ * @package FrontEnd
+ */
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Sin_Acceso extends CI_Controller {
+/**
+ * Clase Sin_Acceso
+ * 
+ * Controlador que permite indicar el acceso restringido al sitio.
+ * @package FrontEnd
+ */
+class Sin_acceso extends CI_Controller {
 
+    /**
+     * Constructor de la clase
+     * @access public
+     */
     function __construct() {
         parent::__construct();
     }
 
     /**
-     * 
+     * Pagina indicando que no tiene acceso al uri solicitado.
      * @access public
      * @param string $modulo_id
      * @return string Vista de Usuario

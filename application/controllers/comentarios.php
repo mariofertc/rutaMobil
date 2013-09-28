@@ -1,16 +1,37 @@
 <?php
 
+/**
+ * Archivo Controlador Comentarios, Ecuadorinmobile 
+ * 
+ * @author Mario Torres <mariofertc@mixmail.com>
+ * @version 1.0
+ * @package Administrador
+ */
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
 require_once ("secure_area.php");
 
+/**
+ * Clase de Comentarios
+ * 
+ * Controlador para acceder a los Comentarios
+ * @package Administrador
+ */
 class Comentarios extends Secure_area {
 
+    /**
+     * Constructor de la clase
+     * @access public
+     */
     function __construct() {
         parent::__construct('comentarios');
     }
 
+    /**
+     * Listado de Comentarios.
+     * @access public
+     */
     public function index() {
         $data['controller_name'] = strtolower($this->uri->segment(1));
         $data['admin_table'] = get_comentario_admin_table();
@@ -19,6 +40,11 @@ class Comentarios extends Secure_area {
         $this->load->view('comentario/manage', $data);
     }
 
+    /**
+     * Retorna los comentarios.
+     * @access public
+     * @return string JSON con los datos de los comentarios
+     */
     function mis_datos() {
         $aColumns = array(
             'id' => array('checked' => true, 'es_mas' => true),
@@ -38,12 +64,24 @@ class Comentarios extends Secure_area {
         echo getData('Comentario', $aColumns, $cllAccion, null);
     }
 
+    /**
+     * Editar o Crear Nuevo Comentario.
+     * @access public
+     * @param type $id
+     * @param type $categoria_id
+     */
     function view($id = -1, $categoria_id = -1) {
         //echo $categoria_id . $id;
         $data['info'] = $this->Comentario->get_info($id);
         $this->load->view("comentario/form", $data);
     }
 
+    /**
+     * Almacena el Comentario
+     * @param int $id
+     * @access public
+     * @return string JSON Indicando si se guardo o no.
+     */
     function save($id = -1) {
         $coordenadas = json_encode(array('latitud' => $this->input->post('latitud'), 'longitud' => $this->input->post('longitud')));
 
@@ -105,16 +143,18 @@ class Comentarios extends Secure_area {
     }
 
     function search() {
-        $search = $this->input->post('search');
-        $data_rows = get_incidencia_manage_table_data_rows($this->Incidencia->search($search), $this);
-        echo $data_rows;
+        
     }
 
     function suggest() {
-        $suggestions = $this->Incidencia->get_search_suggestions($this->input->post('q'), $this->input->post('limit'));
-        echo implode("\n", $suggestions);
+        
     }
 
+    /**
+     * Elimina los items seleccionados
+     * @return string JSON Indicando si se elimino o no el objeto.
+     * @access public
+     */
     function delete() {
         $data_to_delete = $this->input->post('ids');
         if ($this->Comentario->delete_list($data_to_delete)) {
@@ -125,42 +165,34 @@ class Comentarios extends Secure_area {
         }
     }
 
+    /**
+     * Obtiene la fila del datatable.
+     * @access public
+     * @return string Para actualizar o insertar en el datatable.
+     */
     function get_row() {
         $id = $this->input->post('row_id');
         $data_row = get_lugar_data_row($this->Lugar->get_info($id), $this);
         echo $data_row;
     }
 
+    /**
+     * Valor del Ancho de la Forma Modal
+     * @access public
+     * @return int
+     */
     function get_form_width() {
         return 380;
     }
 
+    /**
+     * Valor del Alto de la Forma Modal
+     * @access public
+     * @return int
+     */
     function get_form_height() {
         return 300;
     }
-
-    function do_upload($path) {
-//        $this->gallery_path = realpath(APPPATH.'../images/imglugar/'. $path);
-        $this->gallery_path = realpath(APPPATH . '../images/imglugar/') . '/' . $path;
-//exit($this->gallery_path."yo");
-        if (!file_exists($this->gallery_path)) {
-//exit($this->gallery_path."yo");
-            //return false;
-            mkdir($this->gallery_path, 0777);
-        }
-
-        $config = array(
-            'allowed_types' => 'jpg|jpeg|gif|png',
-            'upload_path' => $this->gallery_path,
-            'max_size' => 2000
-        );
-
-        $this->upload->initialize($config);
-        if (!$this->upload->do_upload())
-            return $this->upload->display_errors();
-        return $this->upload->data();
-    }
-
 }
 
 /* End of file comentarios.php */

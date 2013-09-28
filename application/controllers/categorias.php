@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Controlador Categorias Archivo, Ecuadorinmobile 
+ * Archivo Controlador Categorias, Ecuadorinmobile 
  * 
  * @author Mario Torres <mariofertc@mixmail.com>
  * @version 1.0
@@ -14,17 +14,22 @@ require_once ("persona_controller.php");
 /**
  * Clase de Categorias
  * 
- * Controlador para acceder a las Categorías
+ * Controlador para acceder a las Categorías.
  * @package Administrador
  */
 class Categorias extends Secure_area {
 
+    /**
+     * Constructor de la clase
+     * @access public
+     */
     function __construct() {
         parent::__construct('categorias');
     }
 
     /**
      * Listado de Categorías, CRUD.
+     * @access public
      */
     public function index() {
         $data['controller_name'] = strtolower($this->uri->segment(1));
@@ -37,6 +42,7 @@ class Categorias extends Secure_area {
 
     /**
      * Obtiene los datos formateados para el datatable.
+     * @access public
      * @return string JSON que permite cargar los datos.
      */
     function mis_datos() {
@@ -63,6 +69,11 @@ class Categorias extends Secure_area {
         echo getData('Categoria', $aColumns, $cllAccion);
     }
 
+    /**
+     * Redirige a los lugares de la categoria.
+     * @access public
+     * @param int $id Identificador de la categoria.
+     */
     function lugares($id = -1) {
         if ($id == -1)
             return;
@@ -70,11 +81,22 @@ class Categorias extends Secure_area {
         $this->Lugares->index($id);
     }
 
+    /**
+     * Editar o Crear Nueva Categoria.
+     * @access public
+     * @param type $id
+     */
     function view($id = -1) {
         $data['info'] = $this->Categoria->get_info($id);
         $this->load->view("categorias/form", $data);
     }
 
+    /**
+     * Almacena la Categoria
+     * @param int $id
+     * @access public
+     * @return string JSON Indicando si se guardo o no.
+     */
     function save($id = -1) {
         $data = array(
             'nombre' => $this->input->post('categoria'),
@@ -114,16 +136,18 @@ class Categorias extends Secure_area {
     }
 
     function search() {
-        $search = $this->input->post('search');
-        $data_rows = get_incidencia_manage_table_data_rows($this->Incidencia->search($search), $this);
-        echo $data_rows;
+        
     }
 
     function suggest() {
-        $suggestions = $this->Incidencia->get_search_suggestions($this->input->post('q'), $this->input->post('limit'));
-        echo implode("\n", $suggestions);
+        
     }
 
+    /**
+     * Elimina los items seleccionados
+     * @return string JSON Indicando si se elimino o no el objeto.
+     * @access public
+     */
     function delete() {
         $data_to_delete = $this->input->post('ids');
         if ($this->Categoria->delete_list($data_to_delete)) {
@@ -135,32 +159,34 @@ class Categorias extends Secure_area {
     }
 
     function mailto() {
-        $people_to_email = $this->input->post('ids');
-
-        if ($people_to_email != false) {
-            $mailto_url = 'mailto:';
-            foreach ($this->Incidencia->get_multiple_info($people_to_email)->result() as $persona) {
-                $mailto_url.=$persona->email . ',';
-            }
-            //remove last comma
-            $mailto_url = substr($mailto_url, 0, strlen($mailto_url) - 1);
-
-            echo $mailto_url;
-            exit;
-        }
-        echo '#';
+        
     }
 
+    /**
+     * Obtiene la fila del datatable.
+     * @access public
+     * @return string Para actualizar o insertar en el datatable.
+     */
     function get_row() {
         $id = $this->input->post('row_id');
         $data_row = get_categoria_data_row($this->Categoria->get_info($id), $this);
         echo $data_row;
     }
 
+    /**
+     * Valor del Ancho de la Forma Modal
+     * @access public
+     * @return int
+     */
     function get_form_width() {
         return 400;
     }
 
+    /**
+     * Valor del Alto de la Forma Modal
+     * @access public
+     * @return int
+     */
     function get_form_height() {
         return 360;
     }

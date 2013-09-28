@@ -1,14 +1,27 @@
 <?php
 
+/**
+ * Archivo Controlador Login, Ecuadorinmobile 
+ * 
+ * @author Mario Torres <mariofertc@mixmail.com>
+ * @version 1.0
+ * @package FrontEnd
+ */
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
+/**
+ * Clase Login
+ * 
+ * Controlador para acceder al Administrador del Sitio.
+ * @package FrontEnd
+ */
 class Login extends CI_Controller {
 
-    function __construct() {
-        parent::__construct();
-    }
-
+    /**
+     * Valida el Formulario del Login.
+     * @access public
+     */
     function index() {
         if ($this->Empleado->is_logged_in()) {
             redirect('home');
@@ -27,6 +40,11 @@ class Login extends CI_Controller {
         }
     }
 
+    /**
+     * Chequea si esta logiado un usuario.
+     * @param string $username
+     * @return boolean
+     */
     function login_check($username) {
         $password = $this->input->post("password");
 

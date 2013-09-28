@@ -1,20 +1,38 @@
 <?php
 
+/**
+ * Archivo Controlador persona_controller, Ecuadorinmobile 
+ * 
+ * @author Mario Torres <mariofertc@mixmail.com>
+ * @version 1.0
+ * @package Administrador
+ */
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 require_once ("interfaces/ipersona_controller.php");
 require_once ("secure_area.php");
 
+/**
+ * Clase de Persona_controller
+ * 
+ * Controlador para manipular Personas
+ * @package Administrador
+ */
 abstract class Persona_controller extends Secure_area implements iPersona_controller {
 
+    /**
+     * Constructor de la clase
+     * @access public
+     */
     function __construct($module_id = null) {
         parent::__construct($module_id);
     }
 
-    /*
-      This returns a mailto link for persons with a certain id. This is called with AJAX.
+    /**
+     * Retorna el enlace del emial a la persona con el Identificador. Ajax Call
+     * @access public
+     * @return string Con el enlace
      */
-
     function mailto() {
         $people_to_email = $this->input->post('ids');
 
@@ -32,10 +50,10 @@ abstract class Persona_controller extends Secure_area implements iPersona_contro
         echo '#';
     }
 
-    /*
-      Gets one row for a person manage table. This is called using AJAX to update one row.
+    /**
+     * Coje una fila para el datatable.
+     * @return string Estructura HTML "<tr>" para el datatable.
      */
-
     function get_row() {
         $person_id = $this->input->post('row_id');
         $data_row = get_persona_data_row($this->Persona->get_info($person_id), $this);

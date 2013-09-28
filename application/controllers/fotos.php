@@ -1,41 +1,69 @@
 <?php
 
+/**
+ * Archivo Controlador Fotos, Ecuadorinmobile 
+ * 
+ * @author Mario Torres <mariofertc@mixmail.com>
+ * @version 1.0
+ * @package Administrador
+ */
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
 require_once ("secure_area.php");
 
+/**
+ * Clase de Fotos
+ * 
+ * Controlador para manipular las fotografias.
+ * @package Administrador
+ */
 class Fotos extends Secure_area {
 
     var $gallery_path;
     var $gallery_path_url;
 
+    /**
+     * Constructor de la clase
+     * @access public
+     */
     function __construct() {
         parent::__construct('fotos');
     }
 
+    /**
+     * Listado de Fotos.
+     * @access public
+     * @param int $id Identificador del Lugar
+     */
     public function index($id = -1) {
         $data['controller_name'] = strtolower($this->uri->segment(2));
         $data['admin_table'] = get_foto_admin_table();
         $data['form_width'] = $this->get_form_width();
         $data['form_height'] = $this->get_form_height();
         $data['id_lugar'] = $id;
-
         $this->load->view('fotos/manage', $data);
     }
+
     public function regresar($id = -1) {
         $lugar = $this->Lugar->get_info($id);
         redirect("lugares/index/$lugar->categoria_id", 'refresh');
     }
 
+    /**
+     * Retorna las fotos de acuerdo al identificador del Lugar dado.
+     * @param int $id_lugar
+     * @access public
+     * @return string JSON con los datos de las fotografias.
+     */
     function mis_datos($id_lugar) {
         $aColumns = array(
             'id' => array('checked' => true, 'es_mas' => true),
             'nombre' => array('limit' => 13),
             'imagen_path' => array('limit' => 30),
             'descripcion' => array('limit' => 30),
-            'orden'=>array('limit' => 30) 
-            );
+            'orden' => array('limit' => 30)
+        );
         //Eventos Tabla
         $cllAccion = array(
             '1' => array(
@@ -49,12 +77,24 @@ class Fotos extends Secure_area {
         echo getData('Foto', $aColumns, $cllAccion, $cllWhere);
     }
 
+    /**
+     * Editar o Crear Nueva Foto.
+     * @access public
+     * @param int $id
+     * @param int $lugar_id
+     */
     function view($id = -1, $lugar_id = -1) {
         $data['info'] = $this->Foto->get_info($id);
         $data['id_lugar'] = $lugar_id;
         $this->load->view("fotos/form", $data);
     }
 
+    /**
+     * Almacena o Edita una Fotografia
+     * @param int $id
+     * @access public
+     * @return string JSON Indicando si se guardo o no.
+     */
     function save($id = -1) {
         $data = array(
             'nombre' => $this->input->post('nombre'),
@@ -77,7 +117,7 @@ class Fotos extends Secure_area {
         }
         if (count($_FILES) == 1 && $id != -1)
             $this->delete_files(array($id));
-        
+
         //Cuando es Edit, no es necesario actualizar la imagen.
         if (count($_FILES) == 1) {
             //Upload image
@@ -125,8 +165,13 @@ class Fotos extends Secure_area {
         }
     }
 
+    /**
+     * Almacena la Fotografia del Lugar y crea su respectivo thumbnail.
+     * @param string $path
+     * @return mixed Con el estado del proceso de conversion.
+     */
     function do_upload($path) {
-        $this->gallery_path = realpath(APPPATH . '../images/imglugar/') . "/". $path;
+        $this->gallery_path = realpath(APPPATH . '../images/imglugar/') . "/" . $path;
         if (!file_exists($this->gallery_path)) {
             mkdir($this->gallery_path, 0777);
         }
@@ -137,7 +182,7 @@ class Fotos extends Secure_area {
             'max_size' => 2000
         );
 
-        
+
         $this->upload->initialize($config);
         if (!$this->upload->do_upload())
             return $this->upload->display_errors();
@@ -169,10 +214,14 @@ class Fotos extends Secure_area {
         
     }
 
+    /**
+     * Elimina los items seleccionados
+     * @return string JSON Indicando si se elimino o no el objeto.
+     * @access public
+     */
     function delete() {
         $data_to_delete = $this->input->post('ids');
-        if(!$this->delete_files($data_to_delete))
-        {
+        if (!$this->delete_files($data_to_delete)) {
             echo json_encode(array('success' => false, 'message' => $this->lang->line('fotos_cannot_be_deleted')));
             return;
         }
@@ -183,31 +232,50 @@ class Fotos extends Secure_area {
             echo json_encode(array('success' => false, 'message' => $this->lang->line('fotos_cannot_be_deleted')));
         }
     }
-    
-    function delete_files($data_to_delete)
-    {
+
+    /**
+     * Permite eliminar los archivos subidos.
+     * @param mixed[] $data_to_delete Array con los datos a borrar.
+     * @return boolean
+     */
+    function delete_files($data_to_delete) {
         $gallery_path = realpath(APPPATH . '../images/imglugar/');
         foreach ($data_to_delete as $id) {
             $foto = $this->Foto->get_info($id);
             $nom_enlace = $this->Lugar->get_info($foto->id_lugar)->nombre_enlace;
-            if(!file_exists($gallery_path . '/' . $nom_enlace . '/' . $foto->imagen_path) || !file_exists($gallery_path. '/' . $nom_enlace . '/thumbs/' . $foto->imagen_path))
-                    return true;
-            if(!(unlink($gallery_path. '/' . $nom_enlace . '/' . $foto->imagen_path ) && unlink($gallery_path. '/' . $nom_enlace . '/thumbs/' . $foto->imagen_path )))
-                    return false;
+            if (!file_exists($gallery_path . '/' . $nom_enlace . '/' . $foto->imagen_path) || !file_exists($gallery_path . '/' . $nom_enlace . '/thumbs/' . $foto->imagen_path))
+                return true;
+            if (!(unlink($gallery_path . '/' . $nom_enlace . '/' . $foto->imagen_path) && unlink($gallery_path . '/' . $nom_enlace . '/thumbs/' . $foto->imagen_path)))
+                return false;
         }
         return true;
     }
 
+    /**
+     * Obtiene la fila del datatable.
+     * @access public
+     * @return string Para actualizar o insertar en el datatable.
+     */
     function get_row() {
         $id = $this->input->post('row_id');
         $data_row = get_foto_data_row($this->Foto->get_info($id), $this);
         echo $data_row;
     }
 
+    /**
+     * Valor del Ancho de la Forma Modal
+     * @access public
+     * @return int
+     */
     function get_form_width() {
         return 400;
     }
 
+    /**
+     * Valor del Alto de la Forma Modal
+     * @access public
+     * @return int
+     */
     function get_form_height() {
         return 330;
     }

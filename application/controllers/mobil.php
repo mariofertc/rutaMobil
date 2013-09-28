@@ -1,13 +1,27 @@
 <?php
 
+/**
+ * Archivo Controlador Mobil , Ecuadorinmobile 
+ * 
+ * @author Mario Torres <mariofertc@mixmail.com>
+ * @version 1.0
+ * @package FrontEnd
+ */
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-if (!defined('BASEPATH'))
-    exit('No direct script access allowed');
-
+/**
+ * Clase Mobil
+ * 
+ * Controlador para ejecutar el FrontEnd
+ * @package FrontEnd
+ */
 class Mobil extends CI_Controller {
 
+    /**
+     * Carga todo el FrontEnd del Sitio.
+     * @access public
+     */
     public function index() {
         $this->load->view('mobile/partial/head.php');
         //Para el Inicio de la Pagina web.
@@ -44,14 +58,11 @@ class Mobil extends CI_Controller {
         $this->load->view('mobile/partial/footer', $data);
     }
 
-    public function menu() {
-        $this->load->view('mobil/menu');
-    }
-
-    public function mapa() {
-        $this->load->view('mobil/mapa');
-    }
-
+    /**
+     * Obtiene las Coordenadas de los lugares.
+     * @access public
+     * @return string Con las coordenadas del Destino.
+     */
     function coordenadas() {
         //Si es 0, entonces debe enviar todas las locaciones.
         $categoria_id = $_GET['categoria_id'];
@@ -78,6 +89,11 @@ class Mobil extends CI_Controller {
         echo json_encode($data);
     }
 
+    /**
+     * Almacena los comentario de los usuarios.
+     * @return string JSON Con el estado de la respuesta, si es satisfactoria, envia el id del comentario.
+     * @access public
+     */
     function save_comments() {
         if (
                 isset($_POST['username']) && !empty($_POST['username']) &&
@@ -105,6 +121,11 @@ class Mobil extends CI_Controller {
         }
     }
 
+    /**
+     * Permite al usuario Votar por su lugar favorito.
+     * @access public
+     * @return string JSON Con el Id del Voto.
+     */
     function save_vote() {
         $data = array('voto' => $this->input->post('voto'),
             'id_lugar' => $this->input->post('id_lugar'),
@@ -120,11 +141,21 @@ class Mobil extends CI_Controller {
             echo json_encode(array('success' => false, 'message' => 'No se pudo registrar tu voto!'));
     }
 
+    /**
+     * Obtiene los lugares.
+     * @access public
+     * @return string JSON con los lugares, de acuerdo al Identificador de la categoria pasado en POST.
+     */
     function get_lugares() {
         $lugares = $this->Lugar->get_by_categoria($_POST['id']);
         echo json_encode($lugares->result_array());
     }
 
+    /**
+     * Permite enviar email.
+     * @access public
+     * @return mixed Retorna la vista de agradecimeinto|Error de envi de Email.
+     */
     function send_email() {
         $to = $this->input->get('email');
         $name = $this->input->get('name');

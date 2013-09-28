@@ -1,14 +1,14 @@
 <?php
 
-if (!defined('BASEPATH'))
-    exit('No direct script access allowed');
 /**
- * Secure_Area Archivo, Ecuadorinmobile 
+ * Archivo Controlador Secure_Area, Ecuadorinmobile 
  * 
  * @author Mario Torres <mariofertc@mixmail.com>
  * @version 1.0
  * @package secure_area
  */
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
 
 /**
  * Seguridad para el Sistema de Administración.
@@ -21,6 +21,7 @@ class Secure_area extends CI_Controller {
     /**
      * Constructor
      * @param string $module_id: Identificador del módulo.
+     * @access public
      */
     function __construct($module_id = null) {
         parent::__construct();

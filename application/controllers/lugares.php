@@ -1,15 +1,37 @@
 <?php
 
+/**
+ * Archivo Controlador Lugares, Ecuadorinmobile 
+ * 
+ * @author Mario Torres <mariofertc@mixmail.com>
+ * @version 1.0
+ * @package Administrador
+ */
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 require_once ("secure_area.php");
 
+/**
+ * Clase de Lugares
+ * 
+ * Controlador para manipular los Lugares
+ * @package Administrador
+ */
 class Lugares extends Secure_area {
 
+    /**
+     * Constructor de la clase
+     * @access public
+     */
     function __construct() {
         parent::__construct('lugares');
     }
 
+    /**
+     * Listado de Lugares.
+     * @access public
+     * @param int $id Identificador de la Categoria
+     */
     public function index($id = -1) {
         $data['controller_name'] = strtolower($this->uri->segment(1));
         $data['admin_table'] = get_lugar_admin_table();
@@ -19,6 +41,12 @@ class Lugares extends Secure_area {
         $this->load->view('lugares/manage', $data);
     }
 
+    /**
+     * Retorna los lugares de acuerdo al identificador de la categoria dado.
+     * @param int $id_categoria
+     * @access public
+     * @return string JSON con los datos de los lugares
+     */
     function mis_datos($id_categoria) {
         $aColumns = array(
             'id' => array('checked' => true, 'es_mas' => true),
@@ -45,6 +73,12 @@ class Lugares extends Secure_area {
         echo getData('Lugar', $aColumns, $cllAccion, $cllWhere);
     }
 
+    /**
+     * Editar o Crear Nuevo Lugar.
+     * @access public
+     * @param int $id
+     * @param int $categoria_id
+     */
     function view($id = -1, $categoria_id = -1) {
         $data['info'] = $this->Lugar->get_info($id);
         $data['categoria_id'] = $categoria_id;
@@ -56,6 +90,12 @@ class Lugares extends Secure_area {
         $this->load->view("lugares/form", $data);
     }
 
+    /**
+     * Almacena o Edita un Lugar
+     * @param int $id
+     * @access public
+     * @return string JSON Indicando si se guardo o no.
+     */
     function save($id = -1) {
         $coordenadas = json_encode(array('latitud' => $this->input->post('latitud'), 'longitud' => $this->input->post('longitud')));
 
@@ -115,16 +155,18 @@ class Lugares extends Secure_area {
     }
 
     function search() {
-        $search = $this->input->post('search');
-        $data_rows = get_incidencia_manage_table_data_rows($this->Incidencia->search($search), $this);
-        echo $data_rows;
+        
     }
 
     function suggest() {
-        $suggestions = $this->Incidencia->get_search_suggestions($this->input->post('q'), $this->input->post('limit'));
-        echo implode("\n", $suggestions);
+        
     }
 
+    /**
+     * Elimina los items seleccionados
+     * @return string JSON Indicando si se elimino o no el objeto.
+     * @access public
+     */
     function delete() {
         $data_to_delete = $this->input->post('ids');
         if ($this->Lugar->delete_list($data_to_delete)) {
@@ -135,20 +177,40 @@ class Lugares extends Secure_area {
         }
     }
 
+    /**
+     * Obtiene la fila del datatable.
+     * @access public
+     * @return string Para actualizar o insertar en el datatable.
+     */
     function get_row() {
         $id = $this->input->post('row_id');
         $data_row = get_lugar_data_row($this->Lugar->get_info($id), $this);
         echo $data_row;
     }
 
+    /**
+     * Valor del Ancho de la Forma Modal
+     * @access public
+     * @return int
+     */
     function get_form_width() {
         return 600;
     }
 
+    /**
+     * Valor del Alto de la Forma Modal
+     * @access public
+     * @return int
+     */
     function get_form_height() {
         return 380;
     }
 
+    /**
+     * Almacena la Fotografia del Lugar.
+     * @param string $path
+     * @return mixed Con el estado del proceso de conversion.
+     */
     function do_upload($path) {
         $this->gallery_path = realpath(APPPATH . '../images/imglugar/') . '/' . $path;
         if (!file_exists($this->gallery_path)) {
