@@ -1,9 +1,25 @@
 <?php
 
+/**
+ * Archivo Modelo Empleado, Ecuadorinmobile 
+ * 
+ * @author Mario Torres <mariofertc@mixmail.com>
+ * @version 1.0
+ * @package Modelo
+ */
+
+/**
+ * Clase de Empleado
+ * 
+ * Modelo para acceder a los Usuarios.
+ * @package Modelo
+ */
 class Empleado extends Persona {
 
     /**
-     * Determines if a given person_id is an employee
+     * Verifica si esta almacenado el item especificado.
+     * @param int $persona_id
+     * @return boolean
      */
     function exists($persona_id) {
         $this->db->from('empleado');
@@ -16,9 +32,9 @@ class Empleado extends Persona {
     }
 
     /**
-     * Returns all the employees
+     * Devuelve todos los items almacenados.
+     * @return type
      */
-
     function getall() {
         $this->db->from('empleado');
         $this->db->where('deleted', 0);
@@ -27,7 +43,15 @@ class Empleado extends Persona {
         return $this->db->get();
     }
 
-    function get_all($num = 0, $offset = 0, $where=null, $order = '') {
+    /**
+     * Devuelve los items que coincidan con los parametros dados
+     * @param int $num
+     * @param int $offset
+     * @param string $where
+     * @param string $order
+     * @return type
+     */
+    function get_all($num = 0, $offset = 0, $where = null, $order = '') {
         $this->db->select('persona.*, persona.persona_id as empleado_id FROM empleado, persona where persona.persona_id = empleado.persona_id and empleado.deleted = 0 ' .
                 $where);
         $this->db->order_by($order);
@@ -36,7 +60,10 @@ class Empleado extends Persona {
         return $this->db->get();
     }
 
-
+    /**
+     * Sumatoria de Empleados
+     * @return type
+     */
     function get_total() {
         $this->db->select("count(*) as total");
         $this->db->from("empleado");
@@ -47,9 +74,10 @@ class Empleado extends Persona {
     }
 
     /**
-     * Gets information about a particular employee
+     * Devuelve la informacion de un item en particular
+     * @param string $id
+     * @return \stdClass
      */
-
     function get_info($empleado_id) {
         $this->db->from('empleado');
         $this->db->join('persona', 'persona.persona_id = empleado.persona_id');
@@ -76,9 +104,10 @@ class Empleado extends Persona {
     }
 
     /**
-     * Gets information about multiple employees
+     * Devuelve la Informacion de los Empleados.
+     * @param array $empleado_ids
+     * @return type
      */
-
     function get_multiple_info($empleado_ids) {
         $this->db->from('empleado');
         $this->db->join('persona', 'persona.id = empleado.persona_id');
@@ -88,6 +117,14 @@ class Empleado extends Persona {
         return $this->db->get();
     }
 
+    /**
+     * Inserta o guarda un item
+     * @param type $persona_data
+     * @param type $empleado_data
+     * @param type $permiso_data
+     * @param type $empleado_id
+     * @return type
+     */
     function save(&$persona_data, &$empleado_data, &$permiso_data, $empleado_id = false) {
         $success = false;
 
@@ -134,9 +171,10 @@ class Empleado extends Persona {
     }
 
     /**
-     * Deletes one empleado, not implemented yet!
+     * Elimina el Empleado con el identificador dado.
+     * @param int $employee_id
+     * @return boolean
      */
-
     function delete($employee_id) {
         $success = false;
 
@@ -165,9 +203,10 @@ class Empleado extends Persona {
     }
 
     /**
-     * Deletes a list of employees
+     * Elimina items deacuerdo a los identificadores dados.
+     * @param array $ids
+     * @return boolean
      */
-
     function delete_list($empleado_ids) {
         $success = false;
 
@@ -198,9 +237,11 @@ class Empleado extends Persona {
     }
 
     /**
-     * Get search suggestions to find employees
+     * No Implementado
+     * @param type $search
+     * @param type $limit
+     * @return type
      */
-
     function get_search_suggestions($search, $limit = 5) {
         $suggestions = array();
 
@@ -257,9 +298,10 @@ class Empleado extends Persona {
     }
 
     /**
-     * Preform a search on employees
+     * No Implementado
+     * @param type $search
+     * @return type
      */
-
     function search($search) {
         $this->db->from('empleado');
         $this->db->join('persona', 'empleado.persona_id=persona.persona_id');
@@ -277,9 +319,11 @@ class Empleado extends Persona {
     }
 
     /**
-     * Attempts to login employee and set session. Returns boolean based on outcome.
+     * Chequea el logeo de Usuario.
+     * @param string $username
+     * @param string $password
+     * @return boolean
      */
-
     function login($username, $password) {
         $query = $this->db->get_where('empleado', array('usuario' => $username, 'clave' => md5($password), 'deleted' => 0), 1);
         if ($query->num_rows() == 1) {
@@ -291,26 +335,24 @@ class Empleado extends Persona {
     }
 
     /**
-     * Logs out a user by destorying all session data and redirect to login
+     * Cierra la sesion del Usuario.
      */
-
     function logout() {
         $this->session->sess_destroy();
         redirect('home');
     }
 
     /**
-     * Determins if a employee is logged in
+     * Verifica si existe un usuario Logeado.
+     * @return boolearn
      */
-
     function is_logged_in() {
         return $this->session->userdata('persona_id') != false;
     }
 
     /**
-     * Gets information about the currently logged in employee.
+     * Obtiene la Informacion del Usuario Logeado.
      */
-
     function get_logged_in_empleado_info() {
         if ($this->is_logged_in()) {
             return $this->get_info($this->session->userdata('persona_id'));
@@ -320,9 +362,11 @@ class Empleado extends Persona {
     }
 
     /**
-     * Determins whether the employee specified employee has access the specific module.
+     * Determina si el usuario tiene acceso al modulo indicado.
+     * @param int $modulo_id
+     * @param int $persona_id
+     * @return boolean
      */
-
     function has_permission($modulo_id, $persona_id) {
         //if no modulo_id is null, allow access
         if ($modulo_id == null) {
@@ -337,5 +381,6 @@ class Empleado extends Persona {
     }
 
 }
+
 /* End of file empleado.php */
 /* Location: ./application/models/empleado.php */

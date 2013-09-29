@@ -1,12 +1,26 @@
 <?php
 
+/**
+ * Archivo Modelo Voto, Ecuadorinmobile 
+ * 
+ * @author Mario Torres <mariofertc@mixmail.com>
+ * @version 1.0
+ * @package Modelo
+ */
+
+/**
+ * Clase de Voto
+ * 
+ * Modelo para acceder a las Votaciones.
+ * @package Modelo
+ */
 class Voto extends CI_Model {
 
-    function __construct() {
-        // Call the Model constructor
-        parent::__construct();
-    }
-
+    /**
+     * Sumatoria de votos por lugar
+     * @param type $lugar_id
+     * @return type
+     */
     function get_total($lugar_id) {
         $this->db->select("count(*) as total");
         $this->db->from("votacion");
@@ -16,7 +30,10 @@ class Voto extends CI_Model {
     }
 
     /**
-     * Inserts or updates a comment
+     * Inserta o guarda un item
+     * @param type $data
+     * @param type $id
+     * @return boolean
      */
     function save(&$data, $id = false) {
         if ($this->db->insert('votacion', $data)) {

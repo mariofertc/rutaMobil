@@ -14,7 +14,7 @@ if (!defined('BASEPATH'))
  * Clase de Categorias
  * 
  * Controlador que redirige al Controlador Mobil.
- * @package FronEnd
+ * @package FrontEnd
  */
 class Inicio extends CI_Controller {
 

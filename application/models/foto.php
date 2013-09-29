@@ -1,37 +1,62 @@
 <?php
+
+/**
+ * Archivo Modelo Foto, Ecuadorinmobile 
+ * 
+ * @author Mario Torres <mariofertc@mixmail.com>
+ * @version 1.0
+ * @package Modelo
+ */
+
+/**
+ * Clase de Foto
+ * 
+ * Modelo para acceder a las Fotos.
+ * @package Modelo
+ */
 class Foto extends CI_Model {
 
-    var $title   = '';
+    var $title = '';
     var $content = '';
-    var $date    = '';
+    var $date = '';
 
-    function __construct()
-    {
-        // Call the Model constructor
-        parent::__construct();
-    }
-    
-    function get_by_lugar($lugar_id = null)
-    {
-        if($lugar_id == null)
+    /**
+     * Lista de Fotografias por el Lugar indicado.
+     * @param int $lugar_id
+     * @return null|array
+     */
+    function get_by_lugar($lugar_id = null) {
+        if ($lugar_id == null)
             return null;
         $this->db->where('id_lugar', $lugar_id);
         $this->db->from('fotos');
-        $this->db->where('deleted',0);
+        $this->db->where('deleted', 0);
         $query = $this->db->get();
-        
+
         return $query;
     }
 
+    /**
+     * Devuelve todos los items almacenados.
+     * @return type
+     */
     function getall() {
         $this->db->from('fotos');
         $this->db->where('deleted', 0);
         $query = $this->db->get();
-        
+
         return $query;
     }
 
-    function get_all($num = 0, $offset = 0, $where=null, $order = null) {
+    /**
+     * Devuelve los items que coincidan con los parametros dados
+     * @param int $num
+     * @param int $offset
+     * @param string $where
+     * @param string $order
+     * @return type
+     */
+    function get_all($num = 0, $offset = 0, $where = null, $order = null) {
         if ($order == null)
             $order = "id";
         $this->db->select('fotos.id as id, fotos.nombre as nombre, lugar.nombre_enlace as nombre_enlace, fotos.imagen_path as imagen_path, fotos.descripcion as descripcion, fotos.orden as orden', false);
@@ -45,20 +70,26 @@ class Foto extends CI_Model {
         return $this->db->get();
     }
 
-    function get_total($where="") {
+    /**
+     * Sumatoria de Fotos almacenados
+     * @param string $where
+     * @return type
+     */
+    function get_total($where = "") {
         $this->db->select("count(*) as total");
         $this->db->from("fotos,lugar,categoria");
         $this->db->where("fotos.deleted = 0 and fotos.id_lugar=lugar.id and categoria.id=lugar.categoria_id");
-        if($where!="")
+        if ($where != "")
             $this->db->where($where);
         $query = $this->db->get();
         return $query->row();
     }
 
     /**
-     * Gets information about a particular item
+     * Devuelve la informacion de un item en particular
+     * @param string $id
+     * @return \stdClass
      */
-
     function get_info($id) {
         $this->db->select('fotos.id as id, fotos.nombre as nombre, lugar.nombre_enlace as nombre_enlace, fotos.imagen_path as imagen_path, fotos.descripcion as descripcion, id_lugar, fotos.orden as orden', false);
         $this->db->from('fotos, lugar');
@@ -84,9 +115,11 @@ class Foto extends CI_Model {
     }
 
     /**
-     * Inserts or updates a cat
+     * Inserta o guarda un item
+     * @param type $data
+     * @param type $id
+     * @return boolean
      */
-
     function save(&$data, $id = false) {
         if (!$id or !$this->exists($id)) {
             if ($this->db->insert('fotos', $data)) {
@@ -104,9 +137,10 @@ class Foto extends CI_Model {
     }
 
     /**
-     * Determines if a given item_id is an item
+     * Verifica si esta almacenado el item especificado.
+     * @param int $id
+     * @return boolean
      */
-
     function exists($id) {
         //Bug php or mysql version, if it is char explicit convert to number.
         if (!is_numeric($id))
@@ -117,6 +151,11 @@ class Foto extends CI_Model {
         return ($query->num_rows() == 1);
     }
 
+    /**
+     * Elimina items deacuerdo a los identificadores dados.
+     * @param array $ids
+     * @return boolean
+     */
     function delete_list($ids) {
         $success = false;
 
@@ -136,12 +175,7 @@ class Foto extends CI_Model {
         }
         return $success;
     }
-    
-    function get_full_path()
-    {
-        
-    }
-
 }
+
 /* End of file foto.php */
 /* Location: ./application/models/foto.php */

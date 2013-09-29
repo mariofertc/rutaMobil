@@ -1,7 +1,16 @@
 <?php
-
 /**
+ * Archivo Modelo Incidencia, Ecuadorinmobile 
+ * 
+ * @author Mario Torres <mariofertc@mixmail.com>
+ * @version 1.0
+ * @package Modelo
+ */
+/**
+ * Clase de Incidencia
  * No Implementado
+ * Modelo para acceder a las Incidencias.
+ * @package Modelo
  */
 class Incidencia extends CI_Model {
     /*

@@ -109,7 +109,7 @@ $autoload['language'] = array('categorias', 'lugares', 'comun', 'form_validation
 |
 */
 
-$autoload['model'] = array('Lugar', 'Provincia', 'Categoria', 'Persona', 'Empleado', 'Modulo', 'Foto', 'mobil/Comentario','mobil/Voto');
+$autoload['model'] = array('Lugar', 'Categoria', 'Persona', 'Empleado', 'Modulo', 'Foto', 'mobil/Comentario','mobil/Voto');
 
 
 /* End of file autoload.php */

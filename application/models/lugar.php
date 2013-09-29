@@ -1,16 +1,30 @@
 <?php
 
+/**
+ * Archivo Modelo Lugar, Ecuadorinmobile 
+ * 
+ * @author Mario Torres <mariofertc@mixmail.com>
+ * @version 1.0
+ * @package Modelo
+ */
+
+/**
+ * Clase de Lugar
+ * 
+ * Modelo para acceder a los Lugares.
+ * @package Modelo
+ */
 class Lugar extends CI_Model {
 
     var $title = '';
     var $content = '';
     var $date = '';
 
-    function __construct() {
-        // Call the Model constructor
-        parent::__construct();
-    }
-
+    /**
+     * Devuelve lista de Lugares por la Categoria dada.
+     * @param int $categoria_id
+     * @return null|array
+     */
     function get_by_categoria($categoria_id = null) {
         if ($categoria_id == null)
             return null;
@@ -22,6 +36,11 @@ class Lugar extends CI_Model {
         return $query;
     }
 
+    /**
+     * Lista de Fotografias del Lugar.
+     * @param int $lugar_id
+     * @return null
+     */
     function get_photos($lugar_id = null) {
         if ($lugar_id == null)
             return null;
@@ -35,6 +54,10 @@ class Lugar extends CI_Model {
         return $query;
     }
 
+    /**
+     * Devuelve todos los items almacenados.
+     * @return type
+     */
     function getall() {
         $this->db->from('lugar');
         $this->db->where('deleted', 0);
@@ -42,6 +65,14 @@ class Lugar extends CI_Model {
         return $query;
     }
 
+    /**
+     * Devuelve los items que coincidan con los parametros dados
+     * @param int $num
+     * @param int $offset
+     * @param string $where
+     * @param string $order
+     * @return type
+     */
     function get_all($num = 0, $offset = 0, $where, $order = null) {
         if ($order == null)
             $order = "id";
@@ -55,6 +86,11 @@ class Lugar extends CI_Model {
         return $this->db->get();
     }
 
+    /**
+     * Sumatoria de Lugares almacenados
+     * @param string $where
+     * @return type
+     */
     function get_total($where = "") {
         $this->db->select("count(*) as total");
         $this->db->from("lugar");
@@ -66,7 +102,9 @@ class Lugar extends CI_Model {
     }
 
     /**
-     * Gets information about a particular item
+     * Devuelve la informacion de un item en particular
+     * @param string $id
+     * @return \stdClass
      */
     function get_info($id) {
         $this->db->from('lugar');
@@ -89,7 +127,10 @@ class Lugar extends CI_Model {
     }
 
     /**
-     * Inserts or updates an item
+     * Inserta o guarda un item
+     * @param type $data
+     * @param type $id
+     * @return boolean
      */
     function save(&$data, $id = false) {
         if (!$id or !$this->exists($id)) {
@@ -108,7 +149,9 @@ class Lugar extends CI_Model {
     }
 
     /**
-     * Determines if a given item_id is an item
+     * Verifica si esta almacenado el item especificado.
+     * @param int $id
+     * @return boolean
      */
     function exists($id) {
         //Bug php or mysql version, if it is char explicit convert to number.
@@ -120,6 +163,11 @@ class Lugar extends CI_Model {
         return ($query->num_rows() == 1);
     }
 
+    /**
+     * Elimina items deacuerdo a los identificadores dados.
+     * @param array $ids
+     * @return boolean
+     */
     function delete_list($ids) {
         $success = false;
 
