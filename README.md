@@ -3,12 +3,11 @@ Copyright (c) 2013 - 2015, Ecuadorinmobile, Inc.
 
 *View the [source of this content](https://github.com/mariofertc/rutaMobil.git).*
 
-Let's get the whole "linebreak" thing out of the way. The next paragraph contains two phrases separated by a single newline character:
+Turistic Site Application, developed in Codeigniter. 
 
-Roses are red
-Violets are blue
+Improved by mobile devices with jquery-mobile. 
+Integrated with google maps.
 
-The next paragraph has the same phrases, but now they are separated by two spaces and a newline character:
 
-Roses are red  
-Violets are blue
+Raul Jimenez
+Mario Torres
