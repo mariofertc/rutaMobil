@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * Archivo Interfaz ipersona_controller, Ecuadorinmobile 
+ * 
+ * @author Mario Torres <mariofertc@mixmail.com>
+ * @version 1.0
+ * @package Interfaz
+ */
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 /**

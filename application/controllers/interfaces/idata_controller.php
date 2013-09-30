@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Archivo Interfaz idata_controller, Ecuadorinmobile 
+ * 
+ * @author Mario Torres <mariofertc@mixmail.com>
+ * @version 1.0
+ * @package Interfaz
+ */
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 /**
@@ -32,6 +39,5 @@ interface iData_controller {
     public function get_form_width();
 }
 
-/*Fin del Archivo iData_controller.php*/
 /* End of file iData_controller.php */
 /* Location: ./application/controllers/interfaces/iData_controller.php */
