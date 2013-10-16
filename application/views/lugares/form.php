@@ -62,6 +62,18 @@ echo form_open_multipart('lugares/save/' . $info->id, array('id' => 'form'));
                 ?>
             </div>
         </div>
+        <div class="field_row clearfix">
+            <?php echo form_label('Altura:', 'altitud', array('class' => 'ssmall_wide')); ?>
+            <div class='form_field'>
+                <?php
+                echo form_input(array(
+                    'name' => 'altitud',
+                    'id' => 'altitud',
+                    'value' => $info->altitud)
+                );
+                ?>
+            </div>
+        </div>
     </fieldset>
     <div class="field_row clearfix">
         <?php echo form_label('Descripción:', 'descripcion', array('class' => 'ssmall_wide')); ?>

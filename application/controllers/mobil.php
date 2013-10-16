@@ -150,6 +150,24 @@ class Mobil extends CI_Controller {
         $lugares = $this->Lugar->get_by_categoria($_POST['id']);
         echo json_encode($lugares->result_array());
     }
+    
+    /**
+     * Devuelve lista de Lugares por la Categoria dada.
+     * @param int $categoria_id
+     * @return null|array
+     */
+    function get_lugares_by_categoria($categoria_id = null) {
+        $lugares = $this->Lugar->get_by_categoria($categoria_id)->result();
+        
+        foreach ($lugares as $lugar) {
+            $coordenada = json_decode($lugar->coordenadas);
+
+            $lugar->latitud = isset($coordenada->latitud) ? $coordenada->latitud : 0;
+            $lugar->longitud = isset($coordenada->longitud) ? $coordenada->longitud : 0;
+            $lugar->altitud = isset($coordenada->altitud) ? $coordenada->altitud : 0;
+        }
+        return $lugares;
+    }
 
     /**
      * Permite enviar email.

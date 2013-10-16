@@ -86,6 +86,7 @@ class Lugares extends Secure_area {
 
         $data['info']->latitud = isset($coordenada->latitud) ? $coordenada->latitud : 0;
         $data['info']->longitud = isset($coordenada->longitud) ? $coordenada->longitud : 0;
+        $data['info']->altitud = isset($coordenada->altitud) ? $coordenada->altitud : 0;
 
         $this->load->view("lugares/form", $data);
     }
@@ -97,7 +98,7 @@ class Lugares extends Secure_area {
      * @return string JSON Indicando si se guardo o no.
      */
     function save($id = -1) {
-        $coordenadas = json_encode(array('latitud' => $this->input->post('latitud'), 'longitud' => $this->input->post('longitud')));
+        $coordenadas = json_encode(array('latitud' => $this->input->post('latitud'), 'longitud' => $this->input->post('longitud'), 'altitud' => $this->input->post('altitud')));
 
         $data = array(
             'nombre' => $this->input->post('lugar'),

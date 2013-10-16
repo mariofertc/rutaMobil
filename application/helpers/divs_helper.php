@@ -32,7 +32,7 @@ function get_lugares($oferta_items, $opciones, $ci) {
         //Titulo
         $data_div .= '<li class="title"> <div class="icontitle">' . $oferta->icon .
                 '</div> <h1>' . $oferta->nombre .
-                '</h1><div class="migas"><h4><a href="#home">inicio</a>/<a href="#oferta">oferta</a>&nbsp;'  . '</h4></div></li>';
+                '</h1><div class="migas"><h4><a href="#home">inicio</a>/<a href="#oferta">categorias</a>&nbsp;'  . '</h4></div></li>';
         $data_div .= '<div data-role="content" data-theme="d" class="conte" >';
         if (isset($opciones['busqueda']) == true)
             $data_div .= '<ul data-role="listview" data-dividertheme="e" class="titulo" data-inset="true" data-filter="true" data-filter-placeholder="¿Qué ' . $oferta->nombre . ' buscas?" data-autodividers="false">';
@@ -65,8 +65,8 @@ function get_lugares($oferta_items, $opciones, $ci) {
 function get_lugar($oferta_items, $opciones, $ci) {
     $data_div = '';
     foreach ($oferta_items->result() as $oferta) {
-        $lugares = $ci->Lugar->get_by_categoria($oferta->id);
-        foreach ($lugares->result() as $lugar) {
+        $lugares = $ci->get_lugares_by_categoria($oferta->id);
+        foreach ($lugares as $lugar) {
                $data_div .= '<div data-role="page" id="' . $lugar->nombre_enlace . '" data-theme="d" data-title="' . $lugar->nombre . '">';
             //Encabezado            
             $data['lugar'] = $lugar;
@@ -76,7 +76,7 @@ function get_lugar($oferta_items, $opciones, $ci) {
                     '</div> <h1>' . $lugar->nombre .
                     '</h1>';
             if (!isset($opciones['no_breadcrumbs']))
-                $data_div .='<div class="migas"><h4><a href="#home">inicio</a>/<a href="#oferta">oferta</a>/<a href="#'. $oferta->nombre_enlace .'">'.$oferta->nombre_enlace.'</a></h4></div>';
+                $data_div .='<div class="migas"><h4><a href="#home">inicio</a>/<a href="#oferta">categorias</a>/<a href="#'. $oferta->nombre_enlace .'">'.$oferta->nombre_enlace.'</a></h4></div>';
             $data_div .='</li>';
             $data_div .='<div data-role="content" data-theme="d" class="conte">';
 
@@ -114,7 +114,7 @@ function get_lugar($oferta_items, $opciones, $ci) {
 <li title="Altitud" class="atrib" name="altitud">
 <div class="icon3">S</div>
 <h1>ALTITUD</h1>
-<p>1000 Metros</p>
+<p>'.$lugar->altitud.' Metros</p>
 </li>
 </ul>';
             $data_div .= "<p>" . $lugar->descripcion . "</p></div>";

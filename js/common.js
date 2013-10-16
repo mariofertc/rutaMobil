@@ -139,3 +139,11 @@ $(document).ready(function(){
 $('[data-role=page]').live('pageshow', function (event, ui) {
 $("img.lazy").show().lazyload();
 });
+
+ $(document).live('pageshow',function(event,ui){
+          // disable previous selected links
+          $('[data-role=navbar] a').removeClass("ui-btn-active");
+          // select link
+          var menuLink = $('[data-role=navbar] a[href="#'+$.mobile.activePage.attr('id')+'"]');
+          menuLink.addClass("ui-btn-active");
+    });  
