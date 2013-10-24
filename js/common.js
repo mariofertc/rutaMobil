@@ -85,56 +85,17 @@ function deg(obj) {
     });
 }
 
-//scrip ts flex slider
-//TOP
-//            $(window).scroll(function(){
-//if (window.pageYOffset >= 1500) {
-//$('#scroll-up:not(:visible)').fadeIn();
-//} else {
-//$('#scroll-up:visible').fadeOut();
-//}
-//}); 
 
-var backToTop = {
-    init: function() {
-//                $('html, body').append('<a href="" id="backToTop" data-role="button"   data-corners="false" data-icon="arrow-u" data-theme="b">Back to top</a>');
-
-        var section2 = '<a href="" id="backToTop" data-role="button"   data-corners="false" data-icon="arrow-u" data-theme="b">Back to top</a>';
-        myClone2 = $(section2);
-        myClone2.appendTo("html").trigger('create');
-        $('#backToTop').click(backToTop.click);
-//                $(window).bind('scrollstart', backToTop.scrollStart);
-//                $(window).bind('scrollstop', backToTop.scrollStop);
-        $(window).on('scrollstart', backToTop.scrollStart);
-        $(window).on('scrollstop', backToTop.scrollStop);
-//                $('body').trigger('create');
-//                $('#oferta').trigger('pagecreate');
-    },
-    click: function() {
-        $('html, body').animate({scrollTop: 0}, 400);
-    },
-    scrollStart: function() {
-        $('#backToTop').hide();
-    },
-    scrollStop: function() {
-        var windowHeight = $(window).height();
-        if (window.pageYOffset > windowHeight) {
-            $('#backToTop').fadeIn('slow');
-        }
-    }
-};
-$(document).on('pagecreate', '#home', function(event, ui) {
-//    backToTop.init();
-});
 
 $(document).ready(function(){
-    backToTop.init();
+//    backToTop.init();
     $("img.lazy").lazyload({
 //    effect : "fadeIn",
     failure_limit : 10,
 //    skip_invisible : true
 //    threshold : 200
 });
+//$(document).backToTop();
 });
 $('[data-role=page]').live('pageshow', function (event, ui) {
 $("img.lazy").show().lazyload();
@@ -146,4 +107,28 @@ $("img.lazy").show().lazyload();
           // select link
           var menuLink = $('[data-role=navbar] a[href="#'+$.mobile.activePage.attr('id')+'"]');
           menuLink.addClass("ui-btn-active");
+          $('#backToTop').attr('href','#'+$.mobile.activePage.attr('id'));
+          
     });  
+    $(document).on('pagebeforeshow', function(){ 
+//    $("#backToTop").button().button('disable');
+});
+
+$(window).scroll(function() {
+        if($(this).scrollTop() >= 50) {
+            $('#backToTop').fadeIn();    
+        } else {
+            $('#backToTop').fadeOut();
+        }
+    });
+ 
+    $(document).on('click', '#backToTop', function() {
+        $("html, body").animate({scrollTop:0},800);
+//        return false;
+//        window.scrollTo(0,0);
+//        return false;
+    });    
+    $(document).on('click', '#toTop', function() {
+        $('body,html').animate({scrollTop:0},800);
+        return false;
+    });    
