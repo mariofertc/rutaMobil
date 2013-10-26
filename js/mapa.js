@@ -119,7 +119,7 @@ function cargar(datos) {
                 $('#hook').parent().parent().parent().siblings().addClass("info_mapa");
             });
             //Add lazy load to cloned images.
-            $("img.lazy").show().lazyload();
+//            $("img.lazy").show().lazyload();
             distance = (google.maps.geometry.spherical.computeDistanceBetween(obj.latlng_current, latlng_banos) / 1000).toFixed(2);
             google.maps.event.addListenerOnce(mapa, 'idle', function() {
                 mapa.fitBounds(bounds);

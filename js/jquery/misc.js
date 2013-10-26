@@ -25,7 +25,7 @@ $(document).ready(function(){
 
 
 // Google Maps V3
-function initialize() {
+/*function initialize() {
     var mapDiv = document.getElementById('the_map');
     var map = new google.maps.Map(mapDiv, {
         center: new google.maps.LatLng(37.4419, -122.1419),
@@ -33,7 +33,7 @@ function initialize() {
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         disableDefaultUI: true
     });
-}
+}*/
 
 
 //google.maps.event.addDomListener(window, 'load', initialize);
@@ -50,7 +50,7 @@ function initialize() {
 
 
 // Other Scripts
-$(document).bind("mobileinit", function(){
+/*$(document).bind("mobileinit", function(){
     $.mobile.touchOverflowEnabled = true;
-});
+});*/
  

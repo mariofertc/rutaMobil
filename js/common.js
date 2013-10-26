@@ -89,16 +89,16 @@ function deg(obj) {
 
 $(document).ready(function(){
 //    backToTop.init();
-    $("img.lazy").lazyload({
+//    $("img.lazy").lazyload({
 //    effect : "fadeIn",
-    failure_limit : 10,
+//    failure_limit : 10,
 //    skip_invisible : true
 //    threshold : 200
-});
+//});
 //$(document).backToTop();
 });
 $('[data-role=page]').live('pageshow', function (event, ui) {
-$("img.lazy").show().lazyload();
+//$("img.lazy").show().lazyload();
 });
 
  $(document).live('pageshow',function(event,ui){

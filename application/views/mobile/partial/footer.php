@@ -5,7 +5,7 @@
 
 <!--== GALERIA==-->
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery/klass.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery/misc.js"></script>
+<!--<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery/misc.js"></script>-->
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery/code.photoswipe.jquery-3.0.4.min.js"></script>
 
 <!--== GEOLOCALIZACION==-->
@@ -19,10 +19,11 @@
 <!--scripts flex slider-->
 <script src="<?php echo base_url(); ?>js/jquery/jquery.flexslider.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery/infobox.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery/lazyload.js"></script>
+<!--<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery/lazyload.js"></script>-->
 <script src="<?php echo base_url(); ?>js/mapa.js"></script>
 <script src="<?php echo base_url(); ?>js/comentarios.js"></script>
 <script src="<?php echo base_url(); ?>js/common.js" type="text/javascript"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery/misc.js"></script>
 <style type="text/css">
 #toTop { position: fixed; bottom: 50px; right: 30px; width: 84px; background-color: #CCC; cursor: pointer; display: none; }
 </style>

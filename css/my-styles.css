@@ -1,6 +1,5 @@
-
-
-
+/*Fix android crashes page-transition*/
+.ui-page { -webkit-backface-visibility: hidden; } 
 
 @font-face {
         font-family: 'bebas_neueregular';
@@ -188,7 +187,6 @@ img {
 
 line-height: 1.5em;
 
-}
 }
 
 .thumbnails {
@@ -392,7 +390,7 @@ a.ui-link.icon3 h1{
     text-shadow:none;
 }
 .twtr-doc{
-    100%;
+/*    100%;*/
 
 }
 
