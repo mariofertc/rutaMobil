@@ -26,6 +26,7 @@ function save_todo() {
         indexStorage++;
     }
 }
-$('#add_comment').live('pageshow', function(event, ui) {
+//$('#add_comment').live('pageshow', function(event, ui) {
+$(document).on('pageshow', '#add_comment', function() {
     $('#id_lugar').text(sessionStorage.lugar_id);
 });

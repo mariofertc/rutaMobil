@@ -1,6 +1,6 @@
 <div data-role="content" data-theme="d" class="laciudad2" >
     <h1>UNIDAD DE TURISMO</h1>
-    <p>Encuentranos en:
+    <p>Encuentranos en:</p>
         <!-- Address and Phone -->
     <ul data-role="listview" data-theme="a" data-inset="true" class="icab">
         <li ><img src="<?php echo base_url()?>images/pin.png" alt="Location" class="ui-li-icon">Halflants entre Ambato y Rocafuerte</li>

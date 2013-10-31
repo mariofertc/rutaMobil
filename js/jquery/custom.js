@@ -8,7 +8,6 @@
 $(window).load(function() {
         $('.flexslider').flexslider();
       });
-	<!--scripts flex slider-->   
 	  
 $(document).ready(function (){
 	/*$('#tweets').tweetable({username: 'iEnabled', time: true, limit: 5, replies: true, position: 'append'});*/

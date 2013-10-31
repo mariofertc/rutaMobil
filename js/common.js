@@ -97,22 +97,10 @@ $(document).ready(function(){
 //});
 //$(document).backToTop();
 });
-$('[data-role=page]').live('pageshow', function (event, ui) {
+//$('[data-role=page]').on('pageshow', function (event, ui) {
 //$("img.lazy").show().lazyload();
-});
+//});
 
- $(document).live('pageshow',function(event,ui){
-          // disable previous selected links
-          $('[data-role=navbar] a').removeClass("ui-btn-active");
-          // select link
-          var menuLink = $('[data-role=navbar] a[href="#'+$.mobile.activePage.attr('id')+'"]');
-          menuLink.addClass("ui-btn-active");
-          $('#backToTop').attr('href','#'+$.mobile.activePage.attr('id'));
-          
-    });  
-    $(document).on('pagebeforeshow', function(){ 
-//    $("#backToTop").button().button('disable');
-});
 
 $(window).scroll(function() {
         if($(this).scrollTop() >= 50) {

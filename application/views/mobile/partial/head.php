@@ -6,8 +6,9 @@
 
         <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1">
         <title>Rutas moviles guia turistica</title>
-        <link href="<?php echo base_url(); ?>js/jquery-mobile/jquery.mobile.theme-1.2.0.css" rel="stylesheet" type="text/css"/>
-        <link href="<?php echo base_url(); ?>js/jquery-mobile/jquery.mobile.structure-1.2.0.css" rel="stylesheet" type="text/css"/>
+        <link href="<?php echo base_url(); ?>js/jquery-mobile/jquery.mobile-1.3.2.min.css" rel="stylesheet" type="text/css"/>
+        <link href="<?php echo base_url(); ?>js/jquery-mobile/jquery.mobile.theme-1.3.2.min.css" rel="stylesheet" type="text/css"/>
+        <link href="<?php echo base_url(); ?>js/jquery-mobile/jquery.mobile.structure-1.3.2.min.css" rel="stylesheet" type="text/css"/>
 
         <!--== ICONOS PERSONALIZADOS==-->
         <link href="<?php echo base_url(); ?>css/descripcion.css" rel="stylesheet" type="text/css"/>

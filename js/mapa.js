@@ -1,44 +1,23 @@
 $(window).load(function() {
     $('.flexslider').flexslider();
-    if (geoPosition.init()) {
-        geolocalizar();
-    }
 });
 sessionStorage.lugar_id = 0;
 sessionStorage.categoria_id = 0;
 //cambia combos
-
 $(document).on('click', '#search_map', function() {
     sessionStorage.categoria_id = $('#oferta_select').val();
     sessionStorage.lugar_id = $('#lugar_select').val();
     geolocalizar();
 });
-
-function setChinche() {
-    var opcionesOjos = {
-        position: obj.latlng_lugares,
-        map: mapa,
-//icon: 'http://www.googlemapsmarkers.com/v1/'+ indice_lugar + '/0099FF',
-        icon: obj.icono,
-        title: obj.titulo,
-        draggable: true
-    };
-    var chinche = new google.maps.Marker(opcionesOjos);
-    chinche.setMap(mapa);
-    var distancia = obj.distance_sitio;
-    google.maps.event.addListener(chinche, "click", function() {
-        infowindow.setContent("<div id='hook' class='info_mapa'><h3>"
-                + obj.titulo +
-                "</h3><p>Distancia al lugar es: " + distancia + " km </p>" +
-                "<p>Coordenadas: " + obj.coordenada + " </p></div>");
-        infowindow.open(mapa, chinche);
-    });
-}
-
 var mapa;
 var infowindow = new google.maps.InfoWindow({maxWidth: 320});
 var obj = new Object();
 var bounds = new google.maps.LatLngBounds();
+
+function setChinche() {
+
+}
+
 function cargar(datos) {
     $.ajax({
         url: 'mobil/coordenadas',
@@ -54,7 +33,7 @@ function cargar(datos) {
             bounds.extend(obj.latlng_current);
             $("#status").text("");
             /*$("#mapa").css("height", 480).css("margin", "0 auto").css("width", 320);*/
-            var opcionesMapa = {                center: obj.latlng_current,
+            var opcionesMapa = {center: obj.latlng_current,
                 zoom: 8,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
@@ -100,7 +79,29 @@ function cargar(datos) {
                             {
                                 obj.indice_lugar++;
                                 obj.icono = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' + obj.indice_lugar + '|0055FF|ffffff';
-                                setChinche();
+
+
+                                var opcionesOjos = {
+                                    position: obj.latlng_lugares,
+                                    map: mapa,
+                                    //icon: 'http://www.googlemapsmarkers.com/v1/'+ indice_lugar + '/0099FF',
+                                    icon: obj.icono,
+                                    title: obj.titulo,
+                                    draggable: true
+                                };
+                                var chinche = new google.maps.Marker(opcionesOjos);
+                                chinche.setMap(mapa);
+                                var distancia = obj.distance_sitio;
+                                var titulo = obj.titulo;
+                                var coordenada = obj.coordenada;
+                                google.maps.event.addListener(chinche, "click", function() {
+                                    infowindow.setContent("<div id='hook' class='info_mapa'><h3>"
+                                            + titulo +
+                                            "</h3><p>Distancia al lugar es: " + distancia + " km </p>" +
+                                            "<p>Coordenadas: " + coordenada + " </p></div>");
+                                    infowindow.open(mapa, chinche);
+                                });
+//                                setChinche();
                                 //Actualiza el listado de sitios
                                 $("#sitios_mapa").append('<li><img src=' + obj.icono + ' class="ui-li-thumb ui-corner-tr" style="z-index:100; padding:5px 5px">' + $('#distancia_' + this.id_lugar).parent().parent().clone().html() + '</li>');
                                 if (sessionStorage.lugar_id === this.id_lugar) {
@@ -158,32 +159,39 @@ function getRoute(obj) {
             }
     );
 }
-$('#geo').live('pageinit', function(event, ui) {
-    if (geoPosition.init()) {
-        geolocalizar();
-    }
-});
-$('#geo').live('pageshow', function(event, ui) {
+//$(document).on('pageinit', '#geo', function() {
+
+
+//$('#geo').live('pageshow', function(event, ui) {
+$(document).on('pageshow', '#geo', function() {
     geolocalizar();
 });
 
 var id_evento;
 function geolocalizar()
 {
-    //                navigator.geolocation.getCurrentPosition(cargar,errorMapa,{'enableHighAccuracy':false,'timeout':10000,'maximumAge':20000});
-    if (id_evento != null)
-    {
-        navigator.geolocation.clearWatch(id_evento);
-        id_evento = null;
+    //navigator.geolocation.getCurrentPosition(cargar,errorMapa,{'enableHighAccuracy':false,'timeout':10000,'maximumAge':20000});
+    if (Modernizr.geolocation) {
+        if (id_evento != null)
+        {
+            navigator.geolocation.clearWatch(id_evento);
+            id_evento = null;
+        }
+        id_evento = navigator.geolocation.watchPosition(cargar, errorMapa, {maximumAge: Infinity, timeout: 50000, enableHighAccuracy: true});
+        $("#status").text("En tu busqueda ....");
+//        navigator.geolocation.getCurrentPosition(showMap)
+    } else {
+        //no support, provide a fallback. Maybe
     }
-    id_evento = navigator.geolocation.watchPosition(cargar, errorMapa, {maximumAge: Infinity, timeout: 50000, enableHighAccuracy: true});
-    $("#status").text("En tu busqueda ....");
 }
-
 function errorMapa()
 {
     $("#status").text("Tarde o temprano te encontrare");
 }
+//$(document).bind("mobileinit", function(){
+$(document).ready(function(){
+    geolocalizar();
+});
 //            function change_page(page_name) {
 //                $.mobile.changePage($('#' + page_name));
 //            }
