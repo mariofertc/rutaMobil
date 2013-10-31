@@ -519,7 +519,7 @@
         }
         // SMOOTH HEIGHT:
         if (vars.smoothHeight) methods.smoothHeight(vars.animationSpeed);
-//        $("img.lazy").show().lazyload();
+        $("img.lazy").show().lazyload();
       }
     } 
     slider.wrapup = function(dimension) {

@@ -30,27 +30,31 @@ function cargar(datos) {
             //Cruz de Bellavista -- Referencia a Baños
             var latlng_banos = new google.maps.LatLng(-1.398773, -78.414838);
             obj.latlng_current = new google.maps.LatLng(lat, lon);
-            bounds.extend(obj.latlng_current);
-            $("#status").text("");
+            var esGeo = false;
+            if ($.mobile.activePage.attr("id") == "geo")
+                esGeo = true;
+            if (esGeo)
+                bounds.extend(obj.latlng_current);
+//            $("#status").text("");
             /*$("#mapa").css("height", 480).css("margin", "0 auto").css("width", 320);*/
             var opcionesMapa = {center: obj.latlng_current,
                 zoom: 8,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
-            mapa = new google.maps.Map(document.getElementById("mapa"), opcionesMapa);
-//                        var image = new google.maps.MarkerImage('http://cdn1.iconfinder.com/data/icons/google_jfk_icons_by_carlosjj/128/maps.png',null,null,null,new google.maps.Size(30, 30));
-            var opcionesChinche = {
-                position: obj.latlng_current,
-                map: mapa
-//                            icon: image
-            };
-            var chinche = new google.maps.Marker(opcionesChinche);
-            chinche.setMap(mapa);
-            //google.maps.event.addListener(chinche, 'click', function() {            popup();       });
-            google.maps.event.addListener(chinche, "click", function() {
-                infowindow.setContent("<div id='hook' class = 'info_mapa'><h3>Te encuentras aqui!</h3><p>Distancia a Baños es: " + (distance) + " km </p></div>");
-                infowindow.open(mapa, chinche);
-            });
+
+            if (esGeo) {
+                mapa = new google.maps.Map(document.getElementById("mapa"), opcionesMapa);
+                var opcionesChinche = {
+                    position: obj.latlng_current,
+                    map: mapa
+                };
+                var chinche = new google.maps.Marker(opcionesChinche);
+                chinche.setMap(mapa);
+                google.maps.event.addListener(chinche, "click", function() {
+                    infowindow.setContent("<div id='hook' class = 'info_mapa'><h3>Te encuentras aqui!</h3><p>Distancia a Baños es: " + (distance) + " km </p></div>");
+                    infowindow.open(mapa, chinche);
+                });
+            }
             //Carga de los Lugares.
             obj.indice_lugar = 0;
             $('#sitios_mapa').html("");
@@ -59,13 +63,13 @@ function cargar(datos) {
                     $.each(this, function() {
                         if (this != undefined && this.latitud != undefined)
                         {
-                            if (sessionStorage.categoria_id == this.id_categoria && $('#oferta_select').val() != this.id_categoria)
+                            if (sessionStorage.categoria_id == this.id_categoria && $('#oferta_select').val() != this.id_categoria && esGeo)
                             {
                                 $('#oferta_select').val(this.id_categoria).trigger('change');
                                 $('select#oferta_select').selectmenu('refresh');
                             }
                             obj.latlng_lugares = new google.maps.LatLng(this.latitud, this.longitud);
-                            if (obj.indice_lugar < 5)
+                            if (obj.indice_lugar < 5 && esGeo)
                                 bounds.extend(obj.latlng_lugares);
                             obj.distance_sitio = (google.maps.geometry.spherical.computeDistanceBetween(obj.latlng_current, obj.latlng_lugares) / 1000).toFixed(2);
                             var arrive_time = (obj.distance_sitio / 90).toFixed(2);
@@ -75,12 +79,11 @@ function cargar(datos) {
                             $('#distancia_' + this.id_lugar).html(obj.distance_sitio + " Km");
                             $('#distancia2_' + this.id_lugar).html(obj.distance_sitio + " Km");
                             $('#tiempo_' + this.id_lugar).html(arrive_time + " Horas");
-                            if (sessionStorage.lugar_id == this.id_lugar || sessionStorage.lugar_id == 0)
+
+                            if ((sessionStorage.lugar_id == this.id_lugar || sessionStorage.lugar_id == 0) && esGeo)
                             {
                                 obj.indice_lugar++;
                                 obj.icono = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' + obj.indice_lugar + '|0055FF|ffffff';
-
-
                                 var opcionesOjos = {
                                     position: obj.latlng_lugares,
                                     map: mapa,
@@ -115,22 +118,24 @@ function cargar(datos) {
                     });
                 }
             });
-            //Añadir estilos al infoWindow.
-            google.maps.event.addListener(infowindow, "domready", function() {
-                $('#hook').parent().parent().parent().siblings().addClass("info_mapa");
-            });
-            //Add lazy load to cloned images.
-//            $("img.lazy").show().lazyload();
-            distance = (google.maps.geometry.spherical.computeDistanceBetween(obj.latlng_current, latlng_banos) / 1000).toFixed(2);
-            google.maps.event.addListenerOnce(mapa, 'idle', function() {
-                mapa.fitBounds(bounds);
-            });
+            if (esGeo) {
+                //Añadir estilos al infoWindow.
+                google.maps.event.addListener(infowindow, "domready", function() {
+                    $('#hook').parent().parent().parent().siblings().addClass("info_mapa");
+                });
+                //Add lazy load to cloned images.
+//                $("img.lazy").show().lazyload();
+                google.maps.event.addListenerOnce(mapa, 'idle', function() {
+                    mapa.fitBounds(bounds);
+                });
 //            mapa.fitBounds(bounds);
 //            mapa.panToBounds(bounds);
-            //Refresh Style
-            if ($('#sitios_mapa').hasClass('ui-listview')) {
-                $('#sitios_mapa').listview('refresh');
+                //Refresh Style
+                if ($('#sitios_mapa').hasClass('ui-listview')) {
+                    $('#sitios_mapa').listview('refresh');
+                }
             }
+            distance = (google.maps.geometry.spherical.computeDistanceBetween(obj.latlng_current, latlng_banos) / 1000).toFixed(2);
         }
     }); //Fin del Ajax call           
 }
@@ -189,7 +194,7 @@ function errorMapa()
     $("#status").text("Tarde o temprano te encontrare");
 }
 //$(document).bind("mobileinit", function(){
-$(document).ready(function(){
+$(document).ready(function() {
     geolocalizar();
 });
 //            function change_page(page_name) {

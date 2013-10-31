@@ -97,9 +97,9 @@ $(document).ready(function(){
 //});
 //$(document).backToTop();
 });
-//$('[data-role=page]').on('pageshow', function (event, ui) {
-//$("img.lazy").show().lazyload();
-//});
+$('[data-role=page]').on('pageshow', function (event, ui) {
+    $("img.lazy").show().lazyload();
+});
 
 
 $(window).scroll(function() {
@@ -111,12 +111,24 @@ $(window).scroll(function() {
     });
  
     $(document).on('click', '#backToTop', function() {
-        $("html, body").animate({scrollTop:0},800);
+        try{$("html, body").animate({scrollTop:0},800);return true;}
+            catch(error){console.log(error);}
+        try{$("body").animate({scrollTop:0},800);return true;}
+            catch(error){console.log(error);}
+        try{ window.scrollTo(0,0);}
+            catch(error){console.log(error);}
 //        return false;
-//        window.scrollTo(0,0);
 //        return false;
     });    
     $(document).on('click', '#toTop', function() {
         $('body,html').animate({scrollTop:0},800);
         return false;
     });    
+    
+    $(document).on('pageshow',  function() {
+          // disable previous selected links
+          $('[data-role=navbar] a').removeClass("ui-btn-active");
+          // select link
+          var menuLink = $('[data-role=navbar] a[href="#'+$.mobile.activePage.attr('id')+'"]');
+          menuLink.addClass("ui-btn-active");
+    });  
