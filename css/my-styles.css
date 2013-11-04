@@ -611,10 +611,11 @@ a.ui-link.icon3 h1{
 .title H1{
     color       :black;
     font-family : 'bebas_neueregular',Helvetica;
-    font-size   : 1.5em;/*27px*/
+    font-size   : 1.2em;/*27px*/
     font-weight : normal;
     margin      : 0;
     padding-left: 80px;
+    padding-top: 5px;
     text-align  : justify;
 }
 
@@ -696,7 +697,18 @@ font-family:'bebas_neueregular'!important;
 font-weight: normal;
 text-shadow:none;
 font-size: 1.1em;
+
 }
+
+.ui-btn-active {
+    background:#F4C619 !important;
+}
+
+
+.ui-content .ui-listview-inset, .ui-panel-inner .ui-listview-inset {
+    margin: 1em 0 0 0;
+}
+
 
 div .ui-collapsible-content {
 padding: 5px 0px;
