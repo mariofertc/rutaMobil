@@ -86,6 +86,7 @@ html{
     position        : fixed;
     text-decoration : none;
     top             : 0;
+    font-weight: normal;
 }
 
 
@@ -197,6 +198,7 @@ line-height: 1.5em;
     font-family: 'bebas_neueregular';
     font-style : normal;
     font-weight: normal;
+    margin-top: 0px;
     
 }
 
@@ -220,9 +222,9 @@ line-height: 1.5em;
     text-decoration: none;
 }
 
-.conte p{
+/*.conte p{
     font-family: 'Terminal Dosis', Arial, sans-serif;
-}
+}*/
 
 .home h2{
     font-family: 'bebas_neueregular';
@@ -562,7 +564,7 @@ a.ui-link.icon3 h1{
     border-top   : 3px solid #FFBE00;
     display      : block;
     display      : inline-block;
-    margin-bottom: 5px;
+    /*margin-bottom: 5px;*/
     margin-top   : 5px;
     width        :100%;
 }
@@ -609,7 +611,7 @@ a.ui-link.icon3 h1{
 .title H1{
     color       :black;
     font-family : 'bebas_neueregular',Helvetica;
-    font-size   : 1.6875em;/*27px*/
+    font-size   : 1.5em;/*27px*/
     font-weight : normal;
     margin      : 0;
     padding-left: 80px;
@@ -689,35 +691,58 @@ a.ui-link.icon3 h1{
 
 }
 
+.ui-btn-text{
+font-family:'bebas_neueregular'!important;  
+font-weight: normal;
+text-shadow:none;
+font-size: 1.1em;
+}
+
+div .ui-collapsible-content {
+padding: 5px 0px;
+
+}
+
+#sitios_mapa{
+margin: 0 0.5em;
+}
+
+.ui-content{
+
+ padding: 15px 5px !important;  
+}
+
+.ui-collapsible-content > .ui-listview {
+    margin: -10px 0.3px !important;
+}
+
+
+.ui-li-heading {
+    margin-top: 0 !important;
+    padding-top: 0;
+}
+
+
+
 
 @media only screen and (min-width: 480px) {
-
-
-
     .bannerr {
-
         background-repeat: no-repeat;
-        background-image: url('../images/banner_480.jpg');		
-
+        background-image: url('../images/banner_480.jpg');
     }
 
   
 
 }
 
-@media only screen and (max-width: 664px) {
-
+@media only screen and (max-width: 800px) {
     .items li {
-
         width:100%;
-
     }
-
-
 }
 
 @media only screen and (max-width: 320px) {
-    
+ 
     
 .shadow2box img{max-width:90%;} 
 .shadow2box    {margin-top:-5px; }  
