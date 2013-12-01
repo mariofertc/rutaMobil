@@ -27,6 +27,6 @@
 <script src="<?php echo base_url(); ?>js/comentarios.js"></script>
 <script src="<?php echo base_url(); ?>js/common.js" type="text/javascript"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery/misc.js"></script>
-<a href="#home" id="backToTop" data-role="button" data-icon="home" data-transition="slideup">subir</a>
+<!--<a href="#" id="backToTop" data-role="button" data-icon="home" data-transition="slideup">subir</a>-->
 </body>
 </html>

@@ -34,17 +34,6 @@ class Mobil extends CI_Controller {
         $this->load->view('mobile/lugar/pagina', $data);
 
         $categoria = $this->Categoria->get_all(100, 0, "order > 0");
-        $data['oferta'] = get_oferta($categoria, array('busqueda' => true, 'shadow' => true));
-        $this->load->view('mobile/oferta/content.php', $data);
-
-        $data['lugar'] = get_lugares($categoria, array('busqueda' => true, 'shadow' => true), $this);
-        $this->load->view('mobile/lugar/pagina', $data);
-        $data['lugar'] = get_lugar($categoria, array('busqueda' => false, 'shadow' => false), $this);
-        $this->load->view('mobile/lugar/pagina', $data);
-        $data['lugar'] = get_photos($categoria, array('busqueda' => false, 'shadow' => false), $this);
-        $this->load->view('mobile/lugar/pagina', $data);
-
-
         $data['geo'] = get_geo($categoria, array('busqueda' => false, 'shadow' => false), $this);
         $this->load->view('mobile/geo/pagina', $data);
 
@@ -55,6 +44,18 @@ class Mobil extends CI_Controller {
         $this->load->view('mobile/comentario/pagina', $data);
         $data['comentario'] = get_add_thankyou($this);
         $this->load->view('mobile/comentario/pagina', $data);
+        $data['oferta'] = get_oferta($categoria, array('busqueda' => true, 'shadow' => true));
+        
+        $this->load->view('mobile/oferta/content.php', $data);
+
+        $data['lugar'] = get_lugares($categoria, array('busqueda' => true, 'shadow' => true), $this);
+        $this->load->view('mobile/lugar/pagina', $data);
+        $data['lugar'] = get_lugar($categoria, array('busqueda' => false, 'shadow' => false), $this);
+        $this->load->view('mobile/lugar/pagina', $data);
+        $data['lugar'] = get_photos($categoria, array('busqueda' => false, 'shadow' => false), $this);
+        $this->load->view('mobile/lugar/pagina', $data);
+
+
         $this->load->view('mobile/partial/footer', $data);
     }
 
@@ -181,8 +182,10 @@ class Mobil extends CI_Controller {
         $subject = "Contactos Ecuadorinmobile";
         $config = array(
             'protocol' => 'smtp',
-            'smtp_host' => 'ssl://hosting.dnsseguras.com',
-            'smtp_port' => 465,
+            'smtp_host' => 'ssl://mail.ecuadorinmobile.com',
+            'smtp_port' => 25,
+			//'smtp_host' => 'ssl://hosting.dnsseguras.com',
+            //'smtp_port' => 465,
             'smtp_user' => 'info@ecuadorinmobile.com',
             'smtp_pass' => '12345qwer_1'
         );

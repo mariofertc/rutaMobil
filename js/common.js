@@ -131,4 +131,29 @@ $(window).scroll(function() {
           // select link
           var menuLink = $('[data-role=navbar] a[href="#'+$.mobile.activePage.attr('id')+'"]');
           menuLink.addClass("ui-btn-active");
+         
+//          $('#'+$.mobile.activePage.attr('id')).find('#backToTop').remove();
+//          $('#backToTop').remove();
+//          $('#'+$.mobile.activePage.attr('id')).append('<a onclick="goToTop()" id="backToTop" data-role="button" data-icon="home" style="z-index:20000 !important;position:fixed !important;top:0 !important;width: 100px; height: 40px " data-position="fixed">subir</a>').trigger('create');
     });  
+    
+    function goToTop()
+    {
+        $('body,html').animate({scrollTop:0},800);
+    }
+//    $("[data-role=header]").fixedtoolbar({ tapToggle: false });
+//    $(document).bind("mobileinit", function() {
+//             $.support.touchOverflow = true;
+//
+//              $.mobile.touchOverflowEnabled = true;
+//              $.mobile.fixedToolbars.setTouchToggleEnabled(false);
+//
+//        });
+//    $(document).delegate('.ui-page', 'pageshow', function () {
+    
+//    var buttonCount = 0;
+    
+//    $(this).find('.new').bind('click', function () {
+//          $('#'+$.mobile.activePage.attr('id')).append('<a onclick="goToTop()" id="backToTop" data-role="button" data-icon="home" data-ajax="false">subir</a>').trigger('create');
+//    $('#backToTop').bind('click', goToTop);
+//});

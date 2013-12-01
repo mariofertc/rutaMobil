@@ -26,6 +26,7 @@ function get_lugares($oferta_items, $opciones, $ci) {
     $data_div = '';
     foreach ($oferta_items->result() as $oferta) {
         $data_div .= '<div data-role="page" id="' . $oferta->nombre_enlace . '" data-theme="a">';
+        
         //Encabezado
         $data['oferta'] = $oferta;
         $data_div .= $ci->load->view('mobile/partial/head_share', $data, true);
@@ -81,13 +82,16 @@ function get_lugar($oferta_items, $opciones, $ci) {
             $data_div .='<div data-role="content" data-theme="d" class="conte">';
 
             $data_div .= "<div class = 'flexslider'>" . '<ul class = "slides">';
+			$idx_fotos=0;
             foreach ($ci->Lugar->get_photos($lugar->id)->result() as $row) {
-                if (isset($row->imagen_path))
+                if (isset($row->imagen_path) && $idx_fotos<3){
                     $data_div .= '<li class = "" style = "width: 100%; float: left; margin-right: -100%; position: relative; display: none;">' .
 //                            '<a href="#'.$lugar->nombre_enlace.'1"><img src = "' . base_url() . 'images/imglugar/' . $lugar->nombre_enlace . '/' . $row->imagen_path . '"></a>' .
                             '<a href="#'.$lugar->nombre_enlace.'1"><img class="lazy" src = "'. base_url() .'images/stripes_l.png" data-original ="' . base_url() . 'images/imglugar/' . $lugar->nombre_enlace . '/' . $row->imagen_path . '"></a>' .
                             //<img class="lazy" src="img/grey.gif" data-original="img/example.jpg" width="640" height="480">
                             '</li>';
+					$idx_fotos++;
+				}
             }
             $data_div .= "</ul>" . '<ol class = "flex-control-nav flex-control-paging"><ul class = "flex-direction-nav"></div>';
             $data_div .= '<div data-role="collapsible-set"><div data-role="content" class="laciudadd">';
